@@ -3,7 +3,7 @@ date: 2016-01-15 19:25:51
 categories: 
   - ci
   - jenkins
-feature: http://pic.tomczhen.com/jenkinsCIA.jpg@!title
+feature: http://www.tomczhen.com/images/logo/jenkins-logo.webp
 tags: 
   - jenkins
   - ci

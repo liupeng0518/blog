@@ -4,7 +4,7 @@ categories:
   - linux
   - docker
 description: 在 ClearOS 上安装 Docker 并使用 DaoCloud 私有集群管理平台
-feature: http://pic.tomczhen.com/clearos-logo.png@!title
+feature: http://www.tomczhen.com/images/logo/clearos-logo.webp
 tags:
   - linux
   - docker

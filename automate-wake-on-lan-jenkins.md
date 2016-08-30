@@ -3,7 +3,7 @@ date: 2016-01-21 22:06:51
 categories: 
   - other
   - android
-feature: http://pic.tomczhen.com/automate-logo.png@!title
+feature: http://www.tomczhen.com/images/logo/automate-logo.webp
 tags: 
   - android
   - automate

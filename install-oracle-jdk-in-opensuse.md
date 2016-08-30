@@ -2,6 +2,7 @@ title: OpenSuse13.1安装Sun Java JDK1.8
 date: 2015-12-08 19:25:51
 categories:
   - linux
+feature: http://www.tomczhen.com/images/logo/opensuse-logo.webp
 tags: 
   - linux
   - jdk

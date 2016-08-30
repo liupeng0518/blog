@@ -3,7 +3,7 @@ date: 2016-08-01 09:45:00
 categories: 
   - zabbix
   - raspberry pi
-feature: http://pic.tomczhen.com/raspberry-pi-logo.png@!title
+feature: http://www.tomczhen.com/images/logo/raspberry-pi-logo.webp
 tags: 
   - zabbix
   - raspberry pi

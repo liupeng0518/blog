@@ -3,7 +3,7 @@ date: 2016-01-11 17:45:00
 categories: 
   - ci
   - jenkins
-feature: http://pic.tomczhen.com/Apache-Ant-logo.png@!title
+feature: http://www.tomczhen.com/images/logo/apache-ant-logo.webp
 tags: 
   - ant
   - ios

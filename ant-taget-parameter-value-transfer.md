@@ -2,7 +2,7 @@ title: ANT 实践总结
 date: 2016-07-12 17:45:00
 categories: 
   - ant
-feature: http://pic.tomczhen.com/Apache-Ant-logo.png@!title
+feature: http://www.tomczhen.com/images/logo/apache-ant-logo.webp
 tags: 
   - ant
 toc: true
@@ -13,6 +13,7 @@ toc: true
 <property key="value" />
 ```
 
+<!-- more -->
 ---
 
 <div align="center">

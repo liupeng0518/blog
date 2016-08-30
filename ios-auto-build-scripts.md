@@ -2,7 +2,7 @@ title: 一个简单的 iOS 自动生成 ipa 文件脚本
 date: 2015-12-08 19:25:51
 categories:
   - ci
-feature: http://pic.tomczhen.com/bash-logo.jpg@!title
+feature: http://www.tomczhen.com/images/logo/bash-logo.webp
 tags:
   - ios
   - xctool

@@ -3,7 +3,7 @@ date: 2015-12-08 19:25:51
 categories: 
   - database
   - sqlserver
-feature: http://pic.tomczhen.com/sqlserver-logo.png@!title
+feature: http://www.tomczhen.com/images/logo/sqlserver-logo.webp
 tags: 
   - rds
   - 阿里云

@@ -3,7 +3,7 @@ date: 2016-05-12 14:25:51
 categories:
   - docker
 description: 国内容器云平台持续集成功能初步体验与使用记录
-feature: http://pic.tomczhen.com/docker-logo.png@!title
+feature: http://www.tomczhen.com/images/logo/docker-logo.webp
 tags:
   - docker
 toc: true

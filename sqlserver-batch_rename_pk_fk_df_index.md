@@ -3,7 +3,7 @@ date: 2016-07-18 10:45:00
 categories: 
   - database
   - sqlserver
-feature: http://pic.tomczhen.com/sqlserver-logo.png@!title
+feature: http://www.tomczhen.com/images/logo/sqlserver-logo.webp
 tags: 
   - sqlserver
 toc: true

@@ -2,7 +2,7 @@ title: 如何在FreeBSD中安装Shadowsocks并使用PAC科学上网
 date: 2015-12-08 19:25:51
 categories:
   - freebsd
-feature: http://pic.tomczhen.com/shadowsocks-logo.png@!title
+feature: http://www.tomczhen.com/images/logo/shadowsocks-logo.webp
 tags: 
   - freebsd
   - shadowsocks

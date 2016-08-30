@@ -3,7 +3,7 @@ date: 2015-12-10 22:18:51
 categories: 
   - freebsd
   - hexo
-feature: http://pic.tomczhen.com/hexo-logo.png@!title
+feature: http://www.tomczhen.com/images/logo/hexo-logo.webp
 tags:
   - freebsd
   - hexo
