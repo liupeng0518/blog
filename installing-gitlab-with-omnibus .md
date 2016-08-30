@@ -2,7 +2,7 @@ title: GitLab CE - 使用 Omnibus 包安装以及汉化
 date: 2016-04-23 15:25:51
 categories:
   - gitlab
-feature: http://www.tomczhen.com/images/logo/gitlab-log.webp
+feature: /images/logo/gitlab-log.webp
 tags:
   - gitlab
   - omnibus

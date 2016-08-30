@@ -4,7 +4,7 @@ categories:
   - database
   - redis
 description: 阿里云 ECS 自建 Redis 实例与云数据库 Redis 实例性能对比测试
-feature: http://www.tomczhen.com/images/logo/redis-logo.webp
+feature: /images/logo/redis-logo.webp
 tags: 
   - redis
   - 阿里云

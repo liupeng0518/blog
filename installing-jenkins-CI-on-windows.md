@@ -3,7 +3,7 @@ date: 2015-12-08 19:25:51
 categories:
   - ci
   - jenkins
-feature: http://www.tomczhen.com/images/logo/jenkins-logo.webp
+feature: /images/logo/jenkins-logo.webp
 tags:
   - jenkins
 toc: true
@@ -25,17 +25,17 @@ toc: true
 在安装之前你需要先启动 Jenkins。 可以在 Web 容器中启动或者直接运行 `java -jar jenkins.war`。
 然后通过 `http://<hostname>:8080/` 连接 Jenkins ，在系统管理 (Manage Jenkins) 找到 Install as Windows Service 的链接(需要 Microsoft .NET framework 2.0)：
 
-![](http://pic.tomczhen.com/jenkins-install-windows-1.png)
+![](/images/2015/jenkins-install-windows-1.webp)
 
 注意：如果 Jenkins 已经是做为一个服务运行，那么 Install as Windows Service 的链接不会出现。可以在系统服务中检查 Jenkins 是否已经做为一个服务运行。
 
 点击链接显示安装页面：
 
-![](http://pic.tomczhen.com/jenkins-install-windows-2.png)
+![](/images/2015/jenkins-install-windows-2.webp)
 
 选择 Jenkins 安装的目录，目标必须是已经存在的。目录路径会成为 `JENKINS_HOME` 变量值，并且将用于保存程序数据。安装完成之后页面会询问是否重启 Jenkins 。
 
-![](http://pic.tomczhen.com/jenkins-install-windows-3.png)
+![](/images/2015/jenkins-install-windows-3.webp)
 
 选择是会以新安装系统服务启动 Jenkins。
 
@@ -44,7 +44,7 @@ toc: true
 
 可以在系统服务中检查 Jenkins 是否已经做为服务在运行。
 
-![](http://pic.tomczhen.com/jenkins-install-windows-4.png)
+![](/images/2015/jenkins-install-windows-4.webp)
 
 ### 作为 Windows 服务安装 Slave 代理(需要 .NET 2.0 framework)
 
@@ -54,22 +54,22 @@ Jenkins 允许将 slave 代理作为 Windows 服务安装。
 
 在 slave 机器上运行代理，会显示下面的窗口：
 
-![](http://pic.tomczhen.com/jenkins-install-windows-6.png)
+![](/images/2015/jenkins-install-windows-6.webp)
 
 在目录中选择 "File" > "Install as Windows Service" ：
 
-![](http://pic.tomczhen.com/jenkins-install-windows-7.png)
+![](/images/2015/jenkins-install-windows-7.webp)
 
 确认打算作为服务安装。安装会将程序文件放到 slave 的根目录(from the "configure executors" screen.)
 
-![](http://pic.tomczhen.com/jenkins-install-windows-8.png)
+![](/images/2015/jenkins-install-windows-8.webp)
 
 Once the installation succeeds, you'll be asked if you'd like to stop the current slave agent and immediately start a slave agent. 
 安装成功后会询问是否停止当前 slave 代理并立刻启动 slave 代理(作为服务启动)。
 
 点击 "OK" 后 slave 代理窗口会终止。然后作为服务运行的 slave 代理会以无窗口模式运行，在服务管理面板中可以确认 slave 代理服务是否作在运行。
 
-![](http://pic.tomczhen.com/jenkins-install-windows-10.png)
+![](/images/2015/jenkins-install-windows-10.webp)
 
 >如果 slave 应该启动桌面应用，可以在服务属性中设置允许服务与桌面交互。
 

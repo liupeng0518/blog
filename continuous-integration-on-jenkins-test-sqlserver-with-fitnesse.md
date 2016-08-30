@@ -4,7 +4,7 @@ categories:
   - ci
   - jenkins
   - fitnesse
-feature: http://www.tomczhen.com/images/logo/fitnesse-logo.webp
+feature: /images/logo/fitnesse-logo.webp
 tags:
   - jenkins
   - fitnesse

@@ -3,7 +3,7 @@ date: 2016-05-12 14:25:51
 categories:
   - docker
 description: 国内容器云平台持续集成功能初步体验与使用记录
-feature: http://www.tomczhen.com/images/logo/docker-logo.webp
+feature: /images/logo/docker-logo.webp
 tags:
   - docker
 toc: true
@@ -33,15 +33,15 @@ DaoCloud 的持续集成功能在「代码构建」中。
 DaoCloud 的持续集成分两个部分 一个部分是「镜像构建」另一个部分是「持续集成」。持续基础部分需要用到 daocloud.yml ,使用脚本进行测试或其他操作。
 
 首先是「镜像构建设置」 部分，触发规则可以在 tag 、分支、持续集成功三种条件中选择一种。
-![](http://pic.tomczhen.com/daocloud-01.png)
-![](http://pic.tomczhen.com/daocloud-02.png)
+![](/images/2016/daocloud-01.webp)
+![](/images/2016/daocloud-02.webp)
 如果使用 tag 触发，建议设置好 tag 前缀或后缀进行有目的的触发。分支触发则需要区分发布分支与开发分支，需要发布时将开发分支的代码合并到发布分支。
 
 具体的实践操作步骤可以查看官方文档 http://docs.daocloud.io/ci-image-build/trigger-setting
 
 需要注意的是，这一步只是实现了自动构建镜像，并没有配置镜像自动部署到应用。开启构建镜像自动部署到应用，需要先将生成好的镜像部署到应用，然后在应用的发布设置中开启「自动发布」功能。
 这样就能实现根据需要触发镜像构建，镜像构建成功后自动发布到应用的流程。根据需要，可以在「持续集成」用使用脚本进行测试。
-![](http://pic.tomczhen.com/daocloud-03.png)
+![](/images/2016/daocloud-03.webp)
 >注:DaoCloud 绑定代码仓库平台帐号后会自动在代码仓库平台上添加 WebHook，并在对应的代码仓库中添加部署公钥（仅限私有仓库）。 
 
 <h2 id="tenxcloud">时速云</h2>
@@ -54,9 +54,9 @@ DaoCloud 的持续集成分两个部分 一个部分是「镜像构建」另一�
 等待镜像构建完成后，在「容器服务」中就可以部署镜像了。
 
 由于使用 Coding 私有仓库时根本就找不到「持续集成」的选项。
-![](http://pic.tomczhen.com/tenxcloud-01.png)
+![](/images/2016/tenxcloud-01.webp)
 尝试了一下 GitHub 发现公有仓库下确实出现了「持续集成」 选项，不过添加后在 GitHub 中并没有发现有添加 WebHook，因此推断应该是没有实现触发构建的。而且，自动部署镜像也还是显示即将开放。
-![](http://pic.tomczhen.com/tenxcloud-02.png)
+![](/images/2016/tenxcloud-02.webp)
 总的说来时速云的持续集成功能聊胜于无，代码修改后需要手动执行构建镜像，并部署到容器服务。
 
 <h2 id="alauda">灵雀云</h2>
@@ -64,7 +64,7 @@ DaoCloud 的持续集成分两个部分 一个部分是「镜像构建」另一�
 灵雀云 的持续基础功能在「构建」中，需要先添加「镜像构建仓库」。这里要吐槽一下，GitCafe 现在已经转移到 Coding 中，但是只支持 GitCafe 不支持 Coding 是什么鬼！
 由于 「快速创建」（支持直接输入代码仓库地址，对于私有仓库需要输入 ssh 协议的地址）仅仅支持 GitLab 格式的 WebHook，所以无法测试 Coding 平台的触发构建，可以免费使用私有仓库的就只有 Git@OSC 了。
 实际测试，添加 Git@OSC 仓库之后会自动创建 WebHook ，因此，触发构建应该是没有问题的。
-![](http://pic.tomczhen.com/alauda-01.png)
+![](/images/2016/alauda-01.webp)
 由于 灵雀云 已经没有免费实例可供测试了，所以无法继续使用部署服务，不过根据 http://www.alauda.cn/demo/ 官方演示看，镜像构建可以自动触发，但是部署到容器服务还是需要手动更新的。
 
 灵雀云可以实现基本的持续集成，将构建仓库分支选择独立的发布分支，只在合并开发分支到发布分支时触发，也足够满足需求。

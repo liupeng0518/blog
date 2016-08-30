@@ -120,5 +120,5 @@ toc: true
 ---
  
 <div align="center">
-![](/images/2015/android_trending-weixin-qrcode.webp)
+![](/images/2015/android-trending-weixin-qrcode.webp)
 </div>

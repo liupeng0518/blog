@@ -3,7 +3,7 @@ date: 2016-08-01 09:45:00
 categories: 
   - zabbix
   - raspberry pi
-feature: http://www.tomczhen.com/images/logo/raspberry-pi-logo.webp
+feature: /images/logo/raspberry-pi-logo.webp
 tags: 
   - zabbix
   - raspberry pi
@@ -108,7 +108,7 @@ sudo service zabbix-agent start
 现在我们部署好了后台。打开我们的浏览器然后输入 `http://<your-pi-ip-address>/zabbix`,如果你使用的树莓派桌面浏览器可以输入`http://localhost/zabbix`。
 接下来只需要点击下一步，直到`Configure DB connection`部分，这里需要你输入正确的数据用户名和密码。前端配置完成之后就可以看到登录页面了。
 
-![](http://pic.tomczhen.com/zabbix-login.png)
+![](/images/2016/zabbix-login.webp)
 
 默认的用户名是 `Admin` 默认密码是 `zabbix`。
 

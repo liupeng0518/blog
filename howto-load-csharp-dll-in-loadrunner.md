@@ -2,7 +2,7 @@ title: 如何在LoadRunner11中调用C#编译的动态链接库
 date: 2015-12-06 19:25:51
 categories:
   - loadrunner
-feature: http://www.tomczhen.com/images/logo/loadrunner-logo.webp
+feature: /images/logo/loadrunner-logo.webp
 tags:
   - loadrunner
   - csharp

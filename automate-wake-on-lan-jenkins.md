@@ -3,7 +3,7 @@ date: 2016-01-21 22:06:51
 categories: 
   - other
   - android
-feature: http://www.tomczhen.com/images/logo/automate-logo.webp
+feature: /images/logo/automate-logo.webp
 tags: 
   - android
   - automate
@@ -52,9 +52,9 @@ A 手机导入该任务后将推送地址接口改为 B 账号对应的接口即
 <h4 id="wolflo">自动唤醒</h4>
 
 　　在 A 手机上安装好 Automate，下载 [读取应用通知.flo](http://pan.baidu.com/s/1o7ux4lO) 按提示导入到 Automate ，进入 Atuomate 里查看导入的工作流。
-![](http://tomczhen.oss-cn-shenzhen.aliyuncs.com/Screenshot_20160121-210613.png)
+![](/images/2016/automate-1.webp)
 　　首先需要将必要的权限允许，任务执行需要的权限已经列出，点击安装按钮进行安装即可。
-![](http://tomczhen.oss-cn-shenzhen.aliyuncs.com/Screenshot_20160121-210647.png)
+![](/images/2016/automate-2.webp)
 
 **任务说明**
 
@@ -88,18 +88,18 @@ Jenkins 本来是用于软件开发中实现持续集成的，可以实现调用
 以在 Windows 中安装 Jenkins 为前提，实现一个调用接口关机的例子
 * 首先在 jenkins 中创建一个自由风格的软件项目，命名为 `PowerOff`
 
-![](http://tomczhen.oss-cn-shenzhen.aliyuncs.com/20160122105222.png)
+![](/images/2016/automate-3.webp)
 
 在任务内容中选择执行 windows 命令，然后输入 Windows 关机命令 `shutdown -s -t 60`
 
-![](http://tomczhen.oss-cn-shenzhen.aliyuncs.com/20160122105249.png)
+![](/images/2016/automate-4.webp)
 
-![](http://tomczhen.oss-cn-shenzhen.aliyuncs.com/20160122105406.png)
+![](/images/2016/automate-5.webp)
 
 保存之后，再次点击进入任务页面，可以在右下角看到这个项目的地址 `http://192.168.1.100:81/job/PowerOff/` ，使用 http 请求执行这个任务的地址就是 `http://192.168.8.250:81/job/PowerOff/build`
 
 * 参考前面调用 Server 酱信息推送接口的任务，在 Automate 中创建自己的流程，然后执行流程试试运行结果吧。
-![](http://tomczhen.oss-cn-shenzhen.aliyuncs.com/Screenshot_20160122-110758.png)
+![](/images/2016/automate-6.webp)
 
 `REQUEST METHOD` 需要选择为 `POST` ，在 `REQUEST URL` 里填写调用任务的URL地址 `http://192.168.8.250:81/job/PowerOff/build`,保存这个工作流，执行一下就可以完成调用任务关机了。
 

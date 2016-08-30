@@ -3,7 +3,7 @@ date: 2016-07-17 20:45:00
 categories: 
   - ant
   - shell
-feature: http://www.tomczhen.com/images/logo/wechat-logo.webp
+feature: /images/logo/wechat-logo.webp
 tags: 
   - ant
   - shell

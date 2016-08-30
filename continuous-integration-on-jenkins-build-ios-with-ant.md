@@ -3,7 +3,7 @@ date: 2016-01-08 17:06:51
 categories: 
   - ci
   - jenkins
-feature: http://www.tomczhen.com/images/logo/jenkins-logo.webp
+feature: /images/logo/jenkins-logo.webp
 tags: 
   - jenkins
   - ant
