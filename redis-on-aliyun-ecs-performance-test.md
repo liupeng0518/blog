@@ -185,7 +185,9 @@ class RedisTest(object):
                                                        
 ```
 
+---
+
 <div align="center">
-![](http://pic.tomczhen.com/alipay_QR.png)  
+![](/images/logo/alipay_tomczhen.webp)  
 如果对您有帮助的话，可以考虑通过支付宝请作者喝杯咖啡。
 </div>

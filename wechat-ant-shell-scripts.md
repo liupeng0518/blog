@@ -236,11 +236,10 @@ echo_green "==========================================================="
     <property name="mpnews.content" value="&lt;p&gt;构建完成&lt;br/&gt;${ant.project.name}-Android [${build.config.name}]&lt;br/&gt;${build.report.time}&lt;br/&gt;文件名称&lt;br/&gt;${build.file.name}&lt;br/&gt;Tag:${cvs.tag} Commit:${cvs.commit}&lt;br/&gt;更新说明&lt;br/&gt;${build.type}&lt;br/&gt;${cvs.log}&lt;br/&gt;下载地址&lt;br/&gt;&lt;a href=\&quot;${build.file.url}\&quot; src=\&quot;${build.file.url}\&quot;&gt;${build.file.url}&lt;/a&gt;&lt;br/&gt;&lt;img src=\&quot;${build.file.qrcode}\&quot;/&gt;&lt;/p&gt;" />
   </target>
 ```
+
 ---
 
 <div align="center">
-
-![](http://pic.tomczhen.com/alipay_QR.png)<br/>
+![](/images/logo/alipay_tomczhen.webp)  
 如果对您有帮助的话，可以考虑通过支付宝请作者喝杯咖啡。
-
 </div>

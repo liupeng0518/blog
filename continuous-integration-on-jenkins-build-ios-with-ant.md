@@ -68,9 +68,9 @@ gem sources -a https://ruby.taobao.org/
 
 Link:[ANT构建IOS项目脚本](http://www.tomczhen.com/ci/jenkins/ant-build-ios-scripts/)
 
+---
+
 <div align="center">
-
-![](http://pic.tomczhen.com/alipay_QR.png)
+![](/images/logo/alipay_tomczhen.webp)  
 如果对您有帮助的话，可以考虑通过支付宝请作者喝杯咖啡。
-
 </div>

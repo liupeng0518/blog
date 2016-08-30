@@ -118,7 +118,7 @@ toc: true
 　　说了这么多，其实最重要的就是一句话，问问你自己：你真的原意跟那个家伙一起并肩战斗吗？
 
 ---
-
+ 
 <div align="center">
-![](http://pic.tomczhen.com/AndroidTrending-weixin-qrcode.jpg)
+![](/images/2015/android_trending-weixin-qrcode.webp)
 </div>

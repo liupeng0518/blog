@@ -153,9 +153,10 @@ Windows 默认编码 GBK 与 Git 默认编码 UTF-8 不一致，在 Jenkins 的 
 `sudo brew install jenkins`
 
 <h4 id="mac-install-ant">安装 Ant</h4>
+
 ---
 
 <div align="center">
-![](http://pic.tomczhen.com/alipay_QR.png)  
+![](/images/logo/alipay_tomczhen.webp)  
 如果对您有帮助的话，可以考虑通过支付宝请作者喝杯咖啡。
 </div>

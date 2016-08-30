@@ -106,3 +106,10 @@ server {
 
 <h3 id="auto-de">自动化发布</h3>
 每次提交后需要手动生成静态文件，可以利用 git hook 来实现自动发布生成。
+
+---
+
+<div align="center">
+![](/images/logo/alipay_tomczhen.webp)  
+如果对您有帮助的话，可以考虑通过支付宝请作者喝杯咖啡。
+</div>

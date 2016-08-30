@@ -104,3 +104,10 @@ Jenkins 本来是用于软件开发中实现持续集成的，可以实现调用
 `REQUEST METHOD` 需要选择为 `POST` ，在 `REQUEST URL` 里填写调用任务的URL地址 `http://192.168.8.250:81/job/PowerOff/build`,保存这个工作流，执行一下就可以完成调用任务关机了。
 
 注意：调用的命令可能会因为运行 jenkins 服务的账号权限问题而无法执行或执行失败，需要进行相应的权限设置或改变运行 jenkins 的账号。
+
+---
+
+<div align="center">
+![](/images/logo/alipay_tomczhen.webp)  
+如果对您有帮助的话，可以考虑通过支付宝请作者喝杯咖啡。
+</div>
