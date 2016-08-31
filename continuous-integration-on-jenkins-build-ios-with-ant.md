@@ -66,7 +66,7 @@ gem sources -a https://ruby.taobao.org/
 
 <h2 id="exmple">脚本实例</h2>
 
-Link:[ANT构建IOS项目脚本](http://www.tomczhen.com/ci/jenkins/ant-build-ios-scripts/)
+Link:[ANT构建IOS项目脚本](/2016/01/11/ant-build-ios-scripts)
 
 ---
 

@@ -1,12 +1,10 @@
-title: Jenkins实现持续集成——使用FitNesse测试SQL Server数据库
+title: 使用 FitNesse 测试 SQL Server 数据库
 date: 2016-01-21 15:06:51
 categories:
   - ci
-  - jenkins
   - fitnesse
 feature: /images/logo/fitnesse-logo.webp
 tags:
-  - jenkins
   - fitnesse
   - database
   - sqlserver

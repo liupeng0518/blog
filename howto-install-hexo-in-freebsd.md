@@ -9,10 +9,12 @@ tags:
   - hexo
 toc: true
 ---
+
 >参考资料:
 >[使用GitHub和Hexo搭建免费静态Blog](http://wsgzao.github.io/post/hexo-guide/)  
 >[FreeBSD: Nginx Virtual Hosting Configuration](http://www.cyberciti.biz/faq/freebvsd-nginx-namebased-virtual-hosting-configuration/)  
 >[Hexo博客后台运行技巧](http://www.tuijiankan.com/2015/05/08/hexo-forever-run/)
+>[史上最详细的Hexo博客搭建图文教程](https://xuanwo.org/2015/03/26/hexo-intor/)
 
 ******
 
@@ -82,30 +84,31 @@ server {
 
 <h2 id="hexo">Hexo</h2>
 
-<h3 id="hexo-reday">准备</h3>
+<h4 id="install-node">安装 HEXO</h4>
 
-<h4 id="install-node">安装 node</h4>
-
-`pkg install node`
-
-<h4 id="install-npm">安装 npm</h4>
-
-`pkg install npm`
+```
+pkg install node
+pkg install npm`
+```
 
 <h4 id="installhexo">安装 Hexo</h4>
 
-`npm install hexo -g`
-`npm instal hexo-cli -g`
+进入 `/mnt/hexo`目录
+
+```
+npm instal hexo-cli -g
+npm install hexo --save
+```
 
 可以使用淘宝NPM镜像作为安装源安装——[淘宝 NPM 镜像](http://npm.taobao.org/)
 
 `npm install hexo-cli -g --registry=https://registry.npm.taobao.org`
 `npm instal hexo -save --registry=https://registry.npm.taobao.org`
 
-<h3 id="hexo-init">初始化Hexo</h3>
+<h3 id="hexo-init">初始化 Hexo</h3>
 
-<h3 id="auto-de">自动化发布</h3>
-每次提交后需要手动生成静态文件，可以利用 git hook 来实现自动发布生成。
+编辑 hexo 目录下的`_config.yml`文件配置博客，具体配置可以查看 HEXO 文档 [https://hexo.io/zh-cn/docs/configuration.html](https://hexo.io/zh-cn/docs/configuration.html)
+由于这里是通过自己服务器的 WebServer 来提高服务，所以不涉及到部署部分。
 
 ---
 

@@ -365,8 +365,6 @@ jpush.key=jpush_key
 jpush.secret=jpush_secret
 ```
 
-<h3 id="wechat">相关脚本链接</h3>
-
 ---
 
 <div align="center">
