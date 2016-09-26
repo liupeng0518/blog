@@ -2,11 +2,9 @@ title: 阿里云RDS For SQL Server项目部署注意事项
 date: 2015-12-08 19:25:51
 categories: 
   - database
-  - sqlserver
 feature: /images/logo/sqlserver-logo.webp
 tags: 
   - rds
-  - 阿里云
   - sqlserver
 ---
 公司项目是使用的阿里云RDS SQL Server,记录一下在项目中遇到的一些需要注意的地方.

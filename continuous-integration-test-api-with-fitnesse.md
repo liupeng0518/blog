@@ -2,7 +2,6 @@ title: 使用 FitNesse 进行 API 测试
 date: 2016-01-08 17:06:51
 categories: 
   - ci
-  - fitnesse
 feature: /images/logo/fitnesse-logo.webp
 tags: 
   - fitnesse

@@ -1,7 +1,7 @@
 title: ANT 实践总结
 date: 2016-07-12 17:45:00
 categories: 
-  - ant
+  - ci
 feature: /images/logo/apache-ant-logo.webp
 tags: 
   - ant

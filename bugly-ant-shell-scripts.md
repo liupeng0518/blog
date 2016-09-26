@@ -1,8 +1,7 @@
 title: 上传安装包到 Bugly 发布平台脚本
 date: 2016-07-17 20:45:00
 categories: 
-  - ant
-  - shell
+  - ci
 feature: /images/logo/bugly-logo.webp
 tags: 
   - ant

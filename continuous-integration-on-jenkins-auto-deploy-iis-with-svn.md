@@ -2,7 +2,6 @@ title: Jenkins实现持续集成——使用SVN实现IIS站点自动部署
 date: 2016-01-15 19:25:51
 categories: 
   - ci
-  - jenkins
 feature: /images/logo/jenkins-logo.webp
 tags: 
   - jenkins

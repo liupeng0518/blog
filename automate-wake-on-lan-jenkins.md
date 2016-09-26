@@ -2,7 +2,6 @@ title: Automate实现远程唤醒开机以及扩展应用
 date: 2016-01-21 22:06:51
 categories: 
   - other
-  - android
 feature: /images/logo/automate-logo.webp
 tags: 
   - android

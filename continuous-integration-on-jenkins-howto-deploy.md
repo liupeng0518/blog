@@ -2,7 +2,6 @@ title: Jenkins实现持续集成——部署Jenkins
 date: 2015-12-08 19:25:51
 categories:
   - ci
-  - jenkins
 feature: /images/logo/jenkins-logo.webp
 tags:
   - jenkins

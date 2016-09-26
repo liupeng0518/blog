@@ -2,7 +2,6 @@ title: SQL Server查询结果的排序问题
 date: 2015-12-08 19:25:51
 categories:
   - database
-  - sqlserver
 feature: /images/logo/sqlserver-logo.webp
 tags:
   - sqlserver

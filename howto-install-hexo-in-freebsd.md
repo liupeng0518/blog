@@ -1,7 +1,6 @@
 title: FreeBSD安装部署Hexo
 date: 2015-12-10 22:18:51
 categories: 
-  - freebsd
   - hexo
 feature: /images/logo/hexo-logo.webp
 tags:

@@ -2,7 +2,6 @@ title: Jenkins——在 Windows 中安装 Jenkins
 date: 2015-12-08 19:25:51
 categories:
   - ci
-  - jenkins
 feature: /images/logo/jenkins-logo.webp
 tags:
   - jenkins

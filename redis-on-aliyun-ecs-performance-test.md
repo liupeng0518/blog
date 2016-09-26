@@ -2,12 +2,10 @@ title: 阿里云ECS自建Redis性能测试
 date: 2016-04-10 13:28:00
 categories: 
   - database
-  - redis
 description: 阿里云 ECS 自建 Redis 实例与云数据库 Redis 实例性能对比测试
 feature: /images/logo/redis-logo.webp
 tags: 
   - redis
-  - 阿里云
   - ECS
 toc: true
 ---

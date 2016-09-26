@@ -2,7 +2,6 @@ title: SQL Server分区表操作记录
 date: 2015-12-08 19:25:51
 categories:
   - database
-  - sqlserver
 feature: /images/logo/sqlserver-logo.webp
 tags:
   - sqlserver
