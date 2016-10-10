@@ -250,7 +250,7 @@ hash("hello" + "YYLmfY6IehjZMQ") = a49670c3c18b9e079b9cfaf51634f563dc8ae3070db2c
 
 这种技术的思想就是把哈希函数变得很慢，于是即使有着超高性能的GPU或定制硬件，字典攻击和暴力攻击也会慢得让攻击者无法接受。最终的目标是把哈希函数的速度降到足以让攻击者望而却步，但造成的延迟又不至于引起用户的注意。
 
-密钥扩展的实现是依靠一种CPU密集型哈希函数。不要尝试自己发明简单的迭代哈希加密，如果迭代不够多，是可以被高效的硬件快速并行计算出来的，就和普通哈希一样。应该使用标准的算法，比如 [PBKDF2] (http://en.wikipedia.org/wiki/PBKDF2)或者 [bcrypt](http://en.wikipedia.org/wiki/Bcrypt)。这里可以找到 [PBKDF2](https://defuse.ca/php-pbkdf2.htm) 在 PHP 上的一种实现。
+密钥扩展的实现是依靠一种CPU密集型哈希函数。不要尝试自己发明简单的迭代哈希加密，如果迭代不够多，是可以被高效的硬件快速并行计算出来的，就和普通哈希一样。应该使用标准的算法，比如 [PBKDF2](http://en.wikipedia.org/wiki/PBKDF2)或者 [bcrypt](http://en.wikipedia.org/wiki/Bcrypt)。这里可以找到 [PBKDF2](https://defuse.ca/php-pbkdf2.htm) 在 PHP 上的一种实现。
 
 这类算法使用一个安全因子或迭代次数作为参数，这个值决定了哈希函数会有多慢。对于桌面软件或者手机软件，获取参数最好的办法就是执行一个简短的性能基准测试，找到使哈希函数大约耗费0.5秒的值。这样，你的程序就可以尽可能保证安全，而又不影响到用户体验。
 
@@ -336,7 +336,7 @@ hash("hello" + "YYLmfY6IehjZMQ") = a49670c3c18b9e079b9cfaf51634f563dc8ae3070db2c
 
 **为什么我非得用像HMAC那种特殊的算法？为什么不能简单地把密钥混入密码？**
 
-像MD5、SHA1和SHA2这类哈希函数是基于 [Merkle–Damgård](http://en.wikipedia.org/wiki/Merkle%C3%A2%C2%80) 构造的，因此在长度扩展攻击面前非常脆弱。就是说如果已经知道一个哈希值H(X)，对于任意的字符串Y，攻击者可以计算出H(pad(X) + Y)的值，而不需要知道X是多少，其中pad(X)是哈希函数的填充函数（padding function，比如MD5将数据每512bit分为一组，最后不足的将填充字节）。
+像MD5、SHA1和SHA2这类哈希函数是基于 [Merkle–Damgård](http://en.wikipedia.org/wiki/Merkle%E2%80%93Damg%C3%A5rd_construction) 构造的，因此在长度扩展攻击面前非常脆弱。就是说如果已经知道一个哈希值H(X)，对于任意的字符串Y，攻击者可以计算出H(pad(X) + Y)的值，而不需要知道X是多少，其中pad(X)是哈希函数的填充函数（padding function，比如MD5将数据每512bit分为一组，最后不足的将填充字节）。
 
 在攻击者不知道密钥（key）的情况下，他仍然可以根据哈希值H(key + message)计算出H(pad(key + message) + extension)。如果这个哈希值用于身份认证，并且依靠其中的密钥来防止攻击者篡改消息，这个办法已经行不通了。因为攻击者无需知道密钥，也能构造出包含message + extension的一个有效的哈希值。
 
