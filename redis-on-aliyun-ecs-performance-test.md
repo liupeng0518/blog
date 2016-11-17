@@ -130,57 +130,65 @@ if __name__ == "__main__":
 # -*- coding: utf-8 -*-
 import uuid
 import redis
-from datetime import datetime
 import threading
 
 
-class RedisTest(object):
+class RedisBench(object):
     def __init__(self, host, port=6379, pwd=""):
         self.pool = redis.ConnectionPool(host=host, port=port, password=pwd)
         self.record_time = {}
-
-    def set_key_test(self, key_num, thread_num):
-        for i in range(thread_num):
-            thread = threading.Thread(target=self.__set_key(key_num), name=i + 1)
-            if i == 0:
-                self.record_time["start"] = datetime.now()
-            thread.start()
-            if i == thread_num - 1:
-                self.record_time["end"] = datetime.now()
-
-        cost_time = self.record_time["end"] - self.record_time["start"]
-        print(
-            "使用 {} 个线程，每线程添加 {} 个 key，共耗时 {} 秒 {} 毫秒".format(thread_num, key_num, cost_time.seconds,
-                                                             cost_time.microseconds / 1000))
 
     def __init_pool(self):
         pool = redis.Redis(connection_pool=self.pool)
         return pool
 
-    def __set_key(self, key_num):
+    def set_key(self, keys_num):
         j = 0
         connect_pool = self.__init_pool()
         pipe = connect_pool.pipeline()
-        while j < key_num:
-            key_name = "python" + ":" + str(uuid.uuid4())
-            key_value = ""
-            pipe.set(key_name, key_value, ex=60, px=None, nx=False, xx=False)
-            j += 1
+
+        def __gen_keys_values(i):
+            yield 'python' + ':' + str(uuid.uuid4())
+            yield ''
+
+        for k, v in tuple(map(__gen_keys_values, range(keys_num))):
+            pipe.set(name=k, value=v, ex=60, px=None, nx=False, xx=False)
 
         pipe.execute()
 
-    def lpush(self, value_num):
+    def lpush(self, values_num):
         connect_pool = self.__init_pool()
         pipe = connect_pool.pipeline()
-        start_time = datetime.now()
-        tuple_values = tuple(range(value_num))
+        tuple_values = tuple(range(values_num))
         pipe.lpush("key_list", *tuple_values)
         pipe.execute()
-        end_time = datetime.now()
-        cost_time = end_time - start_time
-        print(
-            "使用 rpush，添加 {} 个 value 到 list，共耗时 {} 秒 {} 毫秒".format(value_num, cost_time.seconds,
-                                                       
+
+    def start(self):
+        configs = [{"test": self.set_key, "threads_num": 1, "keys_num": 10000}]
+
+        threads = []
+
+        for config in configs:
+            threads.append([])
+            for i in range(config['threads_num']):
+                t = threading.Thread(target=config['test'], args=(config['keys_num'],))
+                threads[configs.index(config)].append(t)
+
+            for i in range(config['threads_num']):
+                threads[configs.index(config)][i].start()
+
+            for i in range(config['threads_num']):
+                threads[configs.index(config)][i].join()
+
+
+if __name__ == "__main__":
+    redis_host = "127.0.0.1"
+    redis_port = 6379
+    redis_pwd = ""
+
+    my_redis_bench = RedisBench(host=redis_host, pwd=redis_pwd)
+    my_redis_bench.start()
+
 ```
 
 ---
