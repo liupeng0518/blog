@@ -51,40 +51,48 @@ toc: true
 分别使用单线程,2 线程,4 线程增加 10 万个 TTL 值为 60 秒的 key , key 名使用 UUID , value 统一为 0 .
 
 ```
-# coding:utf-8
- 
+# -*- coding: utf-8 -*-
+
 import uuid
 import redis
-from datetime import datetime
 from threading import Thread
- 
- 
-def set_redis_key():
-    thread_start_time = datetime.now()
-    thread_name = t.getName()[-1:]
-    j = 0
+from timeit import timeit
+
+redis_host = "127.0.0.1"
+redis_port = 6379
+redis_pwd = ""
+
+threads_num = 4
+keys_num = 25000
+threads = []
+
+
+def set_redis_key(num):
     r = redis.StrictRedis(host=redis_host, port=redis_port, password=redis_pwd)
- 
-    while j < 100000:
-        key_name = thread_name + ":" + str(uuid.uuid4())
-        key_value = 0
-        r.set(key_name, key_value, ex=60, px=None, nx=False, xx=False)
-        j += 1
- 
-    thread_end_time = datetime.now()
-    print "Thread " + thread_name + " start: " + str(thread_start_time) + " end: " + str(
-        thread_end_time) + " cost: " + str((thread_end_time - thread_start_time).seconds) + " seconds."
- 
- 
+
+    def __gen_keys_values(i):
+        yield 'python' + ':' + str(uuid.uuid4())
+        yield ''
+
+    for k, v in tuple(map(__gen_keys_values, range(num))):
+        r.set(name=k, value=v, ex=60, px=None, nx=False, xx=False)
+
+
+def start():
+    for i in range(threads_num):
+        t = Thread(target=set_redis_key, args=(keys_num,))
+        threads.append(t)
+
+    for i in range(threads_num):
+        threads[i].start()
+
+    for i in range(threads_num):
+        threads[i].join()
+
+
 if __name__ == "__main__":
-    redis_host = "10.169.0.0"
-    redis_port = 6379
-    redis_pwd = "redis"
- 
-    max_thread_num =1
-    for i in range(max_thread_num):
-        t = Thread(target=set_redis_key)
-        t.start()
+    cost_time = timeit('start()', 'from __main__ import start', number=1)
+    print('耗时 {} 秒。'.format(cost_time))
 ```
 
 <h2 id="result">测试结果</h2>
@@ -136,7 +144,6 @@ import threading
 class RedisBench(object):
     def __init__(self, host, port=6379, pwd=""):
         self.pool = redis.ConnectionPool(host=host, port=port, password=pwd)
-        self.record_time = {}
 
     def __init_pool(self):
         pool = redis.Redis(connection_pool=self.pool)
