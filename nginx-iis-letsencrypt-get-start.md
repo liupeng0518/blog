@@ -20,10 +20,18 @@ toc: true
 <h2 id="how-it-works">工作原理</h2>
 
 Let’s Encrypt 颁发的证书是 DV 证书(域名验证型 DV SSL证书/Domain Validation SSL Certificate)，简单来说就是 Let’s Encrypt 将以前的人工参与的认证工作实现了自动化。
-域名验证的方式在官方文档中有提到`Provisioning an HTTP resource under a well-known URI on https://example.com/`，简单来说是通过 http 的方式访问域名网站的一个指定 URI 下的资源来做验证。
-所以部署 LetsEncrypt 的证书关键也是在如何让这个指定的 URI 可以正常访问。
 
-具体工作原理请查阅[官方文档](https://letsencrypt.org/how-it-works/),。
+在官方文档中有提到域名验证的方式有两种方式:
+
+* Provisioning a DNS record under example.com
+
+通过 example.com 的 DNS 记录来认证，使用这种方式做到自动化需要 DNS 解析平台提供相应的 API 接口。
+
+* Provisioning an HTTP resource under a well-known URI on https://example.com/
+
+访问域名网站的一个指定 URI 下的 http 资源来做验证，使用这种方式需要对 Web Server 有可控制的权限，部署的关键是在如何让这个指定的 URI 可以正常访问。
+
+具体工作原理请查阅[官方文档](https://letsencrypt.org/how-it-works/)。
 
 注：**Let’s Encrypt 的证书有效期为 90 天**。不同类型的证书在功能上是相同的，只是 CA 机构的背书信任”价值“不同。
 
@@ -46,5 +54,6 @@ https://github.com/Lone-Coder/letsencrypt-win-simple
 
 <div class="center-block text-center">
 ![](/images/logo/alipay_tomczhen.webp)
-<p>如果对您有帮助的话，可以考虑通过支付宝请作者喝杯咖啡。</p>
+
+如果对您有帮助的话，可以考虑通过支付宝请作者喝杯咖啡。
 </div>
