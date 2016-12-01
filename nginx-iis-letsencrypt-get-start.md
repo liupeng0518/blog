@@ -29,7 +29,7 @@ Let’s Encrypt 颁发的证书是 DV 证书(域名验证型 DV SSL证书/Domain
 
 * Provisioning an HTTP resource under a well-known URI on https://example.com/
 
-访问域名网站的一个指定 URI 下的 http 资源来做验证，使用这种方式需要对 Web Server 有可控制的权限，部署的关键是在如何让这个指定的 URI 可以正常访问。
+访问域名网站的一个指定 URI 下的 http 资源来做验证，关键是在如何让这个指定的 URI 可以正常访问。
 
 具体工作原理请查阅[官方文档](https://letsencrypt.org/how-it-works/)。
 
@@ -41,14 +41,114 @@ Let’s Encrypt 颁发的证书是 DV 证书(域名验证型 DV SSL证书/Domain
 
 根据不同平台还有工具链的偏好，可以在[官方文档](https://letsencrypt.org/docs/client-options/)中选择自己喜欢或熟悉的工具实现。
 
-<h3 id="nginx-shell"></h3>
+<h3 id="nginx-shell">在 Lunix 中部署</h3>
 
 https://github.com/lukas2511/dehydrated
 
-<h3 id="letsencrypt-win-simple"><h3>
+这个项目是使用纯 shell 来实现的，只需要确保`openssl`安装了基本就能使用。
 
-https://github.com/ebekker/ACMESharp
-https://github.com/Lone-Coder/letsencrypt-win-simple
+```
+Usage: ./dehydrated [-h] [command [argument]] [parameter [argument]] [parameter [argument]] ...
+
+Default command: help
+
+Commands:
+ --cron (-c)                      Sign/renew non-existant/changed/expiring certificates.
+ --signcsr (-s) path/to/csr.pem   Sign a given CSR, output CRT on stdout (advanced usage)
+ --revoke (-r) path/to/cert.pem   Revoke specified certificate
+ --cleanup (-gc)                  Move unused certificate files to archive directory
+ --help (-h)                      Show help text
+ --env (-e)                       Output configuration variables for use in other scripts
+
+Parameters:
+ --full-chain (-fc)               Print full chain when using --signcsr
+ --ipv4 (-4)                      Resolve names to IPv4 addresses only
+ --ipv6 (-6)                      Resolve names to IPv6 addresses only
+ --domain (-d) domain.tld         Use specified domain name(s) instead of domains.txt entry (one certificate!)
+ --keep-going (-g)                Keep going after encountering an error while creating/renewing multiple certificates in cron mode
+ --force (-x)                     Force renew of certificate even if it is longer valid than value in RENEW_DAYS
+ --no-lock (-n)                   Don't use lockfile (potentially dangerous!)
+ --ocsp                           Sets option in CSR indicating OCSP stapling to be mandatory
+ --privkey (-p) path/to/key.pem   Use specified private key instead of account key (useful for revocation)
+ --config (-f) path/to/config     Use specified config file
+ --hook (-k) path/to/hook.sh      Use specified script for hooks
+ --out (-o) certs/directory       Output certificates into the specified directory
+ --challenge (-t) http-01|dns-01  Which challenge should be used? Currently http-01 and dns-01 are supported
+ --algo (-a) rsa|prime256v1|secp384r1 Which public key algorithm should be used? Supported: rsa, prime256v1 and secp384r1
+ ```
+
+根据项目文档 [docs/domains_txt.md](https://github.com/lukas2511/dehydrated/blob/master/docs/domains_txt.md) 中的示例，创建自己的 `domains.txt` 文件。
+
+```
+example.com www.example.com
+example.net www.example.net wiki.example.net
+```
+
+`config`中可以配置证书生成的路径，`/.well-known/acme-challenge`对应的路径，具体可以查看项目文档 [docs/wellknown.md](https://github.com/lukas2511/dehydrated/blob/master/docs/wellknown.md) 中的说明。
+
+以我的博客为例子，`domains.txt` 的内容如下：
+
+```
+tomczhen.com www.tomczhen.com gogs.tomczhen.com
+```
+
+`config`修改的内容如下：
+
+```
+# Which challenge should be used? Currently http-01 and dns-01 are supported
+CHALLENGETYPE="http-01"
+
+# Output directory for generated certificates
+CERTDIR="/mnt/data/nginx/config/certs"
+
+# Output directory for challenge-tokens to be served by webserver or deployed in HOOK (default: /var/www/letsencrypt)
+WELLKNOWN="/mnt/data/nginx/html/letsencrypt"
+```
+
+由于使用的是通过 http 资源来验证，所以需要在 Web Server 中配置指定的 URI 可以通过 http 方式被访问。以 nginx 为例，需要处理  URI `/.well-known/acme-challenge` 单独跳转，除此之外都跳转到 https。
+
+```
+server {
+    listen 80;
+    server_name tomczhen.com www.tomczhen.com;
+    
+    location /.well-known/acme-challenge/ {
+      default_type  "text/plain";
+      alias         /usr/share/nginx/html/letsencrypt/;
+    }
+    
+    location / {
+      rewrite ^/(.*)$ https://www.tomczhen.com/$1 permanent;
+    }
+    
+}
+```
+
+在 nginx 中根据 `config` 配置的证书路径，设置好对应站点的证书。
+
+```
+ssl_certificate     /etc/nginx/certs/tomczhen.com/fullchain.pem;
+ssl_certificate_key /etc/nginx/certs/tomczhen.com/privkey.pem;
+```
+
+设置完成之后就可以执行 `letsencrypt.sh` 了。
+
+注意：Let’s Encrypt 对接口的调用频率有一定的限制，在正式部署前可以在 `config` 中指定测试 CA 地址来测试。
+
+```
+# Path to certificate authority (default: https://acme-v01.api.letsencrypt.org/directory)
+CA="https://acme-staging.api.letsencrypt.org/directory"
+```
+
+<h3 id="letsencrypt-win-simple">在 Windows 上部署<h3>
+
+Windows 上有 powershell 和可执行文件两种方式，不过均只支持 IIS 下的自动部署，可以根据需要选择 [ACMESharp](https://github.com/ebekker/ACMESharp) 或 [letsencrypt-win-simple](https://github.com/Lone-Coder/letsencrypt-win-simple)。
+
+这里以使用 letsencrypt-win-simple 为例。 
+
+
+
+
 
 ---
 
