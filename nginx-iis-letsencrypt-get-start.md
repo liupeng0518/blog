@@ -37,7 +37,7 @@ Let’s Encrypt 颁发的证书是 DV 证书(域名验证型 DV SSL证书/Domain
 
 <!-- more -->
 
-<h2 id="how-to-use"></h2>
+<h2 id="how-to-use">如何使用?</h2>
 
 根据不同平台还有工具链的偏好，可以在[官方文档](https://letsencrypt.org/docs/client-options/)中选择自己喜欢或熟悉的工具实现。
 
@@ -140,7 +140,7 @@ ssl_certificate_key /etc/nginx/certs/tomczhen.com/privkey.pem;
 CA="https://acme-staging.api.letsencrypt.org/directory"
 ```
 
-<h3 id="letsencrypt-win-simple">在 Windows 上部署<h3>
+<h3 id="letsencrypt-win-simple">在 Windows 上部署</h3>
 
 Windows 上有 powershell 和可执行文件两种方式，不过均只支持 IIS 下的自动部署，可以根据需要选择 [ACMESharp](https://github.com/ebekker/ACMESharp) 或 [letsencrypt-win-simple](https://github.com/Lone-Coder/letsencrypt-win-simple)。
 
