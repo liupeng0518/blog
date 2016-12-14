@@ -144,11 +144,108 @@ CA="https://acme-staging.api.letsencrypt.org/directory"
 
 Windows 上有 powershell 和可执行文件两种方式，不过均只支持 IIS 下的自动部署，可以根据需要选择 [ACMESharp](https://github.com/ebekker/ACMESharp) 或 [letsencrypt-win-simple](https://github.com/Lone-Coder/letsencrypt-win-simple)。
 
-这里以使用 letsencrypt-win-simple 为例。 
+这里以使用 letsencrypt-win-simple 为例，下载好编译好的可执行文件后，可以在命令行中使用，通过 `--help` 参数可以查看帮助
 
+```
+D:\tools\letsencrypt-win-simple.V1.9.1>letsencrypt.exe --help
+Let's Encrypt Simple Windows Client 1.9.1.38228
+Let's Encrypt
+--baseuri           (Default: https://acme-v01.api.letsencrypt.org/) The address of the ACME server to use.
 
+--accepttos         Accept the terms of service.
 
+--renew             Check for renewals.
 
+--test              Overrides BaseUri setting to https://acme-staging.api.letsencrypt.org/
+
+--manualhost        A host name to manually get a certificate for. --webroot must also be set.
+
+--webroot           (Default: %SystemDrive%\inetpub\wwwroot) A web root for the manual host name for authentication.
+
+--script            A script for installation of non IIS Plugin.
+
+--scriptparameters  Parameters for the script for installation of non IIS Plugin.
+
+--centralsslstore   Path for Centralized Certificate Store (This enables Centralized SSL). Ex. \\storage\central_ssl\
+
+--hidehttps         Hide sites that have existing HTTPS bindings
+
+--san               Certificates per site instead of per host
+
+--keepexisting      Keep existing HTTPS bindings, and certificates
+
+--help              Display this help screen.
+
+--version           Display version information.
+```
+
+一般来说直接运行，按向导操作就可以完成部署。为了避免意外，初次运行可以使用`--test`参数进行测试。
+
+```
+D:\tools\letsencrypt-win-simple.V1.9.1>letsencrypt.exe --test
+Let's Encrypt (Simple Windows ACME Client)
+Renewal Period: 60
+Certificate Store: WebHosting
+
+ACME Server: https://acme-staging.api.letsencrypt.org/
+Config Folder: C:\Users\Administrator\AppData\Roaming\letsencrypt-win-simple\httpsacme-staging.api.letsencrypt.org
+Certificate Folder: C:\Users\Administrator\AppData\Roaming\letsencrypt-win-simple\httpsacme-staging.api.letsencrypt.org
+Loading Signer from C:\Users\Administrator\AppData\Roaming\letsencrypt-win-simple\httpsacme-staging.api.letsencrypt.org\Signer
+
+Getting AcmeServerDirectory
+Loading Registration from C:\Users\Administrator\AppData\Roaming\letsencrypt-win-simple\httpsacme-staging.api.letsencrypt.org\Registration
+
+Scanning IIS Site Bindings for Hosts
+ 1: IIS iis.tomczhen.com (D:\www\tomczhen)
+
+ W: Generate a certificate via WebDav and install it manually.
+ F: Generate a certificate via FTP/ FTPS and install it manually.
+ M: Generate a certificate manually.
+ A: Get certificates for all hosts
+ Q: Quit
+Which host do you want to get a certificate for:
+```
+
+根据需要可以输入选项，一般来说输入对应站点的序号即可。
+
+```
+Authorizing Identifier ii.tomczhen.com Using Challenge Type http-01
+ Writing challenge answer to D:\www\tomczhen\.well-known/acme-challenge/pDHTIqoo9u8j9R_mSpSAalJ4H5KenOrZyEq_AU_q_Jk
+ Writing web.config to add extensionless mime type to D:\www\tomczhen\.well-known\acme-challenge\web.config
+ Answer should now be browsable at http://iis.tomczhen.com/.well-known/acme-challenge/pDHTIqoo9u8j9R_mSpSAalJ4H5KenOrZyEq_AU_q_Jk
+ Submitting answer
+ Refreshing authorization
+ Authorization Result: valid
+ Deleting answer
+
+Requesting Certificate
+ Request Status: Created
+ Saving Certificate to C:\Users\Administrator\AppData\Roaming\letsencrypt-win-simple\httpsacme-staging.api.letsencrypt.org\iis.tomczhen.com-crt.der
+ Saving Issuer Certificate to C:\Users\Administrator\AppData\Roaming\letsencrypt-win-simple\httpsacme-staging.api.letsencrypt.org\ca-008BE12A0E5944ED3C546431F097614FE5-crt.pem
+ Saving Certificate to C:\Users\Administrator\AppData\Roaming\letsencrypt-win-simple\httpsacme-staging.api.letsencrypt.org\iis.tomczhen.com-all.pfx
+
+Do you want to install the .pfx into the Certificate Store/ Central SSL Store? (Y/N)
+ Opened Certificate Store "WebHosting"
+ Adding Certificate to Store
+ Closing Certificate Store
+
+Do you want to add/update the certificate to your server software? (Y/N)
+ Adding https Binding
+ Committing binding changes to IIS
+ Opened Certificate Store "WebHosting"
+ Closing Certificate Store
+
+Do you want to automatically renew this certificate in 60 days? This will add a task scheduler task. (Y/N)
+ Creating Task letsencrypt-win-simple httpsacme-staging.api.letsencrypt.org with Windows Task Scheduler at 9am every day.
+
+Do you want to specify the user the task will run as? (Y/N)
+ Renewal Scheduled IIS iis.tomczhen.com (D:\www\tomczhen) Renew After 2017-02-12
+Press enter to continue.
+```
+
+向导会询问是否需要添加一个计划任务来定时更新证书，如果没有特别需要，这里一路同意即可。
+
+另一个项目 [ACMESharp](https://github.com/ebekker/ACMESharp) 则可以通过 powershell 脚本进行部署，参考项目文档即可。
 
 ---
 
