@@ -32,10 +32,3 @@ https://about.gitlab.com/downloads/
 
 * 如果需要了解 GitLab 功能和操作在虚拟机中使用全新系统配合安装包安装是最合适的方法。
 * 如果想了解 GitLab 架构体系或者学习 Linux 操作，建议使用手动安装。[ GitLab 官方安装文档 ](https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/install/installation.md)
-
----
-
-<div align="center">
-![](/images/logo/alipay_tomczhen.webp)  
-如果对您有帮助的话，可以考虑通过支付宝请作者喝杯咖啡。
-</div>

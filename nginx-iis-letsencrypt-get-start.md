@@ -246,11 +246,3 @@ Press enter to continue.
 向导会询问是否需要添加一个计划任务来定时更新证书，如果没有特别需要，这里一路同意即可。
 
 另一个项目 [ACMESharp](https://github.com/ebekker/ACMESharp) 则可以通过 powershell 脚本进行部署，参考项目文档即可。
-
----
-
-<div class="center-block text-center">
-![](/images/logo/alipay_tomczhen.webp)
-
-如果对您有帮助的话，可以考虑通过支付宝请作者喝杯咖啡。
-</div>

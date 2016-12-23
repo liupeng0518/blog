@@ -94,10 +94,3 @@ Once the installation succeeds, you'll be asked if you'd like to stop the curren
 如果 slave 服务没有正常启动，根据下面的说明获取更多的信息解决问题
 * 查看 Windows 事件查看器中关于 Jenkins 的日志信息。主要关注 Windows 服务事件，例如服务器的启动和终止。
 * 查看 Jenkins 的日志文件。进程会输出标准信息和错误到日志文件，也会包含一些 Java 堆栈信息。
-
----
-
-<div align="center">
-![](/images/logo/alipay_tomczhen.webp)  
-如果对您有帮助的话，可以考虑通过支付宝请作者喝杯咖啡。
-</div>

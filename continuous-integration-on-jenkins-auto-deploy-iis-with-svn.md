@@ -288,13 +288,3 @@ redis.pwd=redispwd
 # API URL
 api.url=http://api.android.com
 ```
-
-<h3 id="wechat">相关脚本链接</h3>
-
-
----
-
-<div align="center">
-![](/images/logo/alipay_tomczhen.webp)  
-如果对您有帮助的话，可以考虑通过支付宝请作者喝杯咖啡。
-</div>

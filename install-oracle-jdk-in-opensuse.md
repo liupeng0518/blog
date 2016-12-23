@@ -51,10 +51,3 @@ export JAVA_HOME JRE_HOME PATH CLASSPATH
 ```
 
 在 `/etc` 目录下执行 `source profile` 使配置生效,完成后可以输入 `java -version` 查看系统当前的 Java 运行库版本
-
----
-
-<div align="center">
-![](/images/logo/alipay_tomczhen.webp)  
-如果对您有帮助的话，可以考虑通过支付宝请作者喝杯咖啡。
-</div>

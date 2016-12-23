@@ -92,10 +92,3 @@ FreeBSD: {
 
 　　以上并未解决 DNS 污染问题，可以使用 ss-tunnel 转发 DNS 请求解决，另外可以使用 ss-local 的 --acl 参数可以控制代理访问的地址。  
 　　需要 HTTP 代理的话，可以使用其他应用将 socks5 代理转为 http 代理，同时修改 pac 脚本开启 http 代理。
-
------
-
-<div align="center">
-![](/images/logo/alipay_tomczhen.webp)  
-如果对您有帮助的话，可以考虑通过支付宝请作者喝杯咖啡。
-</div>

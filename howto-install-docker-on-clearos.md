@@ -118,10 +118,3 @@ sub RestartFirewall() {
 
 DaoCloud 的私有集群可以很方便的管理主机容器，在 ClearOS 安装时需要注意，daomonit 安装时需要手动安装，自动安装脚本会根据系统执行，而 ClearOS 不在脚本之中。
 同样需要注意的是 时速云 的安装脚本也有一样的问题，需要修改脚本后运行。
-
----
-
-<div align="center">
-![](/images/logo/alipay_tomczhen.webp)  
-如果对您有帮助的话，可以考虑通过支付宝请作者喝杯咖啡。
-</div>

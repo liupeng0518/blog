@@ -19,10 +19,3 @@ RestFixture 是一个用于测试 REST API 的 Fitnesse 套件。
 其他 API 测试工具有 [Postman](https://www.getpostman.com/) 或者 [Swagger](http://swagger.io/)。Swagger 可以与 API 服务集成，Postman 简单快捷，可以根据需要选择合适的工具。
 
 <!-- more -->
-
----
-
-<div align="center">
-![](/images/logo/alipay_tomczhen.webp)  
-如果对您有帮助的话，可以考虑通过支付宝请作者喝杯咖啡。
-</div>

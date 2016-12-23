@@ -19,18 +19,18 @@ toc: true
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="ant-project">
-
+    
     <property name="key" value="val1" />
     <echo message="${key}" encoding="UTF-8"/>
 
     <property name="key" value="val2" />
     <echo message="${key}" encoding="UTF-8" />
-    
+
     <target name="test">
         <property name="key" value="val-target" />
         <echo message="${key}" encoding="UTF-8" />
     </target>
-    
+
 </project>
 ```
 
@@ -71,7 +71,7 @@ zhvalkey=\u4e2d\u6587
         <echo message="${filekey}" encoding="UTF-8" />
         <echo message="${zhvalkey}" encoding="UTF-8" />
     </target>
-    
+
 </project>
 ```
 
@@ -98,7 +98,7 @@ Total time: 0 seconds
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="ant-project">
-    
+
     <target name="t1" depends="-t2">
         <property name="key1" value="t1-key1-test" />
         <property name="key2" value="t1-key2-test" />
@@ -108,7 +108,7 @@ Total time: 0 seconds
         <echo message="${key3}" encoding="UTF-8" />
         <antcall target="t3"/>
     </target>
-    
+
     <target name="-t2">
         <property name="key1" value="t2-key1-test" />
         <property name="key2" value="t2-key2-test" />
@@ -117,7 +117,7 @@ Total time: 0 seconds
         <echo message="${key2}" encoding="UTF-8" />
         <echo message="${key3}" encoding="UTF-8" />
     </target>
-    
+
     <target name="t3">
         <property name="key1" value="t3-key1-test" />
         <property name="key2" value="t3-key2-test" />
@@ -126,7 +126,7 @@ Total time: 0 seconds
         <echo message="${key2}" encoding="UTF-8" />
         <echo message="${key3}" encoding="UTF-8" />
     </target>
-    
+
 </project>
 ```
 
@@ -173,7 +173,7 @@ Unknown argument: -t2
 <project name="ant-project">
 <!-- ant.xml -->
 <import file="ant2.xml" />
-    
+
     <target name="t1">
         <property name="key1" value="t1-key1-test" />
         <property name="key2" value="t1-key2-test" />
@@ -183,7 +183,7 @@ Unknown argument: -t2
         <echo message="${key3}" encoding="UTF-8" />
         <antcall target="a2t1"/>
     </target>
-    
+
 </project>
 ```
 
@@ -194,7 +194,7 @@ Unknown argument: -t2
     <property name="a2key1" value="a2-key1-test" />
     <echo message="${a2key1}" encoding="UTF-8" />
     <echo message="${key1}" encoding="UTF-8" />
-    
+
     <target name="a2t1">
         <echo message="${key2}" encoding="UTF-8" />
     </target>
@@ -234,27 +234,27 @@ Total time: 0 seconds
     <property name="key1" value="key1-test" />
     <property name="key2" value="key2-test" />
     <property name="key3" value="key2-test" />
-    
+
     <condition property="isTrue">
         <equals arg1="${key1}" arg2="key1-test" />
     </condition>
-    
+
     <condition property="isFalse">
       <not>
         <equals arg1="${key2}" arg2="key2-test" />
       </not>
     </condition>
-    
+
     <target name="t1" if="isTrue">
         <echo message="${key1}" encoding="UTF-8" />
         <antcall target="t3" />
     </target>
-    
+
     <target name="t2" if="isFalse">
         <echo message="${key2}" encoding="UTF-8" />
         <antcall target="t3" />
     </target>
-    
+
     <target name="t3">
         <echo message="${key3}" encoding="UTF-8" />
     </target>
@@ -278,10 +278,3 @@ t2:
 BUILD SUCCESSFUL
 Total time: 0 seconds
 ```
-
----
-
-<div align="center">
-![](/images/logo/alipay_tomczhen.webp)  
-如果对您有帮助的话，可以考虑通过支付宝请作者喝杯咖啡。
-</div>

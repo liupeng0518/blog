@@ -261,10 +261,3 @@ DEALLOCATE fkCur;
 <h3 id="howto">使用说明</h3>
 
 在对应数据库中执行脚本，会输出修改语句，检查修改语句确认后执行即可。需要注意，由于是架构修改，因此在生产环境需要注意死锁问题。
-
----
-
-<div align="center">
-![](/images/logo/alipay_tomczhen.webp)  
-如果对您有帮助的话，可以考虑通过支付宝请作者喝杯咖啡。
-</div>

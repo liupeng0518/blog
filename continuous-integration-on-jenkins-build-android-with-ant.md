@@ -67,10 +67,3 @@ toc: true
 
 Link:[ANT构建Android项目脚本](/2016/01/11/ant-build-android-scripts/)
 
----
-
-<div align="center">
-![](/images/logo/alipay_tomczhen.webp)  
-如果对您有帮助的话，可以考虑通过支付宝请作者喝杯咖啡。
-</div>
-

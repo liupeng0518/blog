@@ -199,10 +199,3 @@ Action_UserLogin.c(3): Error: An exception was raised while calling invocation f
 ```
 
 * 与本地 Vuser 运行相同，需要将 CSHelper.dll 拷贝到 HP Load Generator 的安装路径 bin 目录下，否则会造成函数调用报错。
-
----
-
-<div align="center">
-![](/images/logo/alipay_tomczhen.webp)  
-如果对您有帮助的话，可以考虑通过支付宝请作者喝杯咖啡。
-</div>

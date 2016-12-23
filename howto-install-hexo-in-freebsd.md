@@ -108,10 +108,3 @@ npm install hexo --save
 
 编辑 hexo 目录下的`_config.yml`文件配置博客，具体配置可以查看 HEXO 文档 [https://hexo.io/zh-cn/docs/configuration.html](https://hexo.io/zh-cn/docs/configuration.html)
 由于这里是通过自己服务器的 WebServer 来提高服务，所以不涉及到部署部分。
-
----
-
-<div align="center">
-![](/images/logo/alipay_tomczhen.webp)  
-如果对您有帮助的话，可以考虑通过支付宝请作者喝杯咖啡。
-</div>
