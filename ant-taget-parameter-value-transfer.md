@@ -8,6 +8,10 @@ tags:
 toc: true
 ---
 
+项目中使用了 ANT 脚本来实现持续集成，使用过程中遇到了一些问题，这里做一下记录。
+
+<!-- more -->
+
 <h3 id ="property">property</h3>
 
 可以通过 `property` 声明一个变量，根据执行顺序，对变量赋值后就不能重新赋值了。ANT 脚本是先按顺序执行 `project` 下的语句，再来按调用顺序执行 `target` 下的语句。
@@ -16,17 +20,17 @@ toc: true
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="ant-project">
 
-	<property name="key" value="val1" />
-	<echo message="${key}" encoding="UTF-8"/>
+    <property name="key" value="val1" />
+    <echo message="${key}" encoding="UTF-8"/>
 
-	<property name="key" value="val2" />
-	<echo message="${key}" encoding="UTF-8" />
-	
-	<target name="test">
-		<property name="key" value="val-target" />
-		<echo message="${key}" encoding="UTF-8" />
-	</target>
-	
+    <property name="key" value="val2" />
+    <echo message="${key}" encoding="UTF-8" />
+    
+    <target name="test">
+        <property name="key" value="val-target" />
+        <echo message="${key}" encoding="UTF-8" />
+    </target>
+    
 </project>
 ```
 
@@ -46,8 +50,6 @@ BUILD SUCCESSFUL
 Total time: 0 seconds
 ```
 
-<!-- more -->
-
 <h3 id="loadproperties">loadproperties</h3>
 
 除了使用 `property` 还可以使用 `<loadproperties srcFile="ant.properties" />` 加载文件的方式声明。需要注意的是非英文数字字符必须转换编码后才能读取正常(Natvie->ASCII)
@@ -60,16 +62,16 @@ filekey=filekeyvalue
 zhvalkey=\u4e2d\u6587
 ```
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="ant-project">
 
-	<target name="t1">
-	<loadproperties srcFile="ant.properties" />
-		<echo message="${filekey}" encoding="UTF-8" />
-		<echo message="${zhvalkey}" encoding="UTF-8" />
-	</target>
-	
+    <target name="t1">
+    <loadproperties srcFile="ant.properties" />
+        <echo message="${filekey}" encoding="UTF-8" />
+        <echo message="${zhvalkey}" encoding="UTF-8" />
+    </target>
+    
 </project>
 ```
 
@@ -93,38 +95,38 @@ Total time: 0 seconds
 可以使用 `antcall` 和 `depends` 在 `target` 中调用其他 `target`，差别是 `antcall` 是在执行语句时才会调用，而 `depends` 是在执行这个 `target` 前调用。
 由于前面讲过的赋值后无法改变的问题，如果需要传递变量值时也特别注意。
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="ant-project">
-	
-	<target name="t1" depends="-t2">
-		<property name="key1" value="t1-key1-test" />
-		<property name="key2" value="t1-key2-test" />
-		<property name="key3" value="t1-key3-test" />
-		<echo message="${key1}" encoding="UTF-8" />
-		<echo message="${key2}" encoding="UTF-8" />
-		<echo message="${key3}" encoding="UTF-8" />
-		<antcall target="t3"/>
-	</target>
-	
-	<target name="-t2">
-		<property name="key1" value="t2-key1-test" />
-		<property name="key2" value="t2-key2-test" />
-		<property name="key3" value="t2-key3-test" />
-		<echo message="${key1}" encoding="UTF-8" />
-		<echo message="${key2}" encoding="UTF-8" />
-		<echo message="${key3}" encoding="UTF-8" />
-	</target>
-	
-	<target name="t3">
-		<property name="key1" value="t3-key1-test" />
-		<property name="key2" value="t3-key2-test" />
-		<property name="key3" value="t3-key3-test" />
-		<echo message="${key1}" encoding="UTF-8" />
-		<echo message="${key2}" encoding="UTF-8" />
-		<echo message="${key3}" encoding="UTF-8" />
-	</target>
-	
+    
+    <target name="t1" depends="-t2">
+        <property name="key1" value="t1-key1-test" />
+        <property name="key2" value="t1-key2-test" />
+        <property name="key3" value="t1-key3-test" />
+        <echo message="${key1}" encoding="UTF-8" />
+        <echo message="${key2}" encoding="UTF-8" />
+        <echo message="${key3}" encoding="UTF-8" />
+        <antcall target="t3"/>
+    </target>
+    
+    <target name="-t2">
+        <property name="key1" value="t2-key1-test" />
+        <property name="key2" value="t2-key2-test" />
+        <property name="key3" value="t2-key3-test" />
+        <echo message="${key1}" encoding="UTF-8" />
+        <echo message="${key2}" encoding="UTF-8" />
+        <echo message="${key3}" encoding="UTF-8" />
+    </target>
+    
+    <target name="t3">
+        <property name="key1" value="t3-key1-test" />
+        <property name="key2" value="t3-key2-test" />
+        <property name="key3" value="t3-key3-test" />
+        <echo message="${key1}" encoding="UTF-8" />
+        <echo message="${key2}" encoding="UTF-8" />
+        <echo message="${key3}" encoding="UTF-8" />
+    </target>
+    
 </project>
 ```
 
@@ -166,36 +168,36 @@ Unknown argument: -t2
 可以使用 `<import file="ant.xml" />` 的方式引用其他 ANT 脚本。还是一样要注意 `property` 的值传递的问题，被引入的 ANT 脚本的值是无法获取的，但是可以传递覆盖。
 需要注意的是，被引入的脚本`project`的值不能一样，否则会有冲突。
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="ant-project">
 <!-- ant.xml -->
 <import file="ant2.xml" />
-	
-	<target name="t1">
-		<property name="key1" value="t1-key1-test" />
-		<property name="key2" value="t1-key2-test" />
-		<property name="key3" value="t1-key3-test" />
-		<echo message="${key1}" encoding="UTF-8" />
-		<echo message="${key2}" encoding="UTF-8" />
-		<echo message="${key3}" encoding="UTF-8" />
-		<antcall target="a2t1"/>
-	</target>
-	
+    
+    <target name="t1">
+        <property name="key1" value="t1-key1-test" />
+        <property name="key2" value="t1-key2-test" />
+        <property name="key3" value="t1-key3-test" />
+        <echo message="${key1}" encoding="UTF-8" />
+        <echo message="${key2}" encoding="UTF-8" />
+        <echo message="${key3}" encoding="UTF-8" />
+        <antcall target="a2t1"/>
+    </target>
+    
 </project>
 ```
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="ant-project2">
 <!-- ant2.xml -->
-	<property name="a2key1" value="a2-key1-test" />
-	<echo message="${a2key1}" encoding="UTF-8" />
-	<echo message="${key1}" encoding="UTF-8" />
-	
-	<target name="a2t1">
-		<echo message="${key2}" encoding="UTF-8" />
-	</target>
+    <property name="a2key1" value="a2-key1-test" />
+    <echo message="${a2key1}" encoding="UTF-8" />
+    <echo message="${key1}" encoding="UTF-8" />
+    
+    <target name="a2t1">
+        <echo message="${key2}" encoding="UTF-8" />
+    </target>
 
 </project>
 ```
@@ -226,36 +228,36 @@ Total time: 0 seconds
 
 不安装其他扩展的前提下 ANT 也是可以使用 `condition` 实现逻辑判断。
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="ant-project">
-	<property name="key1" value="key1-test" />
-	<property name="key2" value="key2-test" />
-	<property name="key3" value="key2-test" />
-	
-	<condition property="isTrue">
+    <property name="key1" value="key1-test" />
+    <property name="key2" value="key2-test" />
+    <property name="key3" value="key2-test" />
+    
+    <condition property="isTrue">
         <equals arg1="${key1}" arg2="key1-test" />
     </condition>
-	
-	<condition property="isFalse">
+    
+    <condition property="isFalse">
       <not>
         <equals arg1="${key2}" arg2="key2-test" />
       </not>
     </condition>
-	
-	<target name="t1" if="isTrue">
-		<echo message="${key1}" encoding="UTF-8" />
-		<antcall target="t3" />
-	</target>
-	
-	<target name="t2" if="isFalse">
-		<echo message="${key2}" encoding="UTF-8" />
-		<antcall target="t3" />
-	</target>
-	
-	<target name="t3">
-		<echo message="${key3}" encoding="UTF-8" />
-	</target>
+    
+    <target name="t1" if="isTrue">
+        <echo message="${key1}" encoding="UTF-8" />
+        <antcall target="t3" />
+    </target>
+    
+    <target name="t2" if="isFalse">
+        <echo message="${key2}" encoding="UTF-8" />
+        <antcall target="t3" />
+    </target>
+    
+    <target name="t3">
+        <echo message="${key3}" encoding="UTF-8" />
+    </target>
 </project>
 ```
 
