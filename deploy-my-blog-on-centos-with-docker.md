@@ -18,7 +18,7 @@ toc: true
 
 <!-- more -->
 
-### 预期目标：
+### 预期目标
 
 * Gogs Git 仓库
 * Hexo 博客
