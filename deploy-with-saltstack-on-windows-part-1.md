@@ -38,6 +38,7 @@ sudo systemctl start salt-master
 ```
 
 #### 配置 Windows Software Repo
+> 参考：https://docs.saltstack.com/en/latest/topics/windows/windows-package-manager.html
 
 * 配置 winrepo 项
 编辑 `/etc/salt/master` 或者添加 `win_repo.conf` 到 `/etc/salt/master.d`
@@ -86,8 +87,6 @@ salt -G 'os:windows' pkg.refresh_db
 ```
 salt 'winminion' pkg.install 'git' version=2.11.0.3
 ```
-
-
 
 #### 安装 salt-minion
 
