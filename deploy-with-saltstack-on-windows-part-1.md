@@ -8,9 +8,10 @@ tags:
 toc: true
 ---
 
-由于公司业务发生变化，之前单纯的使用 SVN 仓库钩子完成发布更新 IIS 站点无法满足新的需求。对比 Ansible、Puppet、SaltStack 之后选择了 SaltStack 作为运维工具。
+由于公司业务发生变化，之前单纯的使用 SVN 仓库钩子发布、更新 IIS 站点无法满足新的需求。对比 Ansible、Puppet、SaltStack 之后选择了 SaltStack 作为运维工具。
 
 选择 SaltStack 的原因如下：
+
 * Puppet 使用 Ruby，而 Ansible 和 SaltStack 使用 Python。人生苦短，我选 Python，所以 Puppet Pass
 * Ansible 是 agent-less 方案，通过 WinRM（Windows Remote Management） 来支持 Windows 管理。恩，稍微看了下 WinRM 的认证方案，太麻烦，所以 Ansible Pass
 
@@ -21,6 +22,7 @@ toc: true
 ### 部署 SaltStack
 
 #### 安装 salt-master
+
 > 参考：https://repo.saltstack.com/#rhel
 
 由于 Windows 只能部署 minion ，只能在 Linux 上部署 master，以 CentOS 7 为例安装 `salt-master` 与 `salt-api`。

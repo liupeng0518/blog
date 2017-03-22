@@ -9,6 +9,7 @@ toc: true
 ---
 
 #### 配置 salt-api
+
 > 参考：
 > https://docs.saltstack.com/en/latest/ref/netapi/all/salt.netapi.rest_cherrypy.html
 > https://docs.saltstack.com/en/latest/topics/eauth/index.html
