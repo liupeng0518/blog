@@ -66,4 +66,21 @@ sudo systemctl restart salt-master salt-api
 
 * 完成测试可以发布提交，打上格式为 `release-*` 的 Tag 并推送到远程仓库，在 Job 中手动选择需要部署到生产服务器的 Tag
 
-#### Git Hook
+#### Git 钩子
+
+> 参考:
+> https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks
+> https://www.digitalocean.com/community/tutorials/how-to-use-git-hooks-to-automate-development-and-deployment-tasks
+
+钩子分客户端钩子与服务端钩子，服务端（裸仓库）钩子只支持以下三种：
+
+ * `pre-receive`
+ 开始接受客户端推送时触发
+
+ * `update`
+ 与 `pre-receive` 类似，但是会在每个被 update 的分支都触发
+
+ * `post-receive`
+ 客户端推送完成之后触发
+
+ 需要在 `post-receive` 编写脚本，向 jenkins 服务器发起请求执行对应的 Job，完成自动化部署。
