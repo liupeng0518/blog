@@ -150,7 +150,8 @@ ENTRYPOINT ["hexo"]
 CMD ["--help"]
 ```
 
-使用时需要将 `public` `source` `themes` 挂载到服务器目录，只是用来生成静态页，将博客源文件拉到 source 目录之后
+使用时需要将 `public` `source` `themes` 挂载到服务器目录，只是用来生成静态页，将博客源文件拉到 `source` 目录之后运行一下即可。
+
 ```
 docker run --name hexo --rm \
 -v /mnt/data/hexo/_config.yml:/home/hexo/_config.yml \
@@ -159,7 +160,7 @@ docker run --name hexo --rm \
 -v /mnt/data/hexo/themes:/home/hexo/themes \
 tomczhen/hexo g
 ```
-将 `public` 目录软链接到 Nginx 站点根目录即可。
+然后将 `public` 目录软链接到 Nginx 站点根目录完成部署。
 
 ### 配置 Nginx 以及 https 证书
 
