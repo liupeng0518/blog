@@ -2,7 +2,7 @@ title: 使用 saltstack 在 Windows 服务器上发布 Web 应用 - Part 1
 date: 2017-03-21 22:10:00
 categories:
   - linux
-feature: /images/logo/docker-logo.webp
+feature: /images/logo/saltstack-logo.webp
 tags:
   - SaltStack
 toc: true
@@ -53,7 +53,7 @@ winrepo_remotes_ng:
   - https://github.com/saltstack/salt-winrepo-ng.git
 ```
 
-* 同步远端仓库到 salt-master 本地仓库路径
+* 同步远端仓库到 master 本地仓库路径
 ```
 salt-run winrepo.update_git_repos
 ```
@@ -79,12 +79,12 @@ git:
     reboot: False
 ```
 
-* 同步 salt-master 本地仓库到 salt-minion
+* 同步 master 本地仓库到 minion
 ```
 salt -G 'os:windows' pkg.refresh_db
 ```
 
-* 在 salt-minion 上安装软件包
+* 在 minion 上安装软件包
 使用可选参数 `version` 安装指定的版本
 ```
 salt 'winminion' pkg.install 'git' version=2.11.0.3
@@ -127,9 +127,9 @@ Identityfile ~/.ssh/gogs_rsa
 
 上面就是一个 `config` 文件的内容，可以为不同的 Host 与 用户配置不同的密钥。
 
-这里为了简单，是直接将 salt-master 的文件发布到 salt-minion 上指定的路径，
+这里为了简单，是直接将 master 的文件发布到 minion 上指定的路径，
 
-salt-minion 运行的用户可以通过 grains 获取。将内容保存在 pillar 中，并使用替换内容的方式修改应该更加合理一些。
+`salt-minion` 运行的用户可以通过 grains 获取。将内容保存在 pillar 中，并使用替换内容的方式修改应该更加合理一些。
 
 ```
 deploy_rsa:
@@ -153,7 +153,7 @@ known_hosts_file:
 
 ### 编写 states
 
-#### 设置 salt-minion 的 grains
+#### 设置 minion 的 grains
 
 > 参考: https://docs.saltstack.com/en/latest/topics/grains/
 
@@ -188,7 +188,7 @@ pillar 保存在 master，可以根据执行的 target 来读取数据。
 前面关于解决 Windows 上 ssh 密钥、known_host、config 的问题中就是使用的 states。简单来说就是使用 yaml 的语法，将需要执行 modules/states 的命令组合起来。
 在执行过程中，通过不同 target 的 grains 来分配不同 pillar 数据，来解决配置问题。
 
-salt 默认是 jinja 模板，所以可以使用模板自带的语法来实现一些逻辑流程判断。可以说不同的 target 上最终执行的 states 是由模板所生成出来的，只要关注最终的生成内容即可。
+saltstack 默认是 jinja 模板，所以可以使用模板自带的语法来实现一些逻辑流程判断。可以说不同的 target 上最终执行的 states 是由模板所生成出来的，只要关注最终的生成内容即可。
 
 ```
 {% set api_config = salt['pillar.get']('api:' + salt['pillar.get']('target')) %}
