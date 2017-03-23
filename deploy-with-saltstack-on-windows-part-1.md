@@ -233,6 +233,11 @@ salt '*' saltutil.sync_all
 salt '*' state.apply your_state
 ```
 
+在执行时设置 pillar 变量
+```
+salt '*' state.apply your_state pillar='{"foo1":"var1","foo2":"var2"}'
+```
+
 #### 配置文件 demo
 
 https://gogs.tomczhen.com/tomczhen/saltstack-example
