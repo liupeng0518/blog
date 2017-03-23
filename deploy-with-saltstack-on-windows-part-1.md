@@ -23,7 +23,7 @@ toc: true
 
 #### 安装 salt-master
 
-> 参考：https://repo.saltstack.com/#rhel
+> 参考: https://repo.saltstack.com/#rhel
 
 由于 Windows 只能部署 minion ，只能在 Linux 上部署 master，以 CentOS 7 为例安装 `salt-master` 与 `salt-api`。
 * 添加 SaltStack 源
@@ -40,7 +40,7 @@ sudo systemctl start salt-master
 ```
 
 #### 配置 Windows Software Repo
-> 参考：https://docs.saltstack.com/en/latest/topics/windows/windows-package-manager.html
+> 参考: https://docs.saltstack.com/en/latest/topics/windows/windows-package-manager.html
 
 * 配置 winrepo 项
 编辑 `/etc/salt/master` 或者添加 `win_repo.conf` 到 `/etc/salt/master.d`
@@ -111,8 +111,128 @@ salt 'winminion' pkg.install 'git' version=2.11.0.3
 
 注意：添加的用户必须拥有 `salt-minion` 安装路径的写入权限(默认安装路径为 'C:\salt')
 
-* known_hosts
+* known_hosts、config、rsa
 
-* config
+> 参考:
+> https://docs.saltstack.com/en/latest/ref/modules/all/salt.modules.file.html
+> https://docs.saltstack.com/en/latest/ref/states/all/salt.states.file.html
 
-* RSA Key file
+`known_hosts` 用于保存信任机器的指纹，`config` 用于配置指定 host 所使用的用户和密钥，`rsa` 保存用户私钥，它们都保存在用户目录下的 `.ssh` 文件夹中。
+
+```
+Host gogs.tomczhen.com
+User git
+Identityfile ~/.ssh/gogs_rsa
+```
+
+上面就是一个 `config` 文件的内容，可以为不同的 Host 与 用户配置不同的密钥。
+
+这里为了简单，是直接将 salt-master 的文件发布到 salt-minion 上指定的路径，
+
+salt-minion 运行的用户可以通过 grains 获取。将内容保存在 pillar 中，并使用替换内容的方式修改应该更加合理一些。
+
+```
+deploy_rsa:
+  file.managed:
+    - name: C:\Users\saltminion\.ssh\deploy_rsa
+    - source: salt://ssh/deploy_rsa
+    - makedirs: true
+
+config_file:
+  file.managed:
+    - name: C:\Users\saltminion\.ssh\config
+    - source: salt://ssh/config
+    - makedirs: true
+
+known_hosts_file:
+  file.managed:
+    - name: C:\Users\saltminion\.ssh\known_hosts
+    - source: salt://ssh/known_hosts
+    - makedirs: true
+```
+
+### 编写 states
+
+#### 设置 salt-minion 的 grains
+
+> 参考: https://docs.saltstack.com/en/latest/topics/grains/
+
+可以在 minion 配置文件中添加 grains 段来设置 minion 的 grains
+
+```
+grains:
+  roles:
+    - web-server
+    - redis
+  deployment: dev
+```
+
+grains 可以理解为“以服务器为作用域的变量”。
+
+#### 编写 pillars
+
+> 参考:
+> https://docs.saltstack.com/en/latest/topics/pillar/index.html
+> https://docs.saltstack.com/en/latest/topics/targeting/index.html
+
+pillar 保存在 master，可以根据执行的 target 来读取数据。
+
+#### 编写 states
+
+> 参考:
+> https://docs.saltstack.com/en/latest/topics/states/index.html
+> https://docs.saltstack.com/en/latest/topics/yaml/index.html
+> https://docs.saltstack.com/en/latest/topics/jinja/index.html
+> https://docs.saltstack.com/en/latest/ref/modules/all/salt.modules.saltutil.html
+
+前面关于解决 Windows 上 ssh 密钥、known_host、config 的问题中就是使用的 states。简单来说就是使用 yaml 的语法，将需要执行 modules/states 的命令组合起来。
+在执行过程中，通过不同 target 的 grains 来分配不同 pillar 数据，来解决配置问题。
+
+salt 默认是 jinja 模板，所以可以使用模板自带的语法来实现一些逻辑流程判断。可以说不同的 target 上最终执行的 states 是由模板所生成出来的，只要关注最终的生成内容即可。
+
+```
+{% set api_config = salt['pillar.get']('api:' + salt['pillar.get']('target')) %}
+{% set service_config = salt['pillar.get'](salt['pillar.get']('target')) %}
+install_git:
+  pkg.installed:
+    - names:
+      - git
+
+{{ salt['grains.get']('customers') }}_api:
+  git.latest:
+    - name: {{ salt['pillar.get']('api:repo:url') }}
+    - target: {{ salt['grains.get']('wwwroot') + '\\' + api_config.website.name }}
+    {% if salt['pillar.get']('git_rev') %}
+    rev: {{ salt['pillar.get']('git_rev') }}
+    {% endif %}
+    - force: true
+    - force_checkout: true
+    - force_reset: true
+    - require:
+      - pkg: install_git
+
+{% if salt['pillar.get']('target') != 'dev' %}
+{{ salt['grains.get']('wwwroot') + api_config.website.name + '\\Web.config' }}:
+  file.managed:
+    - name: {{ salt['grains.get']('wwwroot') + '\\' + api_config.website.name + '\\Web.config' }}
+    - source: salt://api/web.config.jinja
+    - template: jinja
+    - makedirs: true
+{% endif %}
+```
+
+注意：grains、pillar 等数据需要执行同步才会真正在 minion 上生效，可以执行下面的命令同步所有配置，也可以参考文档来查看单独的同步的方法。
+
+```
+salt '*' saltutil.sync_all
+```
+
+使用下面的命令可以执行编写好的 states
+
+```
+salt '*' state.apply your_state
+```
+
+#### 配置文件 demo
+
+https://gogs.tomczhen.com/tomczhen/saltstack-example
