@@ -12,8 +12,8 @@ toc: true
 
 选择 SaltStack 的原因如下：
 
-* Puppet 使用 Ruby，而 Ansible 和 SaltStack 使用 Python。人生苦短，我选 Python，所以 Puppet Pass
-* Ansible 是 agent-less 方案，通过 WinRM（Windows Remote Management） 来支持 Windows 管理。恩，稍微看了下 WinRM 的认证方案，太麻烦，所以 Ansible Pass
+* Puppet 使用 Ruby，而 Ansible 和 SaltStack 使用 Python。人生苦短，我选 Python， Pass。
+* Ansible 是 agent-less 方案，通过 WinRM（Windows Remote Management） 来支持 Windows 管理。恩，稍微看了下 WinRM 的认证方案，太麻烦，Pass。
 
 由于篇幅较长，所以分为两部分，第一部分是完成部署 saltstack，实现使用命令行来发布更新。第二部分使用 `jenins` 与 `salt-api`，实现自动持续集成。
 
