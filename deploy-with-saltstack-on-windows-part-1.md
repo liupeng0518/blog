@@ -106,6 +106,7 @@ salt 'winminion' pkg.install 'git' version=2.11.0.3
 * 用户目录
 
 > 参考: https://docs.saltstack.com/en/latest/topics/installation/windows.html#running-the-salt-minion-on-windows-as-an-unprivileged-user
+
 由于 ssh 相关配置都必须存放在 `~/.ssh` 下，对应 Windows 则是 `%USERPROFILE%\.ssh`，默认安装 salt-minion 以 Windows 服务启动时是使用的内置账户启动，无法在该账户用户目录下添加文件。
 因此需要手动添加一个用户运行 `salt-minion` 服务
 
@@ -151,7 +152,7 @@ known_hosts_file:
     - makedirs: true
 ```
 
-### 编写 states
+### 编写 States
 
 #### 设置 minion 的 grains
 
@@ -169,6 +170,11 @@ grains:
 
 grains 可以理解为“以服务器为作用域的变量”。
 
+执行下面的命令可以查看各个 minion 的 grains 数据
+```
+salt '*' grains.items
+```
+
 #### 编写 pillars
 
 > 参考:
@@ -176,6 +182,12 @@ grains 可以理解为“以服务器为作用域的变量”。
 > https://docs.saltstack.com/en/latest/topics/targeting/index.html
 
 pillar 保存在 master，可以根据执行的 target 来读取数据。
+
+执行下面的命令可以查看各个 minion 的 grains 数据
+
+```
+salt '*' pillar.items
+```
 
 #### 编写 states
 
@@ -238,6 +250,29 @@ salt '*' state.apply your_state
 salt '*' state.apply your_state pillar='{"foo1":"var1","foo2":"var2"}'
 ```
 
+#### Target
+
+> 参考: https://docs.saltstack.com/en/latest/topics/targeting/
+
+Target 就是挑选目标 minion，可以使用 grains、pillar 等 satlstack 自带的数据来挑选 minion。
+
+按操作系统选择 minion
+```
+salt -G 'os:windows' test.ping
+```
+
+按 pillar 数据选择 minion
+```
+salt -I 'key:value' test.ping
+```
+
+也可以组合条件进行选择
+```
+salt -C 'G@os:windows and webser* or E@db.*' test.ping
+```
+
 #### 配置文件 demo
+
+根据公司项目需要编写的示例
 
 https://gogs.tomczhen.com/tomczhen/saltstack-example
