@@ -1,4 +1,4 @@
-title: 使用 saltstack 在 Windows 服务器上发布 Web 应用 - Part 1
+title: 使用 saltstack 在 Windows 服务器上发布 Web 应用 - Part 2
 date: 2017-03-21 22:10:00
 categories:
   - linux
@@ -10,7 +10,7 @@ toc: true
 
 > 参考: https://docs.saltstack.com/en/latest/ref/clients/index.html
 
-接着 part-1 ，完成 pillar 和 state 之后，就是使用 jenkins 来实现自动化了，这里还需要用到 `salt-api`。
+接着 Part-1 ，完成 pillar 和 state 之后，就是使用 jenkins 来实现自动化了，这里还需要用到 `salt-api`。
 另外也可以选择其他持续集成平台，例如 BuildBot，可以直接使用 saltstack 的 python clinet api 来集成。
 
 <!-- more -->
