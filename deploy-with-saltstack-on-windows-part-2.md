@@ -8,6 +8,13 @@ tags:
 toc: true
 ---
 
+> 参考: https://docs.saltstack.com/en/latest/ref/clients/index.html
+
+接着 part-1 ，完成 pillar 和 state 之后，就是使用 jenkins 来实现自动化了，这里还需要用到 `salt-api`。
+另外也可以选择其他持续集成平台，例如 BuildBot，可以直接使用 saltstack 的 python clinet api 来集成。
+
+<!-- more -->
+
 #### 配置 salt-api
 
 > 参考：
@@ -48,3 +55,15 @@ rest_cherrypy:
 ```
 sudo systemctl restart salt-master salt-api
 ```
+
+#### 添加 Jenkins Job
+
+**部署流程**
+
+* 开发推送发布文件到仓库时，自动发布到开发服务器
+
+* 推送 Tag 到仓库时，如果 Tag 格式为`beat-*` 则对应 Tag 部署到测试服务器
+
+* 完成测试可以发布提交，打上格式为 `release-*` 的 Tag 并推送到远程仓库，在 Job 中手动选择需要部署到生产服务器的 Tag
+
+#### Git Hook
