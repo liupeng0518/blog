@@ -86,13 +86,17 @@ sudo systemctl restart salt-master salt-api
 
 * 发布到测试服务器
 
-在 `Repositories` 中点击 高级 按钮，在 Refspec 中输入 `+refs/tags/beta-*:refs/remotes/origin/tags/beta-*`
+在 `Repositories` 中点击 高级 按钮，在 Refspec 中输入 `+refs/tags/*:refs/remotes/origin/tags/*`
+
+在 `Branches to build` 输入 `:origin/tags/beta-.*`
 
 开启参数化构建，选择 `Git Parameter`,在 Tag filter 中输入 `beta-*`
 
 * 发布到生产服务器
 
-在 `Repositories` 中点击 高级 按钮，在 Refspec 中输入 `+refs/tags/release-*:refs/remotes/origin/tags/release-*`
+在 `Repositories` 中点击 高级 按钮，在 Refspec 中输入 `+refs/tags/*:refs/remotes/origin/tags/*`
+
+在 `Branches to build` 输入 `:origin/tags/beta-.*`
 
 开启参数化构建，选择 `Git Parameter`,在 Tag filter 中输入 `release-*`
 
@@ -147,6 +151,7 @@ curl  JENKINS_URL/job/api-dev/build?token=TOKEN_NAME
 #### 注意事项
 
 * 没有实现 TFS 自动构建的步骤，开发者自己生成发布文件后推送到仓库。
+* 如果新标签对应的提交 ID 时间之后有标签存在，不会Jenkins 的构建任务不会拉取该标签对应的提交代码。
 * 如果在 `salt-api` 中使用自签名证书, Jenkins 请求接口时会有一个证书信任错误。我的解决方案是使用 Nginx 作为代理，证书在 Nginx 这里部署。
 * 由于只有一个 master 分支，推送标签时仍然会触发只监听 master 分支的构建任务。不过如果代码没有变化，salt 执行时也不会拉取新文件。
 * 如果使用 GitLab 作为仓库，可以直接使用 Gitlab Hook Plugin 更加方便一些。
