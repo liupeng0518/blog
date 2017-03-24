@@ -106,11 +106,13 @@ salt -G 'web-server' state.apply your_state pillar=`{"foo1":"var1","foo2":"var2"
 ```
 
 以上面的命令为例，`Function` 是 `state.apply`；`Target` 是 `web-server`；`Target Type` 是 `G`。
-具体关于 saltstack Target 的信息可以查看官方文档
+具体关于 saltstack Target 的信息可以查看官方文档。
+
+实际项目中，我将 jenkins 获取的 git 标签作为参数传递到 salt 中执行，在 states 中根据参数值获取发布文件。
 
 > https://docs.saltstack.com/en/latest/topics/targeting/compound.html#targeting-compound
 
-整个流程就是开发者推送，触发 Jenkins 构建任务，执行编写好的 salt states 进行部署。
+整个流程就是开发者推送 -> 触发 Jenkins 构建任务 -> 执行编写好的 salt states 进行部署。
 
 自动部署时，是部署新标签对应的提交。需要回退时，选择需要回退的 Tag 手动执行构建就可以完成回退。
 
