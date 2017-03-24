@@ -144,7 +144,7 @@ salt -G 'web-server' state.apply your_state pillar=`{"foo1":"var1","foo2":"var2"
 curl  JENKINS_URL/job/api-dev/build?token=TOKEN_NAME
 ```
 
-### 注意事项
+#### 注意事项
 
 * 没有实现 TFS 自动构建的步骤，开发者自己生成发布文件后推送到仓库。
 * 如果在 `salt-api` 中使用自签名证书, Jenkins 请求接口时会有一个证书信任错误。我的解决方案是使用 Nginx 作为代理，证书在 Nginx 这里部署。
