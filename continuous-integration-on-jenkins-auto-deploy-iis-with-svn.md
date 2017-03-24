@@ -4,10 +4,9 @@ categories:
   - ci
 feature: /images/logo/jenkins-logo.webp
 tags: 
-  - jenkins
-  - ci
-  - svn
-  - iis
+  - Jenkins
+  - SVN
+  - IIS
 toc: true
 ---
 <h2 id="svn">安装 SVN Server</h2>

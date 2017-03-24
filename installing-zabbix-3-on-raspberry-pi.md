@@ -4,8 +4,8 @@ categories:
   - raspberry pi
 feature: /images/logo/raspberry-pi-logo.webp
 tags: 
-  - zabbix
-  - raspberry pi
+  - Zabbix
+  - Linux
 toc: true
 ---
 >原文地址:

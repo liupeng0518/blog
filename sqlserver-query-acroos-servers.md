@@ -4,7 +4,7 @@ categories:
   - database
 feature: /images/logo/sqlserver-logo.webp
 tags:
-  - sqlserver
+  - SQL Server
 ---
 **First:启用Ad Hoc Distributed Queries，考虑到安全问题非必要保持开启，在使用后可以关闭。**
 ```

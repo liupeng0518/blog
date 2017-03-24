@@ -1,11 +1,11 @@
 title: OpenSuse13.1安装Sun Java JDK1.8
 date: 2015-12-08 19:25:51
 categories:
-  - linux
+  - Linux
 feature: /images/logo/opensuse-logo.webp
 tags: 
-  - linux
-  - jdk
+  - Linux
+  - JDK
 toc: true
 ---
 <h2 id="systeminfo">系统环境</h2>

@@ -5,7 +5,7 @@ categories:
 description: 阿里云 ECS 自建 Redis 实例与云数据库 Redis 实例性能对比测试
 feature: /images/logo/redis-logo.webp
 tags: 
-  - redis
+  - Redis
   - ECS
 toc: true
 ---

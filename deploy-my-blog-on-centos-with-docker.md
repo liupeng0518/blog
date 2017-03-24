@@ -4,10 +4,9 @@ categories:
   - linux
 feature: /images/logo/docker-logo.webp
 tags:
-  - nginx
-  - https
-  - letsencrypt
-  - docker
+  - Nginx
+  - HTTPS
+  - Docker
 toc: true
 ---
 

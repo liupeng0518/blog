@@ -4,10 +4,10 @@ categories:
   - ci
 feature: /images/logo/jenkins-logo.webp
 tags: 
-  - jenkins
-  - ant
-  - android
-  - jdt
+  - Jenkins
+  - Ant
+  - Android
+  - JDT
 toc: true
 ---
 <h2 id = "install-apache-ant">安装 Apache Ant</h2>

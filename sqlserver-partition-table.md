@@ -4,8 +4,7 @@ categories:
   - database
 feature: /images/logo/sqlserver-logo.webp
 tags:
-  - sqlserver
-  - 分区表
+  - SQL Server
 ---
 >###### 分区的优点
 

@@ -4,8 +4,9 @@ categories:
   - database
 feature: /images/logo/sqlserver-logo.webp
 tags:
-  - sqlserver
+  - SQL Server
 ---
+
 　　一般在SQL语句中使用`ORDER BY`来进行排序,但没有使用`ORDER BY`时查询的结果的顺序是由什么决定的呢？
 
 >集合

@@ -1,11 +1,10 @@
 title: 如何在LoadRunner11中调用C#编译的动态链接库
 date: 2015-12-06 19:25:51
 categories:
-  - loadrunner
+  - LoadRunner
 feature: /images/logo/loadrunner-logo.webp
 tags:
-  - loadrunner
-  - csharp
+  - LoadRunner
 toc: true
 ---
 <h2 id="dllcode">动态库代码实例</h2>

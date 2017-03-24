@@ -3,10 +3,10 @@ date: 2015-12-08 19:25:51
 categories: 
   - other
 tags:
-  - android
-  - 面试
+  - Android
 toc: true
 ---
+
 <h3 id="原文链接">原文链接</h3>
 
 [面试时，问哪些问题能试出一个 Android 应用开发者真正的水平？](https://www.zhihu.com/question/19765032/answer/74361190?group_id=654385507203747840)

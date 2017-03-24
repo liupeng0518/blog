@@ -4,8 +4,8 @@ categories:
   - database
 feature: /images/logo/sqlserver-logo.webp
 tags: 
-  - rds
-  - sqlserver
+  - RDS
+  - SQL Server
 ---
 公司项目是使用的阿里云RDS SQL Server,记录一下在项目中遇到的一些需要注意的地方.
 

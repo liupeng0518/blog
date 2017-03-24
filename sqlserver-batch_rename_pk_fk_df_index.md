@@ -4,7 +4,7 @@ categories:
   - database
 feature: /images/logo/sqlserver-logo.webp
 tags: 
-  - sqlserver
+  - SQL Server
 toc: true
 ---
 

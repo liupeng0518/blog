@@ -4,9 +4,8 @@ categories:
   - ci
 feature: /images/logo/wechat-logo.webp
 tags: 
-  - ant
+  - Ant
   - shell
-  - wechat
 toc: true
 ---
 

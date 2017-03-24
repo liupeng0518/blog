@@ -1,11 +1,11 @@
 title: GitLab CE - 使用 Omnibus 包安装以及汉化
 date: 2016-04-23 15:25:51
 categories:
-  - gitlab
+  - GitLab
 feature: /images/logo/gitlab-log.webp
 tags:
-  - gitlab
-  - omnibus
+  - GiaLab
+  - Docker
 toc: true
 ---
 ### 说明

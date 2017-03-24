@@ -4,9 +4,9 @@ categories:
   - ci
 feature: /images/logo/bugly-logo.webp
 tags: 
-  - ant
-  - shell
-  - bugly
+  - Ant
+  - Shell
+  - Bugly
 toc: true
 ---
 

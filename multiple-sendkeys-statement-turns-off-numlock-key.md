@@ -3,11 +3,10 @@ date: 2015-10-15 19:25:51
 categories:
   - other
 tags:
-  - vb
-  - numlock
-  - sendkey
+  - VB
 toc: true
 ---
+
 原文地址&emsp;[BUG: Multiple SendKeys Statement Turns Off NumLock Key](https://support.microsoft.com/en-us/kb/179987)
 
 ##### 症状

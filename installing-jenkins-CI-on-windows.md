@@ -4,7 +4,7 @@ categories:
   - ci
 feature: /images/logo/jenkins-logo.webp
 tags:
-  - jenkins
+  - Jenkins
 toc: true
 ---
 

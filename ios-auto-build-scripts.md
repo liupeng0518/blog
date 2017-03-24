@@ -4,8 +4,7 @@ categories:
   - ci
 feature: /images/logo/bash-logo.webp
 tags:
-  - ios
-  - xctool
+  - iOS
 toc: true
 ---
 <h2 id="cocoapods">安装CocoaPods</h2>

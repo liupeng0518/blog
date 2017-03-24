@@ -4,10 +4,9 @@ categories:
   - ci
 feature: /images/logo/jenkins-logo.webp
 tags: 
-  - jenkins
-  - ant
-  - ios
-  - xctool
+  - Jenkins
+  - Ant
+  - iOS
 toc: true
 ---
 <h2 id="cocoapods">CocoaPods</h2>

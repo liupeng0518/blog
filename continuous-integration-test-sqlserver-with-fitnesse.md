@@ -4,9 +4,8 @@ categories:
   - ci
 feature: /images/logo/fitnesse-logo.webp
 tags:
-  - fitnesse
-  - database
-  - sqlserver
+  - Fitnesse
+  - SQL Server
 toc: true
 ---
 <h2 id="fitnesse">FitNesse</h2>

@@ -4,8 +4,8 @@ categories:
   - other
 feature: /images/logo/automate-logo.webp
 tags: 
-  - android
-  - automate
+  - Android
+  - Automate
 ---
 <h2 id="readme">准备条件</h2>
 

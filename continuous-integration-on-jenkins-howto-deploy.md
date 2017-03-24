@@ -4,10 +4,7 @@ categories:
   - ci
 feature: /images/logo/jenkins-logo.webp
 tags:
-  - jenkins
-  - linux
-  - windows
-  - osx
+  - Jenkins
 toc: true
 ---
 <h2 id="jenkins">Jenkins 介绍</h2>

@@ -1,12 +1,12 @@
 title: 如何在 ClearOS 上安装 Docker
 date: 2016-05-12 14:25:51
 categories:
-  - docker
+  - linux
 description: 在 ClearOS 上安装 Docker 并使用 DaoCloud 私有集群管理平台
 feature: /images/logo/clearos-logo.webp
 tags:
-  - linux
-  - docker
+  - ClearOS
+  - Docker
 toc: true
 ---
 ClearOS 是一个适用于小型企业的网络和网关服务器，基于分布式环境而设计。ClearOS 是在 CentOS 基础上构建的，发行版包括通过一个直观的基于 Web 的功能，哪些是易于配置的综合服务广泛列表界面。在 ClearOS 发现的一些工具包括防病毒，防垃圾邮件，虚拟专用网，内容过滤，带宽管理，SSL 的认证，网络日志分析器，只是名称可用的模块数。其分布提供的免费下载，为 18 个月的免费安全性更新的包容性。

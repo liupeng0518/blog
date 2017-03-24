@@ -4,7 +4,7 @@ categories:
   - ci
 feature: /images/logo/fitnesse-logo.webp
 tags: 
-  - fitnesse
+  - Fitnesse
 ---
 
 [FitNesse](http://fitnesse.org/)

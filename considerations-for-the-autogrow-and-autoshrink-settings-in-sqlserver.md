@@ -4,7 +4,7 @@ categories:
   - database
 feature: /images/logo/sqlserver-logo.webp
 tags: 
-  - sqlserver
+  - SQL Server
 ---
 >原文：[https://support.microsoft.com/zh-cn/kb/315512](https://support.microsoft.com/zh-cn/kb/315512)
 　　在许多 SQL Server 系统上，您可以直接使用默认的自动增长和自动收缩设置而无需进行任何调整。但是，在某些环境中，您不必打开这些设置；而在某些环境中，您可能必须调整自动增长和自动收缩参数。

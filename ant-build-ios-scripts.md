@@ -4,8 +4,8 @@ categories:
   - ci
 feature: /images/logo/apache-ant-logo.webp
 tags: 
-  - ant
-  - ios
+  - Ant
+  - iOS
 toc: true
 ---
 

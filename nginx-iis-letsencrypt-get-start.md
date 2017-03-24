@@ -4,10 +4,9 @@ categories:
   - linux
 feature: /images/logo/letsencrypt-logo.webp
 tags: 
-  - nginx
-  - https
-  - letsencrypt
-  - iis
+  - Nginx
+  - HTTPS
+  - IIS
 toc: true
 ---
 

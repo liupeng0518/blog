@@ -5,7 +5,7 @@ categories:
 description: 国内容器云平台持续集成功能初步体验与使用记录
 feature: /images/logo/docker-logo.webp
 tags:
-  - docker
+  - Docker
 toc: true
 ---
 DaoCloud、时速云、灵雀云是国内三家容器云平台商，帮忙一个网友解决容器使用问题时顺便把三家的持续集成功能体验了一下，本文记录了体验操作过程。至于网易的蜂巢，由于没有发现有持续集成的功能，所以就没有体验了。

@@ -4,7 +4,7 @@ categories:
   - database
 feature: /images/logo/sqlserver-logo.webp
 tags: 
-  - sqlserver
+  - SQL Server
 ---
 >原文:https://technet.microsoft.com/zh-cn/library/ms175987(v=sql.105).aspx
 
