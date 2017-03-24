@@ -12,7 +12,6 @@ toc: true
 
 公司 Android 项目终于由 Eclipse 迁移到 Android Studio 上了，需要将之前在 Jenkins 上的构建任务修改一下支持 gradle 构建。
 出于信息安全需要，开发人员不掌握生产环境使用的签名证书，但是 Jenkins 构建时需要自动的使用生产签名证书进行打包签名。
-
 之前是用 ant 的正则替换对应的代码或配置文件实现的，这次使用 gradle 来实现。
 
 <!-- more -->
@@ -29,7 +28,7 @@ store_pwd=pwd
 alias=alias_name
 alias_pwd=alias_pwd
 ```
-需要注意的是，`keystore.properties` 和使用的 store 文件不要添加到版本控制系统中。
+需要注意的是 `keystore.properties` 和使用的 store 文件不要添加到版本控制系统中。
 
 1. 在模块的 build.gradle 文件中，于 android {} 的 signingConfigs {} 中添加用于加载 keystore.properties 文件的代码。
 
