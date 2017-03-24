@@ -1,7 +1,7 @@
 title: 阿里云RDS For SQL Server项目部署注意事项
 date: 2015-12-08 19:25:51
 categories: 
-  - database
+  - Database
 feature: /images/logo/sqlserver-logo.webp
 tags: 
   - RDS
