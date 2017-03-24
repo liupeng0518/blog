@@ -1,4 +1,4 @@
-title: 使用 saltstack 在 Windows 服务器上发布 Web 应用 - Part 1
+title: 使用 SaltStack 在 Windows 服务器上发布 Web 应用 - Part 1
 date: 2017-03-21 22:10:00
 categories:
   - Linux
@@ -16,7 +16,7 @@ toc: true
 * Puppet 使用 Ruby，而 Ansible 和 SaltStack 使用 Python。人生苦短，我选 Python， Pass。
 * Ansible 是 agent-less 方案，通过 WinRM（Windows Remote Management） 来支持 Windows 管理。恩，稍微看了下 WinRM 的认证方案，太麻烦，Pass。
 
-由于篇幅较长，所以分为两部分，第一部分是完成部署 saltstack，实现使用命令行来发布更新。第二部分使用 `jenkins` 与 `salt-api`，实现自动持续集成。
+由于篇幅较长，所以分为两部分，第一部分是完成部署 SaltStack，实现使用命令行来发布更新。第二部分使用 `Jenkins` 与 `salt-api`，实现自动持续集成。
 
 <!-- more -->
 
@@ -102,7 +102,7 @@ salt 'winminion' pkg.install 'git' version=2.11.0.3
 > https://docs.saltstack.com/en/latest/ref/states/all/salt.states.ssh_auth.html
 > https://docs.saltstack.com/en/latest/ref/states/all/salt.states.ssh_known_hosts.html
 
-注意：saltstack 的 ssh 模块，只在非 Windows 平台可用
+注意：SaltStack 的 SSH 模块，只在非 Windows 平台上可用。
 
 * 用户目录
 
@@ -255,7 +255,7 @@ salt '*' state.apply your_state pillar='{"foo1":"var1","foo2":"var2"}'
 
 > 参考: https://docs.saltstack.com/en/latest/topics/targeting/
 
-Target 就是挑选目标 minion，可以使用 grains、pillar 等 satlstack 自带的数据来挑选 minion。
+Target 就是挑选目标 minion，可以使用 grains、pillar 等 SaltStack 自带的数据来挑选 minion。
 
 按操作系统选择 minion
 ```
@@ -269,7 +269,7 @@ salt -I 'key:value' test.ping
 
 也可以组合条件进行选择
 ```
-salt -C 'G@os:windows and webser* or E@db.*' test.ping
+salt -C 'G@os:windows and web-server-* or E@db.*' test.ping
 ```
 
 #### 配置文件 demo

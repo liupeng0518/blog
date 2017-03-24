@@ -1,4 +1,4 @@
-title: 使用 saltstack 在 Windows 服务器上发布 Web 应用 - Part 2
+title: 使用 SaltStack 在 Windows 服务器上发布 Web 应用 - Part 2
 date: 2017-03-23 22:10:00
 categories:
   - CI
@@ -12,7 +12,7 @@ toc: true
 > 参考: https://docs.saltstack.com/en/latest/ref/clients/index.html
 
 接着 Part-1 ，完成 pillar 和 state 之后，就是使用 jenkins 来实现自动化了，这里还需要用到 `salt-api`。
-另外也可以选择其他持续集成平台，例如 BuildBot，可以直接使用 saltstack 的 python clinet api 来集成。
+另外也可以选择其他持续集成平台，例如 BuildBot，可以直接使用 SaltStack 的 python client api 来集成。
 
 <!-- more -->
 
@@ -43,7 +43,7 @@ external_auth:
 ```
 
 * 添加 salt-api 配置
-注意：由于会使用 nginx 统一管理证书，所以这里将 ssl 关闭
+注意：由于会使用 Nginx 统一管理证书，所以这里将 ssl 关闭
 添加 `api.conf` 到 `/etc/salt/master.d`
 ```
 rest_cherrypy:
@@ -91,19 +91,19 @@ sudo systemctl restart salt-master salt-api
 
 在 `Branches to build` 输入 `:origin/tags/beta-.*`
 
-开启参数化构建，选择 `Git Parameter`,在 Tag filter 中输入 `beta-*`
+开启参数化构建，选择 `Git Parameter`,在 `Tag filter` 中输入 `beta-*`
 
 * 发布到生产服务器
 
-在 `Repositories` 中点击 高级 按钮，在 Refspec 中输入 `+refs/tags/*:refs/remotes/origin/tags/*`
+在 `Repositories` 中点击 高级 按钮，在 `Refspec` 中输入 `+refs/tags/*:refs/remotes/origin/tags/*`
 
 在 `Branches to build` 输入 `:origin/tags/beta-.*`
 
-开启参数化构建，选择 `Git Parameter`,在 Tag filter 中输入 `release-*`
+开启参数化构建，选择 `Git Parameter`,在 `Tag filter` 中输入 `release-*`
 
 * 构建步骤配置
 
-构建步骤中选择添加 `Send a message to Salt API`， 认证信息需要和配置 salt-api 的认证对应。
+构建步骤中选择添加 `Send a message to Salt API`， 认证信息需要和配置 `salt-api` 的认证对应。
 `Function`、`Arguments`、`Target`、`Target Type` 组成了最终使用的 salt 命令
 
 ```
@@ -113,7 +113,7 @@ salt -G 'web-server' state.apply your_state pillar=`{"foo1":"var1","foo2":"var2"
 以上面的命令为例，`Function` 是 `state.apply`；`Target` 是 `web-server`；`Target Type` 是 `G`。
 具体关于 saltstack Target 的信息可以查看官方文档。
 
-实际项目中，我将 jenkins 获取的 git 标签作为参数传递到 salt 中执行，在 states 中根据参数值获取发布文件。
+实际项目中，我将 Jenkins 获取的 Git 标签作为参数传递到 states 执行，根据参数值获取发布版本。
 
 > https://docs.saltstack.com/en/latest/topics/targeting/compound.html#targeting-compound
 
@@ -141,7 +141,7 @@ salt -G 'web-server' state.apply your_state pillar=`{"foo1":"var1","foo2":"var2"
 
 客户端推送完成之后触发
 
-需要在 `post-receive` 编写脚本，向 jenkins 服务器发起请求执行对应的 Job，完成自动化部署。
+需要在 `post-receive` 编写脚本，向 enkins 服务器发起请求执行对应的 Job，完成自动化部署。
 
 由于代码仓库的变动是由 Jenkins 插件完成检测的，所以只需要请求对应 Job 的远程构建 URL 即可。
 
