@@ -24,10 +24,10 @@ toc: true
 1. 在项目中创建 `keystore.properties`，内容包含签名使用的配置信息，例如：
 
 ```
-sign.store=store_file_location
-sign.store_pwd=pwd
-sign.alias=alias_name
-sign.alias_pwd=alias_pwd
+store=store_file_location
+store_pwd=pwd
+alias=alias_name
+alias_pwd=alias_pwd
 ```
 需要注意的是，`keystore.properties` 和使用的 store 文件不要添加到版本控制系统中。
 
@@ -41,9 +41,9 @@ signingConfigs {
       def Properties keyProps = new Properties()
       keyProps.load(new FileInputStream(file('keystore.properties')))
       storeFile file(keyProps["store"])
-      storePassword keyProps["store.pwd"]
+      storePassword keyProps["store_pwd"]
       keyAlias keyProps["alias"]
-      keyPassword keyProps["alias.pwd"]
+      keyPassword keyProps["alias_pwd"]
     } catch (Exception ex) {
       println(ex)
     }
@@ -84,4 +84,42 @@ assembleRelease
 ```
 
 配置完成之后该 Jenkins 构建项目只会构建正式签名的 Android 包。
+
+##### 其他
+
+如果你只想解决自动签名的问题，那么可以按官方文档上的做法，将加载配置放在模块的 build.gradle 文件中, android {} 块的前面加载。
+
+```
+...
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+
+def keyProps = new Properties()
+
+keyProps.load(new FileInputStream(keystorePropertiesFile))
+
+android {
+    ...
+}
+```
+
+同样需要在 signingConfigs 块中使用加载好的配置信息
+
+```
+android {
+    signingConfigs {
+        config {
+            storeFile file(keyProps["store"])
+            storePassword keyProps["store_pwd"]
+            keyAlias keyProps["alias"]
+            keyPassword keyProps["alias_pwd"]
+        }
+    }
+    ...
+  }
+```
+
+在 Build Variants 工具窗口中确定已选择发布构建类型。
+
+然后点击 Build > Build APK 以构建您的发布构建，并确认 Android Studio 已在模块的 build/outputs/apk/ 目录中创建一个签署的 APK。
+
 
