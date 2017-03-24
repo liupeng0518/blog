@@ -1,7 +1,7 @@
 title: 如何在 ClearOS 上安装 Docker
 date: 2016-05-12 14:25:51
 categories:
-  - linux
+  - Linux
 description: 在 ClearOS 上安装 Docker 并使用 DaoCloud 私有集群管理平台
 feature: /images/logo/clearos-logo.webp
 tags:

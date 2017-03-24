@@ -1,7 +1,7 @@
 title: 加盐密码哈希：如何正确使用
 date: 2016-10-10 14:25:00
 categories: 
-  - other
+  - Other
 tags: 
   - HASH
   - Security

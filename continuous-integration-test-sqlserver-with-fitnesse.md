@@ -1,7 +1,7 @@
 title: 使用 FitNesse 测试 SQL Server 数据库
 date: 2016-01-21 15:06:51
 categories:
-  - ci
+  - CI
 feature: /images/logo/fitnesse-logo.webp
 tags:
   - Fitnesse

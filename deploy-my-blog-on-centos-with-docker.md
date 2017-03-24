@@ -1,7 +1,7 @@
 title: 在 CentOS 上使用 Docker 部署个人博客和 Git 仓库
 date: 2017-03-21 22:10:00
 categories:
-  - linux
+  - Linux
 feature: /images/logo/docker-logo.webp
 tags:
   - Nginx

@@ -1,7 +1,7 @@
 title: 用 Gradle 处理 Android 签名配置
 date: 2017-03-24 22:10:00
 categories:
-  - ci
+  - CI
 feature: /images/logo/jenkins-logo.webp
 tags:
   - Gradle

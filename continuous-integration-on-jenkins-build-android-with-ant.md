@@ -1,7 +1,7 @@
 title: Jenkins实现持续集成——使用Ant脚本构建Android项目
 date: 2015-12-08 19:25:51
 categories: 
-  - ci
+  - CI
 feature: /images/logo/jenkins-logo.webp
 tags: 
   - Jenkins

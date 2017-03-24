@@ -1,7 +1,7 @@
 title: 在 Nginx 与 IIS 上初试 Let’s Encrypt 证书部署 
 date: 2016-08-31 13:45:00
 categories: 
-  - linux
+  - Linux
 feature: /images/logo/letsencrypt-logo.webp
 tags: 
   - Nginx

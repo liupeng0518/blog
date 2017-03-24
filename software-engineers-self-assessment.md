@@ -1,7 +1,7 @@
 title: 软件工程师能力自我评估表
 date: 2015-12-08 19:25:51
 categories:
-  - other
+  - Other
 tags:
 ---
 

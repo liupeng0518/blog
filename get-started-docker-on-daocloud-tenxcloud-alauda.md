@@ -1,7 +1,7 @@
 title: DaoCloud 时速云 灵雀云 持续集成功能使用体验
 date: 2016-05-12 14:25:51
 categories:
-  - docker
+  - Docker
 description: 国内容器云平台持续集成功能初步体验与使用记录
 feature: /images/logo/docker-logo.webp
 tags:

@@ -1,7 +1,7 @@
 title: 选择数据库恢复模式
 date: 2015-12-08 19:25:51
 categories: 
-  - database
+  - Database
 feature: /images/logo/sqlserver-logo.webp
 tags: 
   - SQL Server

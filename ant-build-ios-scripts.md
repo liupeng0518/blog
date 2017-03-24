@@ -1,7 +1,7 @@
 title: ANT构建IOS项目脚本
 date: 2016-01-11 17:45:00
 categories: 
-  - ci
+  - CI
 feature: /images/logo/apache-ant-logo.webp
 tags: 
   - Ant

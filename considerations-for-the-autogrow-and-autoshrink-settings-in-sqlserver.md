@@ -1,7 +1,7 @@
 title: SQL Server中的自动增长和自动收缩配置注意事项
 date: 2015-12-08 19:25:51
 categories: 
-  - database
+  - Database
 feature: /images/logo/sqlserver-logo.webp
 tags: 
   - SQL Server

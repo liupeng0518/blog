@@ -1,7 +1,7 @@
 title: 调用微信公众平台接口发送消息脚本
 date: 2016-07-17 20:45:00
 categories: 
-  - ci
+  - CI
 feature: /images/logo/wechat-logo.webp
 tags: 
   - Ant

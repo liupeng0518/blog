@@ -4,7 +4,7 @@ categories:
   - FreeBSD
 feature: /images/logo/shadowsocks-logo.webp
 tags:
-  - shadowsocks
+  - Shadowsocks
 toc: true
 ---
 <H2 id="first">首先</h2>

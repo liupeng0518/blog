@@ -1,7 +1,7 @@
 title: 使用多个SendKeys语句关闭NumLock的BUG
 date: 2015-10-15 19:25:51
 categories:
-  - other
+  - Other
 tags:
   - VB
 toc: true

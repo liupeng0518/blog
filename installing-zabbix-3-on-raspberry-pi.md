@@ -1,11 +1,11 @@
 title: 在树莓派上安装 Zabbix 3
 date: 2016-08-01 09:45:00
 categories: 
-  - raspberry pi
+  - Linux
 feature: /images/logo/raspberry-pi-logo.webp
 tags: 
   - Zabbix
-  - Linux
+  - Raspberry Pi
 toc: true
 ---
 >原文地址:

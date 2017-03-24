@@ -1,7 +1,7 @@
 title: SQL Server 批量重命名主键、外键、默认约束、索引 SQL 脚本
 date: 2016-07-18 10:45:00
 categories: 
-  - database
+  - Database
 feature: /images/logo/sqlserver-logo.webp
 tags: 
   - SQL Server

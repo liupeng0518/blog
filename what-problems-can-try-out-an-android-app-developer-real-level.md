@@ -1,7 +1,7 @@
 title: 面试时，问哪些问题能试出一个 Android 应用开发者真正的水平？——汤涛的回答
 date: 2015-12-08 19:25:51
 categories: 
-  - other
+  - Other
 tags:
   - Android
 toc: true

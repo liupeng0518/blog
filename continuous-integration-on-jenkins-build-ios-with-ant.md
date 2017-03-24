@@ -1,7 +1,7 @@
 title: Jenkins实现持续集成——使用Ant脚本构建ios项目
 date: 2016-01-08 17:06:51
 categories: 
-  - ci
+  - CI
 feature: /images/logo/jenkins-logo.webp
 tags: 
   - Jenkins
