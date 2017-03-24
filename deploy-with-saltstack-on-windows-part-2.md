@@ -76,7 +76,7 @@ sudo systemctl restart salt-master salt-api
 
 ##### 配置构建项目
 
-需要安装`Git Plugin` `Git Parameter Plugin` `saltstack-plugin` 三个插件。添加好三个 Job 之后，都需要勾选`触发远程构建`，并设置好`身份验证令牌`。
+需要安装`Git Plugin` `Git Parameter Plugin` `saltstack-plugin` 三个插件。添加好三个构建项目之后，都需要勾选`触发远程构建`，并设置好`身份验证令牌`。
 
 注意：部署到生产环境可以不做触发构建，只做手动执行。
 
