@@ -141,7 +141,7 @@ salt -G 'web-server' state.apply your_state pillar=`{"foo1":"var1","foo2":"var2"
 
 客户端推送完成之后触发
 
-需要在 `post-receive` 编写脚本，向 enkins 服务器发起请求执行对应的 Job，完成自动化部署。
+需要在 `post-receive` 编写脚本，向 Jenkins 服务器发起请求执行对应的 Job，完成自动化部署。
 
 由于代码仓库的变动是由 Jenkins 插件完成检测的，所以只需要请求对应 Job 的远程构建 URL 即可。
 
