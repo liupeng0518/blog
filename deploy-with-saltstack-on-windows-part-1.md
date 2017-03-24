@@ -2,6 +2,7 @@ title: 使用 saltstack 在 Windows 服务器上发布 Web 应用 - Part 1
 date: 2017-03-21 22:10:00
 categories:
   - linux
+  - ci
 feature: /images/logo/saltstack-logo.webp
 tags:
   - SaltStack
