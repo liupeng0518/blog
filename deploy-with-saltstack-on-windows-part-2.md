@@ -113,7 +113,8 @@ salt -G 'web-server' state.apply your_state pillar=`{"foo1":"var1","foo2":"var2"
 以上面的命令为例，`Function` 是 `state.apply`；`Target` 是 `web-server`；`Target Type` 是 `G`。
 具体关于 saltstack Target 的信息可以查看官方文档。
 
-实际项目中，我将 Jenkins 获取的 Git 标签作为参数传递到 states 执行，根据参数值获取发布版本。
+Jenkins Git Plugin 插件构建时会创建一个 `GIT_COMMIT` 变量，表示当前构建使用的 Commit id. 作为参数传递到 states 执行，根据参数值获取发布版本。
+
 
 > https://docs.saltstack.com/en/latest/topics/targeting/compound.html#targeting-compound
 
