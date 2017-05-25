@@ -126,7 +126,7 @@ CMD ["python","-c","import pyodbc; print(pyodbc.connect('DRIVER=${DRIVER};SERVER
 
 ### FreeBSD
 
-FreeBSD 与 Linux 还是有差异的，虽然有 Linux 的兼容层，不过内核版本太老，就不考虑了。FreeBSD 下需要使用 FreeTDS 作为驱动。
+FreeBSD 与 Linux 还是有差异的，FreeBSD 下需要使用 FreeTDS 作为驱动。
 
 具体安装过程可以参考 pyodbc 文档上关于 Mac OSX 访问 SQL Server 的部分。当然，使用的包管理器是有差别的。
 
