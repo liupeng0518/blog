@@ -10,7 +10,7 @@ toc: true
 
 使用 python 访问 SQL Server 数据库，还需要支持跨平台。关于 SQL Server 的吐槽就免了，既然存在，总会有遇到这个问题的时候。
 
-首先在 SQLAlchemy 的文档中介绍的 MSSQL 库就是这些了：
+首先在 SQLAlchemy 文档中介绍的连接 SQL Server 的库就是这些了：
 
 * PyODBC
 * mxODBC
@@ -18,15 +18,13 @@ toc: true
 * zxJDBC for Jython
 * adodbapi
 
-基本上分为三种：ADO、FreeTDS、ODBC。
-
 zxJDBC 是 For Jython 的，而 mxODBC 需要商业授权，所以只剩下以下三个。
 
 | Package  | Dirver | Python 2 | Python 3 | Windows | Linux | FreeBSD |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| AdoDBAPI | ADO | √ |√* |√* |√* |√* |
+| AdoDBAPI | ADO | √ | √* | √* | √* | √* |
 | PyODBC | ODBC | √ | √ |√ |√ | √ |
-| pymssql | FreeTDS | √ | √ |√ |√ |√ |
+| pymssql | FreeTDS | √ | √ |√ |√ | √ |
 
 <!-- more -->
 
@@ -54,16 +52,22 @@ zxJDBC 是 For Jython 的，而 mxODBC 需要商业授权，所以只剩下以�
 pip install pyodbc
 ```
 
+Driver 的名称可以在系统 ODBC 管理中查看，使用的方式如下：
+
+```python
+pyodbc.connect('DRIVER={SQL Server};SERVER=192.168.1.15;DATABASE=master;UID=sa;PWD=password')
+```
+
 ### Linux
 
-`PyODBC` 在 `Linux` 上使用 `unixODBC` 作为 `Driver Manager`，还需要安装 `Microsoft ODBC Driver for Linux` 。
+PyODBC 在 Linux 上使用 unixODBC 作为 Driver Manager，还需要安装 Microsoft ODBC Driver for Linux 。
 
 #### unixODBC
 
 > 项目地址：http://www.unixodbc.org/
 > 开源协议：GPL/LGPL
 
-在 Drviers 页面中有 `unixodbc` 支持的各种 ODBC Drviers，可以根据实际需要选择。
+在 Drviers 页面中有 unixodbc 支持的各种 ODBC Drviers，可以根据实际需要选择。
 
 可以使用包管理器安装
 
@@ -82,7 +86,7 @@ sudo apt install unixodbc-dev
 > [Microsoft ODBC Driver for SQL Server on Linux](https://docs.microsoft.com/zh-cn/sql/connect/odbc/linux/microsoft-odbc-driver-for-sql-server-on-linux)
 > [Known Issues in this Version of the Driver](https://docs.microsoft.com/zh-cn/sql/connect/odbc/linux/known-issues-in-this-version-of-the-driver)
 
-目前 Microsoft ODBC Driver 11 for SQL Server 有两个版本 ——11 和 13。
+目前 Microsoft ODBC Driver for SQL Server 有两个版本 ——11 和 13。
 
 版本 11 是微软为 RedHat 发布的，CentOS 可以正常运行。
 
@@ -99,14 +103,17 @@ curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
 curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
 exit
 sudo apt-get update
-sudo ACCEPT_EULA=Y apt-get install msodbcsql=13.0.1.0-1 mssql-tools=14.0.2.0-1
-sudo apt-get install unixodbc-dev-utf16 #this step is optional but recommended*
-#Create symlinks for tools
-ln -sfn /opt/mssql-tools/bin/sqlcmd-13.0.1.0 /usr/bin/sqlcmd
-ln -sfn /opt/mssql-tools/bin/bcp-13.0.1.0 /usr/bin/bcp
+sudo ACCEPT_EULA=Y apt-get install msodbcsql
+# optional: for bcp and sqlcmd
+sudo ACCEPT_EULA=Y apt-get install mssql-tools
+echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile
+echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
+source ~/.bashrc
+# optional: for unixODBC development headers
+sudo apt-get install unixodbc-dev
 ```
 
-其中 `mssql-tools` 不是必须的。
+其中 `mssql-tools` 不是必须的，Driver 的名称可以通过查看 `/etc/odbcinst.ini` 文件得到。
 
 使用 docker 来实验一下
 
@@ -133,7 +140,7 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
 RUN pip3 install --no-cache-dir -U pip \
     && pip3 install --no-cache-dir pyodbc
 
-CMD ["python3","-c","import pyodbc; print(pyodbc.connect('DRIVER={ODBC Driver 13 for SQL Server};SERVER=192.168.8.15;DATABASE=mydb;UID=sa;PWD=bndhyt0804').execute('select @@version').fetchval())"]
+CMD ["python3","-c","import pyodbc; print(pyodbc.connect('DRIVER={ODBC Driver 13 for SQL Server};SERVER=192.168.1.15;DATABASE=master;UID=sa;PWD=password').execute('select @@version').fetchval())"]
 ```
 
 由于微软的驱动是私有软件，如果是官方支持的发行版，优先考虑使用；非官方支持的发行版，需要手动安装；非官方支持的架构或者操作系统，请转到 FreeTDS。
@@ -156,8 +163,9 @@ FreeBSD 与 Linux 还是有差异的，FreeBSD 下需要使用 FreeTDS 作为驱
 官网上一句话介绍了 FreeTDS 的作用：
 > FreeTDS is a set of libraries for Unix and Linux that allows your programs to natively talk to Microsoft SQL Server and Sybase databases.
 
-实际上 pyodbc 也能使用 FreeTDS，后面的 pymssql 也是。
-*待续*
+pyodbc 在 Microsoft ODBC Driver for Linux 不支持的平台上就使用的 FreeTDS 作为驱动。
+
+*未完待续*
 
 ## pymssql
 
@@ -202,7 +210,7 @@ python .\setup.py build
 python .\setup.py install
 ```
 
-总的说来，如果不需要自己编译的话安装还是很容易的。不过编译器方面没有 Linux 上方便。
+总的说来安装还是很容易的，不过编译器方面没有 Linux 上方便。
 
 ### Linux
 
@@ -220,13 +228,18 @@ sudo pip install pymssql
 
 如果有编译报错的提示则说明需要另外安装编译依赖或者配置一下环境变量。
 
-需要安装的包有 `gcc`、`python3-dev`、`freetds`、`freetds-dev` 这些。
+需要安装的包有 `gcc`、`python3-dev`、`freetds-dev` 这些。
 
 ```bash
 sudo apt-get install gcc python3-dev freetds freetds-dev
 ```
 
-然后设置环境变量，配置编译过程中使用的 FreeTDS 库路径
+注意：pymssql 使用的 FreeTDS 有版本要求，如果包管理安装的版本不对应，安装时很可能失败。
+
+> [pymssql - FreeTDS](http://pymssql.org/en/stable/freetds.html)
+> [Installation fails with FreeTDS 1.0 on OSX](https://github.com/pymssql/pymssql/issues/432)
+
+可以通过设置环境变量，配置编译过程中使用的 FreeTDS 库路径，这里是使用 pymssql 包中自带的 FreeTDS 库。
 
 ```
 export PYMSSQL_BUILD_WITH_BUNDLED_FREETDS=1
@@ -236,23 +249,30 @@ export PYMSSQL_BUILD_WITH_BUNDLED_FREETDS=1
 
 ```yaml
 FROM python:3.6.1-alpine
-RUN apk add --no-cache python3-dev gcc g++ freetds-dev
-RUN pip3 install -U pip \
-    && pip3 install pymssql
+# Use Aliyun Mirrors
+RUN echo "http://mirrors.aliyun.com/alpine/v3.4/main/" > /etc/apk/repositories
+# Install pymssql
+RUN apk add --no-cache python3-dev gcc g++
+RUN export PYMSSQL_BUILD_WITH_BUNDLED_FREETDS=1 \
+    && pip3 install --no-cache-dir -U pip \
+    && pip3 install --no-cache-dir pymssql
+# Test Connect
+CMD ["python3","-c","import pymssql; print(pymssql.connect('192.168.1.15', 'sa', 'password', 'master').cursor().execute('select @@version').fetchall()"]
 ```
 
 ### FreeBSD
 
+*待续*
 
 # 总结
 
 这里有个关于 PyODBC 与 pymssql 的讨论 [pymssql vs pyodbc](https://groups.google.com/forum/#!topic/pymssql/CLXHtLKBWig)。
 
-PyODBC 对比 pymssql 来说更加“官方”，包括 TLS 和 Azure 的支持都因为使用了微软 ODBC Driver for Linux 更加完善，而 pymssql 则依赖于 FreeTDS 的支持。
+PyODBC 对比 pymssql 来说更加“官方”，包括 TLS 和 Azure 的支持都因为使用了 Microsoft ODBC Driver for Linux 更加完善，而 pymssql 则依赖于 FreeTDS 的支持。
 
 不过正由于其更加“官方”，作为私有软件，显然微软发布的目的是为了更好的推广 SQL Server，所以一些非主流发行版或者 FreeBSD 之类的基本是不会支持的。
 如果想在你的树莓派上运行 Python 访问 SQL Server 只能靠 pymssql(FreeTDS) 了。
 
-因此，与其说是在 PyODBC 和 pymssql 中做选择，不如说是在 ODBC Driver for Linux 和 FreeTDS 中做选择。
+因此，与其说是在 PyODBC 和 pymssql 中做选择，不如说是在 Microsoft ODBC Driver for Linux 和 FreeTDS 中做选择。
 
-考虑到官方支持、性能和可靠性来说，优先选择 PyODBC，但是也不能忘记 pymssql 自由的权利。
+考虑到官方支持、性能和可靠性来说，优先选择 PyODBC，但是也不能忘记自由的权利—— pymssql。
