@@ -24,7 +24,7 @@ zxJDBC 是 For Jython 的，而 mxODBC 需要商业授权，所以只剩下以�
 
 | Package  | Dirver | Python 2 | Python 3 | Windows | Linux | FreeBSD |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| AdoDBAPI | ADO| √ |√* |√* |√* |√* |
+| AdoDBAPI | ADO | √ |√* |√* |√* |√* |
 | PyODBC | ODBC | √ | √ |√ |√ |√ |
 | pymssql | FreeTDS | √ | √ |√ |√ |√ |
 
@@ -111,18 +111,34 @@ ln -sfn /opt/mssql-tools/bin/bcp-13.0.1.0 /usr/bin/bcp
 使用 docker 来实验一下
 
 ```yaml
-FROM python:3.6.1-alpine
-RUN apk add --no-cache unixodbc-dev
-RUN pip install --no-cache-dir pyodbc
-ENV DRIVER="{SQL Server}"
-ENV SERVER="localhost"
-ENV DATABASE="matser"
-ENV UID="sa"
-ENV PWD="123"
-CMD ["python","-c","import pyodbc; print(pyodbc.connect('DRIVER=${DRIVER};SERVER=${SERVER};DATABASE=${DATABASE};UID=${UID};PWD=${PWD}'))"]
+FROM ubuntu:16.04
+ENV LANG="C.UTF-8"
+# Install Python
+RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/' /etc/apt/sources.list \
+    && sed -i 's/deb-src/#deb-src/' /etc/apt/sources.list \
+    && apt-get update \
+    && apt-get install -y build-essential ca-certificates gcc git libpq-dev \
+    make pkg-config python3 python3-dev python3-pip aria2 curl apt-transport-https \
+    locales \
+    && locale-gen "en_US.UTF-8"
+
+# Install msodbc unixodbc
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+    && curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list > /etc/apt/sources.list.d/mssql-release.list \
+    && apt-get update \
+    && ACCEPT_EULA=Y apt-get install -y msodbcsql unixodbc-dev unixodbc \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install pyodbc
+RUN pip3 install --no-cache-dir -U pip \
+    && pip3 install --no-cache-dir pyodbc
+
+CMD ["python3","-c","import pyodbc; print(pyodbc.connect('DRIVER={ODBC Driver 13 for SQL Server};SERVER=192.168.8.15;DATABASE=mydb;UID=sa;PWD=bndhyt0804').execute('select @@version').fetchval())"]
 ```
 
-由于微软的驱动是私有软件，如果是官方支持的发行版，可以优先考虑使用；非官方支持的发行版，就需要手动处理安装了。
+由于微软的驱动是私有软件，如果是官方支持的发行版，优先考虑使用；非官方支持的发行版，需要手动安装；非官方支持的架构或者操作系统，请转到 FreeTDS。
+
+可以参考 [elistreit/msodbc](https://hub.docker.com/r/elistreit/msodbc/) 的 Dockerfile 来完成。
 
 ### FreeBSD
 
@@ -137,9 +153,49 @@ FreeBSD 与 Linux 还是有差异的，FreeBSD 下需要使用 FreeTDS 作为驱
 > 项目地址：https://github.com/FreeTDS/freetds
 > 开源协议：GPL
 
+官网上一句话介绍了 FreeTDS 的作用：
+> FreeTDS is a set of libraries for Unix and Linux that allows your programs to natively talk to Microsoft SQL Server and Sybase databases.
+
+实际上 pyodbc 也能使用 FreeTDS，后面的 pymssql 也是。
 *待续*
 
 ## pymssql
 
 > 项目地址：https://github.com/pymssql/pymssql
 > 开源协议：LGPL
+
+pymssql 使用的是 FreeTDS，跨平台性更好。
+
+### Windows
+
+可以选择直接使用可执行安装包、Wheel Package，不过考虑到要使用虚拟运行环境，没有什么特别需要还是 pip 安装好了。
+
+如果使用的 Python 版本没有对应的 Wheel Package，那么就需要自己手动编译安装了。
+
+需要注意的是，根据文档的说明：
+
+> The statically-linked FreeTDS version bundled with our official pymssql Windows Wheel package doesn't have SSL support so it can’t be used to connect to Azure.
+
+也就是说，如果需要 SSL 支持的话就只能手动编译 FreeTDS 然后安装。
+
+[FreeTDS Installation](http://pymssql.org/en/latest/freetds.html#windows)
+
+这里我选择使用 FreeTDS 提供的[二进制文件](https://github.com/ramiro/freetds/releases)，当然也可以尝试[自己编译](http://www.freetds.org/userguide/build.htm)。
+
+### Linux
+
+> The statically-linked FreeTDS version bundled with our official pymssql Linux Wheel package doesn’t have SSL support so it can’t be used to connect to Azure. Also it doesn’t have Kerberos support so it can’t be used to perform domain logins to SQL Server.
+
+### FreeBSD
+
+
+# 总结
+
+这里有个关于 PyODBC 与 pymssql 的讨论 [pymssql vs pyodbc](https://groups.google.com/forum/#!topic/pymssql/CLXHtLKBWig)。
+
+PyODBC 对比 pymssql 来说更加“官方”，包括 TLS 和 Azure 的支持都因为使用了微软 ODBC Driver for Linux 更加完善，而 pymssql 则依赖于 FreeTDS 的支持。
+
+不过正由于其更加“官方”，作为私有软件，显然微软发布的目的是为了更好的推广 SQL Server，所以一些非主流发行版或者 FreeBSD 之类的基本是不会支持的。
+如果想在你的树莓派上运行 Python 访问 SQL Server 只能靠 pymssql(FreeTDS) 了。
+
+总的来说，优先选择 PyODBC，但是也不能忘记 pymssql。
