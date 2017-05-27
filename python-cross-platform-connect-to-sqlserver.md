@@ -25,7 +25,7 @@ zxJDBC 是 For Jython 的，而 mxODBC 需要商业授权，所以只剩下以�
 | Package  | Dirver | Python 2 | Python 3 | Windows | Linux | FreeBSD |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | AdoDBAPI | ADO | √ |√* |√* |√* |√* |
-| PyODBC | ODBC | √ | √ |√ |√ |√ |
+| PyODBC | ODBC | √ | √ |√ |√ | √ |
 | pymssql | FreeTDS | √ | √ |√ |√ |√ |
 
 <!-- more -->
@@ -172,19 +172,74 @@ pymssql 使用的是 FreeTDS，跨平台性更好。
 
 如果使用的 Python 版本没有对应的 Wheel Package，那么就需要自己手动编译安装了。
 
+截至本文发布时 [PyPI - the Python Package Index - pymssql/2.1.3](https://pypi.python.org/pypi/pymssql/2.1.3#downloads) 没有提供 Python3.6 的 Wheel Package。
+
+所以 Python3.6 就得自己来编译安装了，如果有提供 Wheel Package 建议直接使用 pip 来安装，比较省事。
+
 需要注意的是，根据文档的说明：
 
 > The statically-linked FreeTDS version bundled with our official pymssql Windows Wheel package doesn't have SSL support so it can’t be used to connect to Azure.
 
-也就是说，如果需要 SSL 支持的话就只能手动编译 FreeTDS 然后安装。
+不考虑 Python 版本，需要 SSL 支持的话就只能手动编译安装。
 
 [FreeTDS Installation](http://pymssql.org/en/latest/freetds.html#windows)
 
 这里我选择使用 FreeTDS 提供的[二进制文件](https://github.com/ramiro/freetds/releases)，当然也可以尝试[自己编译](http://www.freetds.org/userguide/build.htm)。
 
+这里要注意下载的文件要与后面需要使用的编译器版本对应。
+
+下载 pymssql 的代码 pymssql-2.1.3.tar.gz，解压后可以尝试在解压目录运行
+
+```bash
+python .\setup.py build
+```
+
+根据提示，可能需要安装对应的编译器，以及将下载好的 FreeTDS 库拷贝到 include 路径。
+
+编译成功后执行安装即可。
+
+```bash
+python .\setup.py install
+```
+
+总的说来，如果不需要自己编译的话安装还是很容易的。不过编译器方面没有 Linux 上方便。
+
 ### Linux
 
+和 Windows 上一样，优先使用 Wheel Package 安装，除非没有提供对应 Python 版本的 Wheel Package 或者需要 SSL 支持。
+
+文档也提到了 Linux 上的 Wheel Package 一样没有带 SSL 支持，而且不支持使用 Kerberos 认证方式登录 SQL Server。
+
 > The statically-linked FreeTDS version bundled with our official pymssql Linux Wheel package doesn’t have SSL support so it can’t be used to connect to Azure. Also it doesn’t have Kerberos support so it can’t be used to perform domain logins to SQL Server.
+
+可以尝试使用 pip 直接安装
+
+```
+sudo pip install pymssql
+```
+
+如果有编译报错的提示则说明需要另外安装编译依赖或者配置一下环境变量。
+
+需要安装的包有 `gcc`、`python3-dev`、`freetds`、`freetds-dev` 这些。
+
+```bash
+sudo apt-get install gcc python3-dev freetds freetds-dev
+```
+
+然后设置环境变量，配置编译过程中使用的 FreeTDS 库路径
+
+```
+export PYMSSQL_BUILD_WITH_BUNDLED_FREETDS=1
+```
+
+同样的用 Docker 来实验一下
+
+```yaml
+FROM python:3.6.1-alpine
+RUN apk add --no-cache python3-dev gcc g++ freetds-dev
+RUN pip3 install -U pip \
+    && pip3 install pymssql
+```
 
 ### FreeBSD
 
@@ -198,4 +253,6 @@ PyODBC 对比 pymssql 来说更加“官方”，包括 TLS 和 Azure 的支持�
 不过正由于其更加“官方”，作为私有软件，显然微软发布的目的是为了更好的推广 SQL Server，所以一些非主流发行版或者 FreeBSD 之类的基本是不会支持的。
 如果想在你的树莓派上运行 Python 访问 SQL Server 只能靠 pymssql(FreeTDS) 了。
 
-总的来说，优先选择 PyODBC，但是也不能忘记 pymssql。
+因此，与其说是在 PyODBC 和 pymssql 中做选择，不如说是在 ODBC Driver for Linux 和 FreeTDS 中做选择。
+
+考虑到官方支持、性能和可靠性来说，优先选择 PyODBC，但是也不能忘记 pymssql 自由的权利。
