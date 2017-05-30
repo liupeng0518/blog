@@ -14,7 +14,7 @@ In this article, the fundamentals of what JSON Web Tokens (JWT) are, and why the
 本文将帮你理解 JSON Web Token（JWT） 的基本原理以及为什么要使用它。
 
 JWT are an important piece in ensuring trust and security in your application.
-JWT是确保应用安全性和可靠性的重要一环。
+JWT 是确保应用安全性和可靠性的重要一环。
 
 JWT allow claims, such as user data, to be represented in a secure manner.
 JWT 允许以一种安全的方式表示信息，比如用户数据。
@@ -33,7 +33,7 @@ Simply put, a JWT is just a string with the following format:
 header.payload.signature
 ```
 *It should be noted that a double quoted string is actually considered a valid JSON object.*
-*要注意的是双引号也是一个合法的 JSON 对象。*
+*要注意的是一对引号也是一个合法的 JSON 对象。*
 To show how and why JWT are actually used, we will use a simple 3 entity example (see the below diagram).
 为了展示 JWT 是如何使用的，我们用下面这个简单的 3 实体示例图。
 The entities in this example are the user, the application server, and the authentication server. 
@@ -43,18 +43,18 @@ The authentication server will provide the JWT to the user. With the JWT, the us
 认证服务器向用户提供 JWT。使用 JWT，用户可以安全的与应用进行通讯。
 ![](./images/2017/how-use-jwt.webp)
 How an application uses JWT to verify the authenticity of a user.
-应用如何使用 JWT 校验用户的真实性。
+应用使用 JWT 校验用户的真实性的过程。
 
 In this example, the user first signs into the authentication server using the authentication server’s login system (e.g. username and password, Facebook login, Google login, etc).
 在这个示例中，用户首先使用认证服务器的登录系统（用户和密码，或者第三方认证）登录认证服务器。
 The authentication server then creates the JWT and sends it to the user. 
 随后认证服务器创建 JWT 然后发送给用户。
 When the user makes API calls to the application, the user passes the JWT along with the API call. 
-当用户创建应用 API 调用时，将 JWT 随着 API 调用传递。
+当用户调用应用 API 时，将 JWT 付加在调用进行传递。
 In this setup, the application server would be configured to verify that the incoming JWT are created by the authentication server (the verification process will be explained in more detail later). 
 在这一步，应用服务器会被配置为校验传入的 JWT 是否由认证服务器创建（校验的过程在后面会详细说明）。
 So, when the user makes API calls with the attached JWT, the application can use the JWT to verify that the API call is coming from an authenticated user.
-因此，当用户调用 API 附带 JWT 的时候，应用服务器可以使用 JWT 来验证 API 调用是来自一个可信任的用户。
+因此，当用户附加 JWT 调用 API 的时候，应用服务器可以使用 JWT 来验证 API 调用是否来自一个可信任的用户。
 Now, the JWT itself, and how it’s constructed and verified, will be examined in more depth.
 
 ## Step 1. Create the HEADER
@@ -130,7 +130,7 @@ You can try creating your own JWT through your browser at [jwt.io](http://jwt.io
 用浏览器访问[jwt.io](http://jwt.io/)，你可以尝试创建你自己的 JWT
 
 Going back to our example, the authentication server can now send this JWT to the user.
-回到我们的例子，认证服务器现在可以把这个 JWT 发生给用户了。
+回到我们的例子，认证服务器现在可以把这个 JWT 发送给用户了。
 
 
 **How does JWT protect our data?**
@@ -138,11 +138,11 @@ Going back to our example, the authentication server can now send this JWT to th
 
 It is important to understand that the purpose of using JWT is NOT to hide or obscure data in any way. The reason why JWT are used is to prove that the sent data was actually created by an authentic source.
 
-重要的是要明白，使用 JWT 的目的不是为了以任何方式隐藏或者混淆数据。使用 JWT 的原因是为了保证发送的数据是由可信的来源创建的。
+重要的是要明白，使用 JWT 的目的不是为了以任何方式隐藏或者混淆数据。使用 JWT 是为了保证发送的数据是由可信的来源创建的。
 
 As demonstrated in the previous steps, the data inside a JWT is encoded and signed, not encrypted.
 
-如前面的步骤示，在 JWT 中的数据只是被**编码**和**签名**，并没有被**加密**。
+如前面步骤所示，在 JWT 中的数据只是被**编码**和**签名**，并没有被**加密**。
 
 The purpose of encoding data is to transform the data’s structure. Signing data allows the data receiver to verify the authenticity of the source of the data. So encoding and signing data does NOT secure the data. On the other hand, the main purpose of encryption is to secure the data and to prevent unauthorized access. For a more detailed explanation of the differences between encoding and encryption, and also for more information on how hashing works, see [this article](https://danielmiessler.com/study/encoding-encryption-hashing-obfuscation/#encoding).
 
