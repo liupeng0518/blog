@@ -34,6 +34,8 @@ header.payload.signature
 ```
 *It should be noted that a double quoted string is actually considered a valid JSON object.*
 *要注意的是一对引号也是一个合法的 JSON 对象。*
+
+<!-- more -->
 To show how and why JWT are actually used, we will use a simple 3 entity example (see the below diagram).
 为了展示 JWT 是如何使用的，我们用下面这个简单的 3 实体示例图。
 The entities in this example are the user, the application server, and the authentication server. 
@@ -41,7 +43,7 @@ The entities in this example are the user, the application server, and the authe
 
 The authentication server will provide the JWT to the user. With the JWT, the user can then safely communicate with the application.
 认证服务器向用户提供 JWT。使用 JWT，用户可以安全的与应用进行通讯。
-![](./images/2017/how-use-jwt.webp)
+![](/images/2017/how-use-jwt.webp)
 How an application uses JWT to verify the authenticity of a user.
 应用使用 JWT 校验用户的真实性的过程。
 

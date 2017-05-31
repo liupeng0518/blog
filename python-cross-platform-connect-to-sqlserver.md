@@ -8,6 +8,8 @@ tags:
 toc: true
 ---
 
+## 前言
+
 使用 python 访问 SQL Server 数据库，还需要支持跨平台。关于 SQL Server 的吐槽就免了，既然存在，总会有遇到这个问题的时候。
 
 首先在 SQLAlchemy 文档中介绍的连接 SQL Server 的库就是这些了：
@@ -81,7 +83,7 @@ sudo apt install unixodbc-dev
 
 #### Microsoft ODBC Driver for Linux
 
-微软官方发布的 ODBC Driver for Linux，非开源项目，商用的话建议仔细看一下 EULA 的内容。
+微软官方发布的 ODBC Driver for Linux，**这是一个私有软件**，商用的话建议仔细看一下 EULA 的内容。
 
 > [Microsoft ODBC Driver for SQL Server on Linux](https://docs.microsoft.com/zh-cn/sql/connect/odbc/linux/microsoft-odbc-driver-for-sql-server-on-linux)
 > [Known Issues in this Version of the Driver](https://docs.microsoft.com/zh-cn/sql/connect/odbc/linux/known-issues-in-this-version-of-the-driver)
@@ -96,7 +98,7 @@ sudo apt install unixodbc-dev
 
 [Installing the Microsoft ODBC Driver for SQL Server on Linux](https://docs.microsoft.com/zh-cn/sql/connect/odbc/linux/installing-the-microsoft-odbc-driver-for-sql-server-on-linux)
 
-```shell
+```bash
 # Install the ODBC Driver for Linux on Ubuntu 16.04
 sudo su
 curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
@@ -145,7 +147,7 @@ CMD ["python3","-c","import pyodbc; print(pyodbc.connect('DRIVER={ODBC Driver 13
 
 由于微软的驱动是私有软件，如果是官方支持的发行版，优先考虑使用；非官方支持的发行版，需要手动安装；非官方支持的架构或者操作系统，请转到 FreeTDS。
 
-可以参考 [elistreit/msodbc](https://hub.docker.com/r/elistreit/msodbc/) 的 Dockerfile 来完成。
+注意：手动安装可以参考 [elistreit/msodbc](https://hub.docker.com/r/elistreit/msodbc/) 的 Dockerfile 来完成。
 
 ### FreeBSD
 
@@ -264,7 +266,7 @@ CMD ["python3","-c","import pymssql; cur = pymssql.connect('192.168.1.15', 'sa',
 
 *待续*
 
-# 总结
+## 总结
 
 这里有个关于 PyODBC 与 pymssql 的讨论 [pymssql vs pyodbc](https://groups.google.com/forum/#!topic/pymssql/CLXHtLKBWig)。
 
