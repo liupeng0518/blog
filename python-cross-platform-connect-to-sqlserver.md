@@ -202,7 +202,7 @@ pymssql 使用的是 FreeTDS，跨平台性更好。
 python .\setup.py build
 ```
 
-根据提示，可能需要安装对应的编译器，以及将下载好的 FreeTDS 库拷贝到 include 路径。
+根据提示，可能需要安装对应的编译器，以及将下载好的 FreeTDS 库拷贝到 include 路径（官方代码压缩包中并没有 Windows 使用的 FreeTDS 库文件）。
 
 编译成功后执行安装即可。
 
@@ -257,7 +257,7 @@ RUN export PYMSSQL_BUILD_WITH_BUNDLED_FREETDS=1 \
     && pip3 install --no-cache-dir -U pip \
     && pip3 install --no-cache-dir pymssql
 # Test Connect
-CMD ["python3","-c","import pymssql; print(pymssql.connect('192.168.1.15', 'sa', 'password', 'master').cursor().execute('select @@version').fetchall()"]
+CMD ["python3","-c","import pymssql; cur = pymssql.connect('192.168.1.15', 'sa', 'password', 'master').cursor(); cur.execute('select @@version'); print(cur.fetchall())"]
 ```
 
 ### FreeBSD
