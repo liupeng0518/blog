@@ -147,8 +147,6 @@ CMD ["python3","-c","import pyodbc; print(pyodbc.connect('DRIVER={ODBC Driver 13
 
 由于微软的驱动是私有软件，如果是官方支持的发行版，优先考虑使用；非官方支持的发行版，需要手动安装；非官方支持的架构或者操作系统，请转到 FreeTDS。
 
-注意：手动安装可以参考 [elistreit/msodbc](https://hub.docker.com/r/elistreit/msodbc/) 的 Dockerfile 来完成。
-
 ### FreeBSD
 
 FreeBSD 与 Linux 还是有差异的，FreeBSD 下需要使用 FreeTDS 作为驱动。
