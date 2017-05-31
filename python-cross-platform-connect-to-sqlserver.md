@@ -24,7 +24,7 @@ zxJDBC 是 For Jython 的，而 mxODBC 需要商业授权，所以只剩下以�
 
 | Package  | Dirver | Python 2 | Python 3 | Windows | Linux | FreeBSD |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| AdoDBAPI | ADO | √ | √* | √* | √* | √* |
+| AdoDBAPI | ADO | √ | √* | √ | √* | √* |
 | PyODBC | ODBC | √ | √ |√ |√ | √ |
 | pymssql | FreeTDS | √ | √ |√ |√ | √ |
 
