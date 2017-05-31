@@ -10,59 +10,34 @@ toc: true
 
 >原文地址：https://medium.com/vandium-software/5-easy-steps-to-understanding-json-web-tokens-jwt-1164c0adfcec
 
-In this article, the fundamentals of what JSON Web Tokens (JWT) are, and why they are used will be explained.  
-本文将帮你理解 JSON Web Token（JWT） 的基本原理以及为什么要使用它。
+本文将帮你理解 JSON Web Token（JWT） 的基本原理以及为什么要使用它。JWT 是确保应用的安全性和可靠性的重要一环。JWT 允许以一种安全的方式传达信息，比如用户数据。
 
-JWT are an important piece in ensuring trust and security in your application.
-JWT 是确保应用安全性和可靠性的重要一环。
-
-JWT allow claims, such as user data, to be represented in a secure manner.
-JWT 允许以一种安全的方式表示信息，比如用户数据。
-
-To explain how JWT work, let’s begin with an abstract definition.
 为了理解 JWT 是如何工作的，我们先了解它的定义。
 
->A JSON Web Token (JWT) is a JSON object that is defined in RFC 7519 as a safe way to represent a set of information between two parties. The token is composed of a header, a payload, and a signature.
+>JSON Web Token 是由 [RFC7519](https://tools.ietf.org/html/rfc7519) 定义的，是一个在双方之间安全的传达一组信息的 JSON 对象。由 header、payload 和 signature 三部分组成。
 
->JSON Web Token 是由 [RFC7519](https://tools.ietf.org/html/rfc7519) 定义的，是一个在双方之间安全的表示一组信息的 JSON 对象。由头部(header)、荷载(payload) 和 签名(signature) 三部分组成。
-
-Simply put, a JWT is just a string with the following format:
 简单来说，JWT 只是一个如下格式的字符串：
 
 ```
 header.payload.signature
 ```
-*It should be noted that a double quoted string is actually considered a valid JSON object.*
-*要注意的是一对引号也是一个合法的 JSON 对象。*
+
+*要注意的是双引号字符串也是一个合法的 JSON 对象。*
 
 <!-- more -->
-To show how and why JWT are actually used, we will use a simple 3 entity example (see the below diagram).
-为了展示 JWT 是如何使用的，我们用下面这个简单的 3 实体示例图。
-The entities in this example are the user, the application server, and the authentication server. 
-在这个例子里面的实体是用户、应用服务器和认证服务器。
 
-The authentication server will provide the JWT to the user. With the JWT, the user can then safely communicate with the application.
-认证服务器向用户提供 JWT。使用 JWT，用户可以安全的与应用进行通讯。
+我们用下面这个简单的示例图展示如何使用 JWT 。在这个例子里面的 3 个实体分别是用户、应用服务器和认证服务器。认证服务器向用户提供 JWT。使用 JWT，用户可以安全的与应用进行通讯。
+
 ![](/images/2017/how-use-jwt.webp)
-How an application uses JWT to verify the authenticity of a user.
-应用使用 JWT 校验用户的真实性的过程。
+*应用使用 JWT 校验用户的真实性的过程。*
 
-In this example, the user first signs into the authentication server using the authentication server’s login system (e.g. username and password, Facebook login, Google login, etc).
-在这个示例中，用户首先使用认证服务器的登录系统（用户和密码，或者第三方认证）登录认证服务器。
-The authentication server then creates the JWT and sends it to the user. 
-随后认证服务器创建 JWT 然后发送给用户。
-When the user makes API calls to the application, the user passes the JWT along with the API call. 
-当用户调用应用 API 时，将 JWT 付加在调用进行传递。
-In this setup, the application server would be configured to verify that the incoming JWT are created by the authentication server (the verification process will be explained in more detail later). 
-在这一步，应用服务器会被配置为校验传入的 JWT 是否由认证服务器创建（校验的过程在后面会详细说明）。
-So, when the user makes API calls with the attached JWT, the application can use the JWT to verify that the API call is coming from an authenticated user.
-因此，当用户附加 JWT 调用 API 的时候，应用服务器可以使用 JWT 来验证 API 调用是否来自一个可信任的用户。
-Now, the JWT itself, and how it’s constructed and verified, will be examined in more depth.
+在这个示例中，用户首先使用认证服务器的登录系统（用户和密码，或者第三方认证）登录认证服务器。随后认证服务器创建 JWT 然后发送给用户。当用户发起请求调用应用服务器的 API 时会附带上 JWT。在这一步，应用服务器会被配置为校验传入的 JWT 是否由认证服务器创建（校验的过程在后面会详细说明）。因此，当用户使用附带 JWT 的请求调用 API 的时候，应用服务器可以使用 JWT 来验证 API 请求是否来自一个可信任的用户。
 
-## Step 1. Create the HEADER
-## Step 1. 创建头部
+接下来深入了解一下 JWT 是如何构建和校验的。
 
-The header component of the JWT contains information about how the JWT signature should be computed. The header is a JSON object in the following format:
+## Step 1. 创建 header
+
+JWT 的 header 包含如何计算 JWT 签名的信息。header 是一个以下格式的 JSON 对象：
 
 ```json
 {
@@ -71,12 +46,11 @@ The header component of the JWT contains information about how the JWT signature
 }
 ```
 
-In this JSON, the value of the “typ” key specifies that the object is a JWT, and the value of the “alg” key specifies which hashing algorithm is being used to create the JWT signature component. In our example, we’re using the HMAC-SHA256 algorithm, a hashing algorithm that uses a secret key, to compute the signature (discussed in more detail in step 3).
+在这个 JSON 对象中，"typ" 键对应的值表示对象是一个 JWT，"alg" 键对应的值表示使用了哪种 Hash 算法来创建的 JWT 签名。在我们的例子里是使用的 HMAC-SHA256 （带密钥 Hash）算法计算签名（在 Step 3 中有更详细的说明）。
 
-## Step 2. Create the PAYLOAD
-## Step 2. 创建荷载
+## Step 2. 创建 payload
 
-The payload component of the JWT is the data that‘s stored inside the JWT (this data is also referred to as the “claims” of the JWT). In our example, the authentication server creates a JWT with the user information stored inside of it, specifically the user ID.
+JWT 的 payload 即是 JWT 用于保存数据的部分（这部分数据也称为 JWT 的“声明”）。在我们的示例中，认证服务器创建了一个存储了用户信息的 JWT，特别是用户 ID。
 
 ```json
 {
@@ -84,15 +58,13 @@ The payload component of the JWT is the data that‘s stored inside the JWT (thi
 }
 ```
 
-In our example, we are only putting one claim into the payload. You can put as many claims as you like. There are several different standard claims for the JWT payload, such as “iss” the issuer, “sub” the subject, and “exp” the expiration time. These fields can be useful when creating JWT, but they are optional. See the [wikipedia page](https://en.wikipedia.org/wiki/JSON_Web_Token#Standard_fields) on JWT for a more detailed list of JWT standard fields.
+在我们的示例里，只是在 payload 中保存了一个声明。你也可以按你的喜好放入更多的声明。JWT 的 payload 中有几个不同的标准声明，像 `iss` —— 发行者、`sub`——主题、`exp`——过期时间这些。这些可选字段在创建 JWT 时可能会很有用。在[维基百科页面](https://en.wikipedia.org/wiki/JSON_Web_Token#Standard_field)上你可以查阅到更多的 JWT 标准字段。
 
-Keep in mind that the size of the data will affect the overall size of the JWT, this generally isn’t an issue but having excessively large JWT may negatively affect performance and cause latency.
+需要注意，数据的大小会影响 JWT 的总体大小，通常情况下不需要关心这个问题。但是过大的 JWT 大小可能会对性能和传输延迟造成负面影响。
 
+## Step 3. 创建 SIGNATURE
 
-## Step 3. Create the SIGNATURE
-## Setp 3. 创建签名
-
-The signature is computed using the following pseudo code:
+signature 是用下面的伪代码计算出来的：
 
 ```js
 // signature algorithm
@@ -100,10 +72,9 @@ data = base64urlEncode( header ) + "." + base64urlEncode( payload );
 signature = Hash( data, secret );
 ```
 
-What this algorithm does is base64url encodes the header and the payload created in steps 1 and 2. The algorithm then joins the resulting encoded strings together with a period (.) in between them. In our pseudo code, this joined string is assigned to data. To get the JWT signature, the data string is hashed with the secret key using the hashing algorithm specified in the JWT header.
+这个算法首先使用 base54url 编码在 Step 1 和 2 中创建的 header 和 payload。然后使用 `.` 将已经编码的字符串拼接。在我们的伪代码里拼接后字符串被赋值给 `data`。使用 JWT header 中指定的 Hash 算法，加上密钥对 `data` 字符串进行 Hash 得到 JWT 的 signature。
 
-In our example, both the header, and the payload are base64url encoded as:
-
+在我们的例子，header 和 payload 都被 base64url 编码为：
 ```js
 // header
 eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
@@ -111,51 +82,40 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
 eyJ1c2VySWQiOiJiMDhmODZhZi0zNWRhLTQ4ZjItOGZhYi1jZWYzOTA0NjYwYmQifQ
 ```
 
-Then, using the joined encoded header and payload, and applying the specified signature algorithm(HS256) on the data string with the secret key set as the string “secret”, we get the following JWT Signature:
+然后拼接编码后的 header 和 payload，使用 `secret` 字符串作为密钥，对 `data` 字符串使用指定的签名算法（HS256）获得最终的 JWT signature：
 
 ```js
 // signature
 -xN_h82PHVTCMA9vdoHrcZxH-x5mb11y1537t3rGzcM
 ```
 
-## Step 4. Put All Three JWT Components Together
 ## Step 4. 将 JWT 的三个部分组合起来
 
-Now that we have created all three components, we can create the JWT. Remembering the header.payload.signature structure of the JWT, we simply need to combine the components, with periods (.) separating them. We use the base64url encoded versions of the header and of the payload, and the signature we arrived at in step 3.
+现在我们有了创建 JWT 的所需要的三个部分。请不要忘记 JWT 的 *header.payload.signature* 结构，只要简单的使用 `.` 分隔、拼接所有的部分。使用已经 base64url 编码后的 header 和 payload ，以及在 Step 3 中得到 signature。
 
 ```js
 // JWT Token
 eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiJiMDhmODZhZi0zNWRhLTQ4ZjItOGZhYi1jZWYzOTA0NjYwYmQifQ.-xN_h82PHVTCMA9vdoHrcZxH-x5mb11y1537t3rGzcM
 ```
 
-You can try creating your own JWT through your browser at [jwt.io](http://jwt.io/).
-用浏览器访问[jwt.io](http://jwt.io/)，你可以尝试创建你自己的 JWT
+你可以用浏览器访问[jwt.io](http://jwt.io/)，尝试创建你自己的 JWT。
 
-Going back to our example, the authentication server can now send this JWT to the user.
 回到我们的例子，认证服务器现在可以把这个 JWT 发送给用户了。
 
-
-**How does JWT protect our data?**
-**JWT如何保护数据？**
-
-It is important to understand that the purpose of using JWT is NOT to hide or obscure data in any way. The reason why JWT are used is to prove that the sent data was actually created by an authentic source.
+**JWT 如何保护数据？**
 
 重要的是要明白，使用 JWT 的目的不是为了以任何方式隐藏或者混淆数据。使用 JWT 是为了保证发送的数据是由可信的来源创建的。
 
-As demonstrated in the previous steps, the data inside a JWT is encoded and signed, not encrypted.
-
 如前面步骤所示，在 JWT 中的数据只是被**编码**和**签名**，并没有被**加密**。
 
-The purpose of encoding data is to transform the data’s structure. Signing data allows the data receiver to verify the authenticity of the source of the data. So encoding and signing data does NOT secure the data. On the other hand, the main purpose of encryption is to secure the data and to prevent unauthorized access. For a more detailed explanation of the differences between encoding and encryption, and also for more information on how hashing works, see [this article](https://danielmiessler.com/study/encoding-encryption-hashing-obfuscation/#encoding).
+编码数据的目的是为了转换数据的结构。对数据签名来保证接收者可以校验数据的来源。当然，编码和签名**不能保护数据**。JWT 的目的是为了验证数据的来源可靠性，并不是为了保护数据和防止未经授权的访问。有关编码和加密的区别，还有 Hash 如何工作的详细信息，可以参与[这篇文章](https://danielmiessler.com/study/encoding-encryption-hashing-obfuscation/#encoding))。
 
->Since JWT are signed and encoded only, and since JWT are not encrypted, JWT do not guarantee any security for sensitive data.
+>JWT 仅仅是对数据签名和编码，并没有加密。因此， JWT 并不能保证数据的安全性。
 
-## Step 5. Verifying the JWT
 ## Step 5. 校验 JWT
 
-In our simple 3 entity example, we are using a JWT that is signed by the HS256 algorithm where only the authentication server and the application server know the secret key. The application server receives the secret key from the authentication server when the application sets up its authentication process. Since the application knows the secret key, when the user makes a JWT-attached API call to the application, the application can perform the same signature algorithm as in Step 3 on the JWT. The application can then verify that the signature obtained from it’s own hashing operation matches the signature on the JWT itself (i.e. it matches the JWT signature created by the authentication server). If the signatures match, then that means the JWT is valid which indicates that the API call is coming from an authentic source. Otherwise, if the signatures don’t match, then it means that the received JWT is invalid, which may be an indicator of a potential attack on the application. So by verifying the JWT, the application adds a layer of trust between itself and the user.
+在我们的 3 实体示例中，使用的 JWT 是由 HS256 算法签名，并且密钥只有应用服务器和认证服务器知晓。当应用开始认证过程时，应用服务器从认证服务器接收密钥。由于应用服务器得到了密钥，当用户使用附带 JWT 的请求调用 API 时，应用可以执行 Step 3 中相同的签名算法。然后，应用可以严重自身创建的签名是否与 JWT 中附带的签名一致（签名是否与认证服务器创建的 JWT 签名一致）。如果签名一致，则表示 JWT 是有效的，表明 API 请求来源可信。如果签名不一致，表示 JWT 无效，那么请求可能是对应用服务器的潜在攻击。通过校验 JWT，可以在应用和用户之间建立信任。
 
-## In Conclusion
 ## 结论
 
-We went over what JWT are, how they are created and validated, and how they can be used to ensure trust between an application and its users. This is a starting point for understanding the fundamentals of JWT and why they are useful. JWT are just one piece of the puzzle in ensuring trust and security in your application.
+我们学习了如何创建和验证 JWT，以及如何使用 JWT 来确保用户与应用间的可信任性。对于了解 JWT 基本原理和如何使用 JWT 这是一个良好的开端。JWT 仅仅是解决应用安全性与可信任性难题一部分方法。
