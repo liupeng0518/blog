@@ -1,4 +1,4 @@
-title: Jenkins实现持续集成——部署Jenkins
+title: 持续集成——如何部署 Jenkins
 date: 2015-12-08 19:25:51
 categories:
   - CI

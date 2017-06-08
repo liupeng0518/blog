@@ -1,4 +1,4 @@
-title: ANT构建IOS项目脚本
+title: IOS 应用构建 Ant 脚本
 date: 2016-01-11 17:45:00
 categories: 
   - CI

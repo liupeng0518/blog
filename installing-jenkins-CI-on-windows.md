@@ -1,4 +1,4 @@
-title: Jenkins——在 Windows 中安装 Jenkins
+title: Jenkins——在 Windows 上安装 Jenkins
 date: 2015-12-08 19:25:51
 categories:
   - CI

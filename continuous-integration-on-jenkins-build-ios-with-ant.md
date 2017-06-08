@@ -1,4 +1,4 @@
-title: Jenkins实现持续集成——使用Ant脚本构建ios项目
+title: 持续集成——在 Jenkins 上 使用 Ant 脚本构建 ios 应用
 date: 2016-01-08 17:06:51
 categories: 
   - CI
@@ -9,6 +9,11 @@ tags:
   - iOS
 toc: true
 ---
+
+实际上使用一个 Shell 脚本也能做，不过考虑到 Android 使用的是 Ant 脚本，并且已经将构建过程中的配置信息文本化，为了复用这个配置文件，避免单独维护各个项目的配置信息，所以将构建脚本统一为 Ant。
+
+<!-- more -->
+
 <h2 id="cocoapods">CocoaPods</h2>
 
 <h3 id="ruby-update">更新 Ruby</h3>
@@ -52,8 +57,6 @@ gem sources -a https://ruby.taobao.org/
 <h3 id = "create-build">编写 Ant 脚本</h3>
 
 [官方手册](https://ant.apache.org/manual/tasksoverview.html)，可以查看可用的任务或命令以及具体的参数，实例。
-
-<!-- more -->
 
 <h2 id="create-jenkins-job">添加 Jenkins 任务</h2>
 

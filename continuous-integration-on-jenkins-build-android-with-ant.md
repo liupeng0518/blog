@@ -1,4 +1,4 @@
-title: Jenkins实现持续集成——使用Ant脚本构建Android项目
+title: 持续集成——在 Jenkins 上使用 Ant 脚本构建 Android 应用
 date: 2015-12-08 19:25:51
 categories: 
   - CI
@@ -10,6 +10,11 @@ tags:
   - JDT
 toc: true
 ---
+
+随着 Android Stuido 的普及，现在 Gradle 已经是主流了，不过公司项目仍然使用 Eclipse，所以得继续使用 Ant 来进行构建。
+
+<!-- more -->
+
 <h2 id = "install-apache-ant">安装 Apache Ant</h2>
 
 [Apache Ant Download](http://ant.apache.org/bindownload.cgi)
@@ -39,8 +44,6 @@ toc: true
 
 　　除了 `build.xml` 外还会生成 `local.properties` 文件，保存的是项目 `sdk-dir` 的路径，因为是本地环境相关路径，所以该文件应排除在版本控制之外。
 如果在 Eclipse 中已经安装了 Ant 插件，可以在 Eclipse 中右击 build.xml 文件选择 `Run As-->Ant Build` 来使用 Ant 编译运行，也可以通过在命令行中输入 `ant build.xml` 来进行编译。
-
-<!-- more -->
 
 <h3 id="build-with-jdt">使用 JDT 进行编译</h3>
 

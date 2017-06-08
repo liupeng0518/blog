@@ -1,4 +1,4 @@
-title: ANT构建Android项目脚本
+title: Android 应用构建 Ant 脚本
 date: 2016-01-11 17:45:00
 categories: 
   - CI
@@ -15,7 +15,7 @@ toc: true
 
 <h2 id="readme">注意事项</h2>
 
-* 关于jenkins中输出乱码的问题参考[Jenkins实现持续集成——部署Jenkins](http://www.tomczhen.com/ci/continuous-integration-on-jenkins-howto-deploy/)
+* 关于jenkins中输出乱码的问题参考[持续集成——如何部署 Jenkins](http://www.tomczhen.com/ci/continuous-integration-on-jenkins-howto-deploy/)
 
 ---
 <h2 id="target">Target说明</h2>

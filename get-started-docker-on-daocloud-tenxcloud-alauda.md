@@ -2,15 +2,12 @@ title: DaoCloud 时速云 灵雀云 持续集成功能使用体验
 date: 2016-05-12 14:25:51
 categories:
   - Docker
-description: 国内容器云平台持续集成功能初步体验与使用记录
 feature: /images/logo/docker-logo.webp
 tags:
   - Docker
 toc: true
 ---
 DaoCloud、时速云、灵雀云是国内三家容器云平台商，帮忙一个网友解决容器使用问题时顺便把三家的持续集成功能体验了一下，本文记录了体验操作过程。至于网易的蜂巢，由于没有发现有持续集成的功能，所以就没有体验了。
-
-<!-- more -->
 
 |GitHub|Bitbucket|Coding|GitCafe|GitLab|Git@OSC|快速构建
 :---|:---:|:---:|:---:|:---:|:---:|:---:|:---:
@@ -21,6 +18,8 @@ DaoCloud|√|√|√|√|√*|×|√
 >注：DaoCloud 支持私有 GitLab 需要付费。
 
 由于 GitHub 不支持免费私有仓库，Bitbucket 和 GitHub 一样有被墙的风险，GitCafe 快关门了，Git@OSC 只有灵雀云支持，所以可以支持一个免费私有仓库的 Coding 是最佳选择。当然，也可以使用快速构建输入仓库地址实现，不过会丧失一些自动化功能。
+
+<!-- more -->
 
 <h2 id="daocloud">DaoCloud</h2>
 

@@ -1,4 +1,4 @@
-title: FreeBSD安装部署Hexo
+title: 在 FreeBSD 上部署 Hexo 博客
 date: 2015-12-10 22:18:51
 categories: 
   - HEXO
@@ -13,6 +13,8 @@ toc: true
 >[FreeBSD: Nginx Virtual Hosting Configuration](http://www.cyberciti.biz/faq/freebvsd-nginx-namebased-virtual-hosting-configuration/)  
 >[Hexo博客后台运行技巧](http://www.tuijiankan.com/2015/05/08/hexo-forever-run/)
 >[史上最详细的Hexo博客搭建图文教程](https://xuanwo.org/2015/03/26/hexo-intor/)
+
+<!-- more -->
 
 ******
 
@@ -32,8 +34,6 @@ FreeBSD: {
 }
 ```
 访问[http://pkg.freebsd.org](http://pkg.freebsd.org)可以查看镜像站点，选择速度最快的替换即可。
-
-<!-- more -->
 
 <h2 id="nginx">Nginx</h2>
 
@@ -86,7 +86,7 @@ server {
 
 ```
 pkg install node
-pkg install npm`
+pkg install npm
 ```
 
 <h4 id="installhexo">安装 Hexo</h4>

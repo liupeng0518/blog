@@ -2,7 +2,6 @@ title: 阿里云ECS自建Redis性能测试
 date: 2016-04-10 13:28:00
 categories: 
   - Database
-description: 阿里云 ECS 自建 Redis 实例与云数据库 Redis 实例性能对比测试
 feature: /images/logo/redis-logo.webp
 tags: 
   - Redis
@@ -10,7 +9,7 @@ tags:
 toc: true
 ---
 
-由于公司项目需要使用 Redis 数据库，需要在自建实例与云实例间做出选择，所以进行了测试。由于项目不需要数据持久化，因此没有测试持久化 IO 相关性能。
+项目需要使用 Redis 数据库，需要在自建实例与云实例间做出选择，所以进行了测试。由于项目不需要数据持久化，因此没有测试持久化 IO 相关性能。
 
 <!-- more -->
 

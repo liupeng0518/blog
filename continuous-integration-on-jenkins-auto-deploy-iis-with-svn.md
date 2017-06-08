@@ -1,4 +1,4 @@
-title: Jenkins实现持续集成——使用SVN实现IIS站点自动部署
+title: 持续集成——Jenkins 配合 SVN 实现 IIS 站点自动部署
 date: 2016-01-15 19:25:51
 categories: 
   - CI
@@ -9,6 +9,11 @@ tags:
   - IIS
 toc: true
 ---
+
+使用 Jenkins 和 SVN hook 完成简易自动部署 IIS 站点。
+
+<!-- more -->
+
 <h2 id="svn">安装 SVN Server</h2>
 
 访问 [https://www.visualsvn.com/server/download/](https://www.visualsvn.com/server/download/) 并下载标准版安装到服务器。
@@ -30,8 +35,6 @@ toc: true
 
 由于 Hooks 脚本中有使用系统变量 `date` 生成文件夹，而 Windows 系统没有简单的格式化日期输出的办法，因此修改系统设置是最简单的办法。
 需要在控制面板，区域中修改日期短格式为 `yyyy-MM-dd` ，在命令行中输入 `echo %date%` 输出的日期格式应为 `2016-01-15`。也可以使用网上的Windows日期格式化脚本达到目的。
-
-<!-- more -->
 
 <h3 id="appcmd">IIS 命令行管理工具</h3>
 
