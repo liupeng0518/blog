@@ -72,7 +72,7 @@ data = base64urlEncode( header ) + "." + base64urlEncode( payload );
 signature = Hash( data, secret );
 ```
 
-这个算法首先使用 base54url 编码在 Step 1 和 2 中创建的 header 和 payload。然后使用 `.` 将已经编码的字符串拼接。在我们的伪代码里拼接后字符串被赋值给 `data`。使用 JWT header 中指定的 Hash 算法，加上密钥对 `data` 字符串进行 Hash 得到 JWT 的 signature。
+这个算法首先使用 base64url 编码在 Step 1 和 2 中创建的 header 和 payload。然后使用 `.` 将已经编码的字符串拼接。在我们的伪代码里拼接后字符串被赋值给 `data`。使用 JWT header 中指定的 Hash 算法，加上密钥对 `data` 字符串进行 Hash 得到 JWT 的 signature。
 
 在我们的例子，header 和 payload 都被 base64url 编码为：
 ```js
