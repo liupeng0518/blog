@@ -22,11 +22,11 @@ toc: true
 
 zxJDBC 是 For Jython 的，而 mxODBC 需要商业授权，所以只剩下以下三个。
 
-| Package  | Dirver | Python 2 | Python 3 | Windows | Linux | FreeBSD |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| AdoDBAPI | ADO | √ | √* | √ | √* | √* |
-| PyODBC | ODBC | √ | √ |√ |√ | √* |
-| pymssql | FreeTDS | √ | √ |√ |√ | √ |
+| Package  | Dirver | Python 2 | Python 3 | Windows | Linux |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| AdoDBAPI | ADO | √ | √* | √ | √* |
+| PyODBC | ODBC | √ | √ |√ |√ |
+| pymssql | FreeTDS | √ | √ |√ |√ |
 
 <!-- more -->
 
@@ -147,26 +147,6 @@ CMD ["python3","-c","import pyodbc; print(pyodbc.connect('DRIVER={ODBC Driver 13
 
 由于微软的驱动是私有软件，如果是官方支持的发行版，优先考虑使用；非官方支持的发行版，需要手动安装；非官方支持的架构或者操作系统，请转到 FreeTDS。
 
-### FreeBSD
-
-FreeBSD 与 Linux 还是有差异的，FreeBSD 下需要使用 FreeTDS 作为驱动。
-
-具体安装过程可以参考 pyodbc 文档上关于 Mac OSX 访问 SQL Server 的部分。当然，使用的包管理器是有差别的。
-
-[Connecting to SQL Server from Mac OSX](https://github.com/mkleehammer/pyodbc/wiki/Connecting-to-SQL-Server-from-Mac-OSX)
-
-#### FreeTDS
-
-> 项目地址：https://github.com/FreeTDS/freetds
-> 开源协议：GPL
-
-官网上一句话介绍了 FreeTDS 的作用：
-> FreeTDS is a set of libraries for Unix and Linux that allows your programs to natively talk to Microsoft SQL Server and Sybase databases.
-
-pyodbc 在 Microsoft ODBC Driver for Linux 不支持的平台上就使用的 FreeTDS 作为驱动。
-
-*未完待续*
-
 ## pymssql
 
 > 项目地址：https://github.com/pymssql/pymssql
@@ -259,10 +239,6 @@ RUN export PYMSSQL_BUILD_WITH_BUNDLED_FREETDS=1 \
 # Test Connect
 CMD ["python3","-c","import pymssql; cur = pymssql.connect('192.168.1.15', 'sa', 'password', 'master').cursor(); cur.execute('select @@version'); print(cur.fetchall())"]
 ```
-
-### FreeBSD
-
-*待续*
 
 ## 总结
 
