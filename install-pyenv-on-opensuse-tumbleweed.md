@@ -17,6 +17,8 @@ toc: true
 
 pyevn 能干啥？在它的  [GitHub 项目页面](https://github.com/pyenv/pyenv) 就很直接的告诉你了。
 
+<!-- more -->
+
 ## 安装
 
 > Installation : https://github.com/pyenv/pyenv#installation
