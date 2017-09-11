@@ -57,7 +57,7 @@ $ pyenv --version
 5. 按照指定的版本到 `$(pyenv root)/versions`。例如，下载并安装 Python 3.5.4，运行：
 
 ```
-pyenv install 3.5.4
+$ pyenv install 3.5.4
 ```
 
 ### 缺少依赖
@@ -104,13 +104,13 @@ Ignoring ensurepip failure: pip 9.0.1 requires SSL/TLS
 
 > * Fedora/CentOS/RHEL:
 ```shell
-dnf install zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel xz xz-devel
+$ dnf install zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel xz xz-devel
 ```
 
 执行包管理器安装 `openssl-dev`
 
 ```shell
-sudo zypper in openssl-dev
+$ sudo zypper in openssl-dev
 ```
 
 再次执行安装命令，可以看到已经可以安装成功了，至于 WARNING 就继续忽略好了 :doge:。
