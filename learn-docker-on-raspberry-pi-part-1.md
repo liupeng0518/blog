@@ -142,7 +142,7 @@ Registry Mirrors:
 
 ## resinOS
 
-[resinOS](https://resinos.io/) 是另一个项目，有点类似有 CoreOS，但是专注与嵌入式平台。
+[resinOS](https://resinos.io/) 是另一个项目，与 [CoreOS](https://coreos.com/) 类似，但是专注与嵌入式平台。
 
 resinOS 不仅仅是为了树莓派打造，同时也支持其他硬件，不过这里我们只需要下载[树莓派的镜像](https://resinos.io/#downloads-raspberrypi)即可。
 
