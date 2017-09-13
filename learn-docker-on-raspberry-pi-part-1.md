@@ -41,7 +41,7 @@ toc: true
 ### 配置安装源
 
 安装之前可以先修改 Raspbian 的安装源为国内镜像，推荐 [科大开源镜像](https://mirrors.ustc.edu.cn/)，具体操作可以查看科大的[帮助文件](https://lug.ustc.edu.cn/wiki/mirrors/help/raspbian)。
-当然还有一个选择就是阿里的镜像，个人来说推荐用阿里的，毕竟首富家开的，还是为大学节省点经费比较好。
+当然还有一个选择就是[阿里开源镜像](http://mirrors.aliyun.com/help/raspbian)，个人来说推荐用阿里，毕竟首富家开的，还是为大学节省点经费比较好。
 
 1. 更新 apt 软件包索引：
 
@@ -135,7 +135,7 @@ Registry Mirrors:
 
 ## Hypriot
 
-在 Docker 官方支持树莓派之前，就提供了[Hypriot](https://blog.hypriot.com/)非官方支持，并且有发布专门为树莓派制作的发行版。
+在 Docker 官方支持树莓派之前，[Hypriot](https://blog.hypriot.com/) 就提供了非官方支持，并且有发布专门为树莓派制作的发行版。
 你可以在[https://blog.hypriot.com/downloads/](https://blog.hypriot.com/downloads/)直接下载打包好的镜像，用它来启动树莓派就可以直接使用 Docker 了。
 
 虽然是非官方支持，不过 Hypriot 也是相当给力的，也经常发布一些关于 Docker ARM 的技术资讯，值得关注。
@@ -147,7 +147,7 @@ Registry Mirrors:
 resinOS 不仅仅是为了树莓派打造，同时也支持其他硬件，不过这里我们只需要下载[树莓派的镜像](https://resinos.io/#downloads-raspberrypi)即可。
 
 开源智能家居平台 [Hass.io](https://home-assistant.io/hassio/) 就是基于 resinOS 开发的。
-Hass.io 的插件就是以 Docker 容器的方式部署运行，大大降低了部署时的复杂性与风险，打造了一套基于树莓派的微服务架构。
+Hass.io 的插件以 Docker 容器的方式部署运行，大大降低了部署时的复杂性与风险，可以说是打造了一套基于树莓派的微服务架构。
 
 另外 resinOS 还有发布一个跨平台的烧写 SD 卡软件 [Etcher](https://etcher.io/)。
 使用 Mac/Linux 对 DD 命令不太熟悉的话，那么用 Etcher 可以避免写错盘的悲剧发生。Windows 平台则推荐另一款开源软件 [Rufus](https://rufus.akeo.ie/?locale=zh_CN)。
