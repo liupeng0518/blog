@@ -80,10 +80,25 @@ $ sudo apt-key fingerprint 0EBFCD88
 4. 添加 Docker CE 仓库
 
 ```
+echo "deb [arch=armhf] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
+     $(lsb_release -cs) stable" | \
+    sudo tee /etc/apt/sources.list.d/docker.list
+```
+
+注意：
+
+截至本文发表时（2017年9月13日）
+
+上面的命令添加仓库之后，在 `apt-get update` 过程中，可以看到 Raspbian Stretch 的 Docker 仓库中 armhf 架构提示 Not Found。
+
+使用下面的命令重新添加后正常。与第一个命令的结果不同的是 `raspbian` 变成了 `debian`，考虑到后续官方会在 Raspbian 仓库中提供正式的包，因此，**如果遇到任何问题请先看看官方英文文档。**
+
+```
 $ echo "deb [arch=armhf] https://download.docker.com/linux/debian \
       $(lsb_release -cs) stable" | \
      sudo tee /etc/apt/sources.list.d/docker.list
 ```
+
 
 ### 安装 DOCKER CE
 
@@ -123,8 +138,9 @@ $ sudo usermod -aG docker $USER
 $ sudo systemctl restart docker
 ```
 
-上面的镜像地址是由 [Docker 中国](https://www.docker-cn.com/)官方提供的，可以在[中文网站](https://www.docker-cn.com/)上查看一些信息。
-不过需要注意的是虽然文档有部分中文，但是中文部分有滞后，而且大部分内容仍然是英文，所以还是以英文文档为准。
+上面的镜像地址是由 [Docker 中国](https://www.docker-cn.com/)官方提供的，可以在[中文网站](https://www.docker-cn.com/)上查看一些其他关于 Docker 的资料。
+
+需要注意的是虽然有提供中文文档，不过截止本文发布时，大部分内容仍然是英文，而且内容还有滞后，所以还是看英文文档吧。
 
 重启 Docker 之后，可以查看一下是否配置成功
 
