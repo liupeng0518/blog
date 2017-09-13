@@ -15,7 +15,7 @@ toc: true
 
 # 安装
 
-树莓派上最常使用的开发版就是 raspbian 了，不过由于树莓派很流行其实也有很多其他的选择，都可以了解一下。
+树莓派上最常使用的开发版就是 Raspbian 了，不过由于树莓派很流行其实也有很多其他的选择，都可以了解一下。
 
 树莓派官方在 2016 八月份时曾经发布一篇 [DOCKER COMES TO RASPBERRY PI](https://www.raspberrypi.org/blog/docker-comes-to-raspberry-pi/)，代表了官方的 Docker 支持。
 在这篇文章中有提到一个安装脚本 `curl -sSL https://get.docker.com | sh`，就可以安装好 Docker 了。而且还有放出大神在 [TWITTER](https://twitter.com/alexellisuk/status/764518552154042369) 上 Show 的由 8 个树莓派 Zero 组成的 Docker Swarm 集群。
