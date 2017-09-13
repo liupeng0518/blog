@@ -105,7 +105,7 @@ $ sudo apt-get install docker-ce
 $ sudo usermod -aG docker $USER
 ```
 
-这样每次执行 docker 命令时就不需要加上 sudo了。
+这样重新登录 SSH 之后执行 docker 命令时就不需要加上 `sudo` 了。
 
 4. 增加 Docker 仓库镜像：
 
