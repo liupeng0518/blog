@@ -77,6 +77,14 @@ $ sudo apt-key fingerprint 0EBFCD88
  sub   4096R/F273FCD8 2017-02-22
 ```
 
+4. 添加 Docker CE 仓库
+
+```
+$ echo "deb [arch=armhf] https://download.docker.com/linux/debian \
+      $(lsb_release -cs) stable" | \
+     sudo tee /etc/apt/sources.list.d/docker.list
+```
+
 ### 安装 DOCKER CE
 
 1. 更新 apt 软件包索引：
