@@ -15,7 +15,7 @@ toc: true
 * Allow you to override the Python version with an environment variable.
 * Search commands from multiple versions of Python at a time. This may be helpful to test across Python versions with tox.
 
-pyevn 能干啥？在它的  [GitHub 项目页面](https://github.com/pyenv/pyenv) 就很直接的告诉你了。
+pyenv 能干啥？在它的  [GitHub 项目页面](https://github.com/pyenv/pyenv) 就很直接的告诉你了。
 
 <!-- more -->
 
@@ -125,6 +125,27 @@ WARNING: The Python sqlite3 extension was not compiled. Missing the SQLite3 lib?
 Installed Python-3.5.4 to /home/tomczhen/.pyenv/versions/3.5.4
 ```
 
+## 使用
+
+* `pyenv versions`
+
+显示系统可用的 Python 版本
+
+* `pyenv version`
+
+显示当前生效的 Python 版本
+
+* `pyenv local 3.5.4`
+
+配置当前路径 Python 版本为 3.5.4
+
+* `pyenv global 3.5.4`
+
+配置全局 Python 版本为 3.5.4
+
+如果是仅仅为开发使用，那么在 Pycharm 中可以直接选择就可以了，非常方便。
+
+将当前路径
 ## 升级
 
 需要升级时，到之前 clone 的路径使用 git 就可以升级到最新版本了。
