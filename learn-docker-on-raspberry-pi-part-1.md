@@ -27,7 +27,7 @@ toc: true
 
 在[官方文档](https://docs.docker.com/engine/installation/#server)中，可以看到 Docker CE ARM 支持的发行版有 Debian 和 Ubuntu。
 
-而在 Debian 的[安装文档](https://docs.docker.com/engine/installation/linux/docker-ce/debian/#os-requirements)中可以明确的看到有对 Raspbian 的支持。
+而在 [Get Docker CE for Debian](https://docs.docker.com/engine/installation/linux/docker-ce/debian/#os-requirements)中可以明确的看到有对 Raspbian 的支持。
 
 >OS requirements
 
