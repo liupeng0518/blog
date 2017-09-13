@@ -17,12 +17,15 @@ toc: true
 
 树莓派上最常使用的发行版就是 Raspbian 了，不过由于树莓派很流行其实也有很多其他的选择，都可以了解一下。
 
-树莓派官方在 2016 八月份时曾经发布一篇 [DOCKER COMES TO RASPBERRY PI](https://www.raspberrypi.org/blog/docker-comes-to-raspberry-pi/)，代表了官方的 Docker 支持。
-在这篇文章中有提到一个安装脚本 `curl -sSL https://get.docker.com | sh`，就可以安装好 Docker 了。而且还有放出大神在 [TWITTER](https://twitter.com/alexellisuk/status/764518552154042369) 上 Show 的由 8 个树莓派 Zero 组成的 Docker Swarm 集群。
+树莓派官方在 2016 八月份时曾经发布一篇 [DOCKER COMES TO RASPBERRY PI](https://www.raspberrypi.org/blog/docker-comes-to-raspberry-pi/)，宣布了 Docker 官方对树莓派的支持。
+在这篇文章中有提到一个安装脚本 `curl -sSL https://get.docker.com | sh` 就可以安装好 Docker 了。
+另外还贴出大神 Show 由树莓派 Zero 组成的 Docker Swarm 集群的 [TWITTER](https://twitter.com/alexellisuk/status/764518552154042369)。
 
 ## Raspbian
 
-虽然有一键安装脚本存在，不过尝试手动安装也是很有必要的。在[官方文档](https://docs.docker.com/engine/installation/#server)中，可以看到 Docker CE ARM 支持的发行版有 Debian 和 Ubuntu。
+虽然有一键安装脚本存在，不过尝试手动安装也是很有必要的。
+
+在[官方文档](https://docs.docker.com/engine/installation/#server)中，可以看到 Docker CE ARM 支持的发行版有 Debian 和 Ubuntu。
 
 而在 Debian 的[安装文档](https://docs.docker.com/engine/installation/linux/docker-ce/debian/#os-requirements)中可以明确的看到有对 Raspbian 的支持。
 
