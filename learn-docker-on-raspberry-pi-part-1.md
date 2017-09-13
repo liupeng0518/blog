@@ -63,7 +63,7 @@ $ sudo apt-get install \
 3. 添加 Docker 的官方 GPG 密钥：
 
 ```shell
-curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
+$ curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
 ```
 
 验证密钥 ID 是否为 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88。
