@@ -10,7 +10,7 @@ tags:
 
 Blue Ocean 是 Jenkins 推出的一套新的 UI，对比经典 UI 更具有现代化气息。2017 年 4 月 James Dumay 在博客上[正式推出了 Blue Ocean 1.0](https://jenkins.io/blog/2017/04/05/say-hello-blueocean-1-0/)。
 
-兼容 Blue Ocean 的 Jenkins 版本只需要以插件形式安装即可，对于已经在使用 Pipeline 构建的 Jenkins Job 基本可以无缝切换到新 UI。
+兼容 Blue Ocean 的 Jenkins 版本只需要安装插件即可使用，对于已经在使用 Pipeline 构建的 Jenkins Job 基本可以无缝切换到新 UI。
 
 以构建 Android 项目为例，学习如何使用 Jenkins Blue Ocean 与 Pipeline，示例项目可以在 GitHub 上查看：
 
@@ -28,9 +28,7 @@ Blue Ocean 是 Jenkins 推出的一套新的 UI，对比经典 UI 更具有现�
 
 在 Jenkins 插件管理中安装 [Blue Ocean Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Blue+Ocean+Plugin) 与 [Android Signing Plugin](https://wiki.jenkins.io/display/JENKINS/Android+Signing+Plugin) 插件。
 
-Fork 示例项目或者签入到可访问的 Git 仓库中，按向导操作添加新 Pipeline 即可。
-
-示例项目分为 `master` `beta` `prod` 三个分支，分别对应开发环境、测试环境、生产环境，仅作参考。
+Fork 示例项目或者签入到可访问的 Git 仓库中，按向导操作添加新 Pipeline 即可。示例项目分为 `master` `beta` `prod` 三个分支，分别对应开发环境、测试环境、生产环境，仅作参考。
 
 ### Docker Compose File
 
@@ -47,7 +45,7 @@ Fork 示例项目或者签入到可访问的 Git 仓库中，按向导操作添�
 
 `ANDROID_HOME` 是 Android SDK 的路径，`ANDROID_SDK_HOME` 是 Android 项目构建中 SDK 产生的临时文件路径，`GRADLE_USER_HOME` 是 Gradle 的路径。
 
-`ANDROID_SDK_HOME` 与 `GRADLE_USER_HOME` 默认都是在用户目录下，通过声明环境变量配置到 `/var/jenkins_home` 路径下。
+`ANDROID_SDK_HOME` 与 `GRADLE_USER_HOME` 默认都是在用户目录下，通过声明环境变量配置到 `/var/jenkins_home` 路径下，也可以在 Jenkins 中配置环境变量的方式实现。
 
 ```
 ...
@@ -172,7 +170,7 @@ pipeline {
 
         text(
             name: 'PARAM_TEXT'
-            defaultValue: "a-long-text",
+            defaultValue: 'a-long-text',
             description: 'Text Parameter'
         )
     }
@@ -241,7 +239,7 @@ pipeline {
 
 ### Credentials
 
-有两种方式获取 Credential 的值，一种是使用 ``，在环境变量说明中已经有使用过，还可以使用 `withCredentials` 的方式获取：
+有两种方式获取 Credential 的值，一种是使用 `credentials()`，在环境变量说明中已经有使用过，还可以使用 `withCredentials` 的方式获取：
 
 ```
 pipeline {
