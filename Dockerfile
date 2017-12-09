@@ -8,7 +8,7 @@ RUN echo "http://mirrors.aliyun.com/alpine/v3.4/main/" > /etc/apk/repositories &
     npm install hexo-cli@$HEXO_CLI_VER -g --registry=$NPM_REGISTRY && \
     hexo init hexo && \
     npm --prefix /hexo install --registry=$NPM_REGISTRY && \
-    git clone --branch $THEME_NEXT_VER --depth=1 https://github.com/iissnan/hexo-theme-next blog/themes/next
+    git clone --branch $THEME_NEXT_VER --depth=1 https://github.com/iissnan/hexo-theme-next hexo/themes/next
 
 WORKDIR /hexo
 CMD ["hexo","g"]
