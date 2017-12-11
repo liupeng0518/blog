@@ -14,6 +14,8 @@ toc: true
 
 项目地址 [https://github.com/TomCzHen/mysql-replication-sample](https://github.com/TomCzHen/mysql-replication-sample)
 
+<!-- more -->
+
 ## 文件结构
 
 ```
