@@ -8,8 +8,8 @@ if [ -z "$(docker --version)" ]; then
 fi
 
 if [ ${HEXO_WWW_PATH} ] && [ -d ${HEXO_WWW_PATH} ]; then
-    docker run --rm -v $(pwd):/blog -v \
-    $(pwd)/hexo_config.yml:/hexo/_config.yml \
+    docker run --rm -v $(pwd):/blog \
+    -v $(pwd)/hexo_config.yml:/hexo/_config.yml \
     -v $(pwd)/theme_next_config.yml:/hexo/themes/next/_config.yml \
     -v ${HEXO_WWW_PATH}:/wwwroot \
     hexo
