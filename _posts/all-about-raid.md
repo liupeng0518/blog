@@ -42,8 +42,7 @@ RAID 的核心在于使用多个硬盘 (Array) 来提升容量 (Capacity) 和性
 
 ## Fake RAID
 
-通常是由 BIOS 或主板集成实现的，RAID 控制逻辑是由 BIOS 选项或者 UEFI 的 SATA Driver固件中实现，不具有完整的硬阵列控制器功能。
-最常见的 Fake RAID 控制器是：[Intel Rapid Storage](https://en.wikipedia.org/wiki/Intel_Rapid_Storage_Technology)。
+通常是由 BIOS 或主板集成实现的，RAID 控制逻辑是由 BIOS 选项或者 UEFI 的 SATA Driver固件中实现，不具有完整的硬阵列控制器功能。最常见的 Fake RAID 控制器是：[Intel Rapid Storage](https://en.wikipedia.org/wiki/Intel_Rapid_Storage_Technology)。
 
 本质上仍然是软件实现的 RAID，但也有着硬 RAID 的特点——安装操作系统时需要加载对应的驱动程序，对操作系统内核而言 RAID 配置是透明的，因此没有软 RAID 的限制——可以实现在 RAID 磁盘上引导系统。不过由于Fake RAID 没有专门的缓存和独立运算单元，仍然需要消耗额外的系统资源，并且性能低于硬件 RAID。
 
