@@ -23,29 +23,29 @@ tags:
 > * [Fully qualified domain name (FQDN)](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)
 > * [What is the real maximum length of a DNS name?](https://blogs.msdn.microsoft.com/oldnewthing/20120412-00/?p=7873)
 
-根据 RFC 1035 中的定义，域名以 Label 组成，以长度为零的 Label 结束，只能包含 ASCII 字符中的字母（A-Za-z）、数字(0-9)以及 `-`（注1、注2）。每个 Label 的长度最大为 63 Byte，域名的总的最大长度为 253 Byte（注3）。所有的域名都有一个根域，完整的域名应该为 `example.com.`，现代 DNS 应用在查询时会自动补全最后的 `.` 以及根域。
-RFC 中对域名定义为大小写不敏感，`example.com` 与 `EXAMPLE.COM` 会获得相同的查询记录，但浏览器 URL 中除了 `scheme` 与 `host`，其他部分是大小写敏感的。如果后端没有进行处理那么 `http://example.com/a` 与 `http://example.co/A` 是指向不同的资源。
+根据 RFC 1035 中的定义，域名以 Label 组成，以长度为零的 Label 结束，只能包含 ASCII 字符中的字母（A-Za-z）、数字（0-9）以及 `-`（注1、注2）。每个 Label 的长度最大为 63 Byte，域名的总的最大长度为 253 Byte（注3）。所有的域名都有一个根域，完整的域名应该为 `example.com.`，DNS 应用在查询时会自动补全最后的 `.` 。
+RFC 中对域名定义为大小写不敏感，`example.com` 与 `EXAMPLE.COM` 会获得相同的查询记录，但浏览器 URL 中除了 `scheme` 与 `host`，其他部分是大小写敏感的。如果后端没有进行处理， `http://example.com/a` 与 `http://example.co/A` 是指向不同的资源。
 
-* *注1：RFC 1035 - 2.3.4. Size limits 规定 Label 必须以字母开头，但是 [RFC1123 - 6.1.3.5](https://www.ietf.org/rfc/rfc1123) 中去掉了这个限制。*
+* *注1：RFC 1035 规定 Label 必须以字母开头，但是 [RFC1123 - 6.1.3.5](https://www.ietf.org/rfc/rfc1123) 中去掉了这个限制。*
 * *注2：在浏览器中可以输入非 ASCII 字符作为域名，实际是使用基于 [Punycode](https://zh.wikipedia.org/wiki/Punycode) 码的 [IDNA](https://zh.wikipedia.org/wiki/IDNA) 系统，将 Unicode 字符串映射为有效的 DNS 字符集。*
-* *注3：RFC 1035 规定的最大长度为 255 Byte，根据 RFC 中的编码规则，每个 Label 的长度也会占用 1 Byte，加上最后的长度为 0 的 Label，会额外占用 2 Byte，因此实际可用长度为 253 Byte。*
+* *注3：RFC 1035 规定域名最大长度为 255 Byte，但根据 RFC 中的编码规则，`.` 并不会参与编码，除了 Label 字符串需要编码外还需要将 Label 的长度进行编码，加上最后的长度为 0 的 Label，因此实际可用长度为 253 Byte。*
 
 ## Message
 
 DNS 协议通信的消息格式只有一种，分为 5 个部分，`Header` 是一定存在的，其他部分在一些情况下为空。
 
 ```
-    +---------------------+
-    |        Header       |
-    +---------------------+
-    |       Question      | the question for the name server
-    +---------------------+
-    |        Answer       | RRs answering the question
-    +---------------------+
-    |      Authority      | RRs pointing toward an authority
-    +---------------------+
-    |      Additional     | RRs holding additional information
-    +---------------------+
++---------------------+
+|        Header       |
++---------------------+
+|       Question      | the question for the name server
++---------------------+
+|        Answer       | RRs answering the question
++---------------------+
+|      Authority      | RRs pointing toward an authority
++---------------------+
+|      Additional     | RRs holding additional information
++---------------------+
 ```
 
 ### Header
@@ -53,21 +53,21 @@ DNS 协议通信的消息格式只有一种，分为 5 个部分，`Header` 是�
 `Header` 是必须存在的，大小固定为 12 Byte。
 
 ```
-                                    1  1  1  1  1  1
-      0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                      ID                       |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |QR|   Opcode  |AA|TC|RD|RA|   Z    |   RCODE   |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                    QDCOUNT                    |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                    ANCOUNT                    |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                    NSCOUNT                    |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                    ARCOUNT                    |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+                                1  1  1  1  1  1
+  0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|                      ID                       |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|QR|   Opcode  |AA|TC|RD|RA|   Z    |   RCODE   |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|                    QDCOUNT                    |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|                    ANCOUNT                    |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|                    NSCOUNT                    |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|                    ARCOUNT                    |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
 ```
 
 | 字段 | 长度 | 说明 |
@@ -91,17 +91,17 @@ DNS 协议通信的消息格式只有一种，分为 5 个部分，`Header` 是�
 查询时 `Question` 是必须存在的，其中 `QTYPE` 和 `QCLASS` 为固定长度，`QNAME` 是可变长度，由所查询的域名长度决定。
 
 ```
-                                    1  1  1  1  1  1
-      0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                                               |
-    /                     QNAME                     /
-    /                                               /
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                     QTYPE                     |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                     QCLASS                    |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+                                1  1  1  1  1  1
+  0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|                                               |
+/                     QNAME                     /
+/                                               /
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|                     QTYPE                     |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|                     QCLASS                    |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
 ```
 
 | 字段 | 长度 | 说明 |
@@ -110,33 +110,33 @@ DNS 协议通信的消息格式只有一种，分为 5 个部分，`Header` 是�
 | QTYPE | 2 Byte | a two octet code which specifies the type of the query. |
 | QCLASS | 2 Byte | a two octet code that specifies the class of the query. |
 
-`QNAME` 为可变长度，域名会被编码为 `{label-length}{label-string}...{label-length}{label-string}{0}`，所以实际占用的数据会多 2 Byte。
+`QNAME` 为可变长度，域名会被编码为 `{label-length}{label-string}...{label-length}{label-string}0`，所以实际占用的数据会多 2 Byte。
 
 ### Resource Record
 
 `Answer` `Authority` `Additional` 的结构是相同的，`NAME` 与 `RDATA` 是可变的。
 
 ```
-                                    1  1  1  1  1  1
-      0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                                               |
-    /                                               /
-    /                      NAME                     /
-    |                                               |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                      TYPE                     |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                     CLASS                     |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                      TTL                      |
-    |                                               |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                   RDLENGTH                    |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--|
-    /                     RDATA                     /
-    /                                               /
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+                                1  1  1  1  1  1
+  0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|                                               |
+/                                               /
+/                      NAME                     /
+|                                               |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|                      TYPE                     |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|                     CLASS                     |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|                      TTL                      |
+|                                               |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|                   RDLENGTH                    |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--|
+/                     RDATA                     /
+/                                               /
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
 ```
 
 | 字段 | 长度 | 说明 |
@@ -218,15 +218,17 @@ DNS 协议通信的消息格式只有一种，分为 5 个部分，`Header` 是�
 
 `IHL` 大小为 4 Bit，使用十进制表示 IP 协议头部的长度为多少个 32 Bit，最小值为 5，最大值为 15，因此 IP 协议头部的最大长度为 60 Byte。当 `IHL` 大于 5 时，`Options` 才会有数据，并且需要 `Padding` 来保证 IP 协议头部大小一定是 32 Bit 的整数倍。通常情况下 IP 协议头部的大小为 20 Byte。
 
+IPv4 中是在 IP 协议中根据 MTU 进行分片，虽然 UDP 包的理论大小限制远大于 MTU 的 1500 Byte(注1)，但是分片会带来额外的消耗，使用 UDP 协议时需根据 MTU 设置包大小。
+
+* 注1：1500 Byte 需要减去网络层 IP 协议使用的 20 Byte 与 UDP Header 使用的 8 Byte ，实际可负载的数据大小为 1472 Byte，如果是 PPPoE 网络 PPP Header 需要占用 8 Byte。
+
 # 链路层
 
 > 参考资料：
 > * [Ethernet frame - Ethernet II](https://en.wikipedia.org/wiki/Ethernet_frame#Ethernet_II)
 > * [Maximum transmission unit](https://en.wikipedia.org/wiki/Maximum_transmission_unit)
 
-链路层会将数据根据 MTU 进行分片，然后按帧发送，在这个阶段，以太网的帧格式事实标准是 Ethernet II Type，在这个阶段会增加 14 Bytes 的 MAC Header 和 4 Byte 的 CRC Checksum。考虑到 MTU 的存在，虽然 UDP 包的大小理论限制远大于 1500 Byte(注1)，但是分片会带来额外的消耗，因此包大小需要考虑 MTU 的限制。
-
-* 注1：1500 Byte 需要减去网络层 IP 协议使用的 20 Byte 与 UDP Header 使用的 8 Byte ，实际可负载的数据大小为 1472 Byte，如果是 PPPoE 网络 PPP Header 需要占用 8 Byte。
+以太网的帧格式事实标准是 Ethernet II Type，在这个阶段会增加 14 Bytes 的 MAC Header 和 4 Byte 的 CRC Checksum。
 
 # 计算
 
@@ -276,7 +278,7 @@ DNS 协议通信的消息格式只有一种，分为 5 个部分，`Header` 是�
 
 ## 总结
 
-对 `example.com` 的 A 记录进行一次查询，客户端会发出 73 Byte 的数据，接收 89 Byte 的数据，因为数据长度均小于 1500 Byte，因此是发出、接收各一个 UDP 包。
+对 `example.com` 的 A 记录进行一次查询，客户端会发出 73 Byte 的数据，接收 89 Byte 的数据，发出、接收各一个 UDP 包。
 
 ## 验证
 
