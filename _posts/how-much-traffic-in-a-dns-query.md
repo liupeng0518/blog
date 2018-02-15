@@ -220,7 +220,7 @@ DNS 协议通信的消息格式只有一种，分为 5 个部分，`Header` 是�
 
 IPv4 中是在 IP 协议中根据 MTU 进行分片，虽然 UDP 包的理论大小限制远大于 MTU 的 1500 Byte(注1)，但是分片会带来额外的消耗，使用 UDP 协议时需根据 MTU 设置包大小。
 
-* 注1：1500 Byte 需要减去网络层 IP 协议使用的 20 Byte 与 UDP Header 使用的 8 Byte ，实际可负载的数据大小为 1472 Byte，如果是 PPPoE 网络 PPP Header 需要占用 8 Byte。
+* 注1：1500 Byte 需要减去网络层 IP 协议使用的 20 Byte 与 UDP Header 使用的 8 Byte ，实际可负载的数据大小为 1472 Byte。
 
 # 链路层
 
