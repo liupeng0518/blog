@@ -24,7 +24,7 @@ tags:
 > * [What is the real maximum length of a DNS name?](https://blogs.msdn.microsoft.com/oldnewthing/20120412-00/?p=7873)
 
 根据 RFC 1035 中的定义，域名以 Label 组成，以长度为零的 Label 结束，只能包含 ASCII 字符中的字母（A-Za-z）、数字（0-9）以及 `-`（注1、注2）。每个 Label 的长度最大为 63 Byte，域名的总的最大长度为 253 Byte（注3）。所有的域名都有一个根域，完整的域名应该为 `example.com.`，DNS 应用在查询时会自动补全最后的 `.` 。
-RFC 中对域名定义为大小写不敏感，`example.com` 与 `EXAMPLE.COM` 会获得相同的查询记录，但浏览器 URL 中除了 `scheme` 与 `host`，其他部分是大小写敏感的。如果后端没有进行处理， `http://example.com/a` 与 `http://example.co/A` 是指向不同的资源。
+RFC 中对域名定义为大小写不敏感，`example.com` 与 `EXAMPLE.COM` 会获得相同的查询记录，但浏览器 URL 中除了 `scheme` 与 `host`，其他部分是大小写敏感的。如果后端没有进行处理， `http://example.com/a` 与 `http://example.com/A` 是指向不同的资源。
 
 * *注1：RFC 1035 规定 Label 必须以字母开头，但是 [RFC1123 - 6.1.3.5](https://www.ietf.org/rfc/rfc1123) 中去掉了这个限制。*
 * *注2：在浏览器中可以输入非 ASCII 字符作为域名，实际是使用基于 [Punycode](https://zh.wikipedia.org/wiki/Punycode) 码的 [IDNA](https://zh.wikipedia.org/wiki/IDNA) 系统，将 Unicode 字符串映射为有效的 DNS 字符集。*
