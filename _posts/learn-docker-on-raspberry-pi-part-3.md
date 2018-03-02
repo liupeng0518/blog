@@ -56,7 +56,7 @@ $ docker run --rm --name mynginx -p 80:80 -d mynginx
 
 ## Dockerfile
 
-知道 Git 的话对 Commit、Pull 应该会觉得眼熟，大体积二进制文件在 Git 中并不能很好的管理，显然 Docker Commmit 虽然能满足自定义镜像的需求，但是对于工程而言这种方式过于原始。
+知道 Git 的话对 Commit、Pull 应该会觉得眼熟，大体积二进制文件在 Git 中并不能很好的管理，显然 Docker Commit 虽然能满足自定义镜像的需求，但是对于工程而言这种方式过于原始。
 
 可以使用 Dockerfile 来“描述”镜像如何构建，只需要一个 Dockerfile 文本就能定义镜像。首先创建一个文件夹 `mynginx`，在该文件夹中创建一个内容如下的 `Dockerfile` 文件
 
