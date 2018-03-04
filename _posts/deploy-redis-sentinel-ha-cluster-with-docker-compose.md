@@ -1,4 +1,4 @@
-title: 使用 Docker Compose 部署基于 Sentinel 的高可用 Redis 集群
+title: 使用 Docker Compose 本地部署基于 Sentinel 的高可用 Redis 集群
 date: 2018-03-04 20:10:00
 categories:
   - Docker
