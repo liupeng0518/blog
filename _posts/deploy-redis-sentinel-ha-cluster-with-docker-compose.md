@@ -12,6 +12,8 @@ toc: true
 
 根据官方文档 [Redis Sentinel Documentation](https://redis.io/topics/sentinel) 中的 [Example 2: basic setup with three boxes](https://redis.io/topics/sentinel#example-2-basic-setup-with-three-boxes) 示例创建的实例，但因为是单机部署，所以不满足 Redis 实例与 Sentinel 实例分别处于 3 台机器的要求，因此仅用于开发环境测试与学习。
 
+<!-- more -->
+
 ## 使用方法
 
 使用 `docker-compose up -d` 部署运行。
