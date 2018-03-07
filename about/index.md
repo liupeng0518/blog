@@ -1,96 +1,89 @@
-title: About
-layout: page
----
+###  运维工程师 / 男 / 1985.08 / 湖北 / 大专
 
-# 个人信息
+* E-mail：tom.czhen@foxmail.com
+* GitHub：https://github.com/TomCzHen
 
-* Tom CzHen/男 /1985
-* 大专 /湖北大学知行学院 - 广告策划与制作
-* 工作年限 5 年
+### 个人简介
 
-* 个人博客
+有 Linux 下 Python、Shell、OpenResty 开发经验，能熟练阅读英文技术文档。
 
-    https://www.tomczhen.com
+* 熟悉 Jenkins 部署、管理，熟悉 Declarative Pipeline，了解 Scripted Pipeline。
+* 熟悉 Docker 镜像构建，Docker Compose 编排文件编写，了解 Docker Swarm、K8s。
+* 熟悉 GitLab 部署、备份、管理，了解 GitLab CI。
+* 熟悉 SQL Server、Redis、MySQL 数据库，搭建数据库高可用集群，数据库优化，SQL 脚本编写。
+* 熟悉 HTTP 协议，了解 TCP/IP 协议与网络基本原理，熟练使用 tcpdump/Wireshark 抓包分析网络问题。
+* 了解 Zabbix、OneAPM 的安装部署，服务器应用监控。
+* 了解 ELK Stack，FileBeats 使用，根据需要编写 Logstash Filter 收集日志。
+* 了解 PHP、Android、iOS、Node.js、.Net 开发，构建流程。
 
-* GitHub
+### 工作经验
 
-    https://github.com/TomCzHen
+#### 2015.06 - 2017.12 / 运维工程师 / 深圳市点金台网络技术有限公司 
 
-* E-mail
+* 根据业务需求开发 Android、iOS、ASP.NET、PHP 项目 Jenkins Pipeline 构建脚本、 StackStack 部署脚本。
+* SQL Server、MySQL、Redis 数据库维护、优化，后端数据库变更 SQL 脚本审查、发布。
+* GitLab、Team Foundation Server 项目代码管理。
+* 阿里云 ECS、RDS 服务监控、警报配置，告警处理。
+* 维护 EXSi 搭建的内网开发环境基础设施。
 
-    tom.czhen@foxmail.com
+* 后端 API 回归测试平台 FitNesse + RestFixture 部署。
+* Jenkins、GitLab、Redis、FitNesse 等基础设施容器化运行改造。
+* 参与项目架构、数据库结构设计讨论，新技术方案评估、引入。
+* PHP 项目容器化改造，引入 Docker 技术进入部署流程。
+* OpenResty 项目开发。
 
-## 期望工作
+#### 2012.02 - 2015.05 / 运维工程师 / 深圳市鹏信信息技术有限公司
 
-* 深圳/运维工程师
+* SQL Server 数据库维护、优化，数据库变更 SQL 脚本审查、发布。
+* Team Foundation Server 项目代码管理、维护与备份。
+* 维护 EXSi 搭建的内网开发环境基础设施，数据备份。
+* 阿里云 ECS 服务监控、警报配置，告警处理。
+* 运维流程规范设计、文档化。
 
-# 自我评价
+#### 2009.10 - 2011.10 / 技术支持 / 深圳市昇阳计算机系统有限公司
 
-√ 科学上网
+* 服务器硬件 RAID 安装、配置。
+* Windows Server 系统安装，系统运行环境部署。
+* 中小型网络规划实施。
 
-√ 阅读英文文档
+### 教育经历
 
-√ 自我驱动
+#### 2003 - 2006 / 广告策划与制作 / 湖北大学知行学院
 
-## Skill
+### 项目展示
 
-了解计算机原理、编码、基本数据结构与算法知识。
+#### Hass.io Add-ons
 
-了解 TCP/IP，网络七层/四层、TCP 与 UDP 的差异、网络性能测试（ PPS、速率），tcpdump、wireshark 抓包分析。
+> 项目地址：https://github.com/TomCzHen/hassio-addons
 
-熟悉 HTTP 协议比较熟悉，协议定义（查阅 RFC 文档）、状态码、缓存控制等都有了解和一定的实践。
+开源智能家居平台 Hass.io 个人插件，使用 Docker、Shell 开发，tcpdump、strace 调试。
 
-### Server
+#### Jenkins Declarative Pipeline For Android 
 
-熟悉 Windows Server 2008/2012，ASP .NET 部署，了解 PowerShell 与 Windows Remote Management (WinRM) 。
+> 项目地址：https://github.com/TomCzHen/jenkins-android-sample
 
-熟悉 IIS 负载均衡、反代、URL Rewrite，通过 PowerShell 脚本部署 IIS 站点。
+Jenkins Declarative Pipeline 构建 Android 项目，使用 Credentials Plugin、Android Signing Plugin 插件保护敏感信息与签名密钥。
 
-有 Linux 环境下 Lua/Python 开发经验，熟悉 openSUSE、Debian、CentOS、Fedroa 等发行版，主要使用 openSUSE 与 Debian。
+#### Jenkins Declarative Pipeline For Python Web
 
-熟悉 Nginx 负载均衡、反代、URL Rewrite 配置。
+> 项目地址：https://github.com/TomCzHen/jenkins-flask-sample
 
-熟悉 Docker 镜像构建与 Docker Compose 编排，了解 Docker Swarm 集群。
+Jenkins Declarative Pipeline 构建 Python Flask 项目样例，构建 Docker 镜像完成交付。
 
-了解 Redis、MySQL 服务配置搭建，并根据业务需求优化配置参数。
+#### Simple API Gateway
 
-了解 Zabbix 搭建、Linux 主机性能监控。
+> 项目地址：https://github.com/TomCzHen/simple-api-gateway
 
-### CI/CD
+基于 OpenResty 开发的 API 网关，后端使用 Redis、前端使用 Vue 进行展示保存的请求、响应数据。
 
-熟悉 Android、iOS 的构建，前端 Webpack 构建，.NET 构建(msbuild)，PHP 项目部署(nginx php-fpm)，Python Web 项目部署（flask、Django、uwsgi）。
+#### Docker Compose For Redis Sentinel 
 
-熟悉 Jenkins CI，对 Gitlab CI、Travis CI 也有了解。
+> 项目地址：https://github.com/TomCzHen/redis-sentinel-sample
 
-熟悉 FitNesse，在 Jenkins 中使用 FitNesse 进行 API 回归测试。
+使用 Docker Compose 本地部署基于 Sentinel 的高可用 Redis 集群。
 
-了解 SaltStack，在 Jenkins 中使用 SaltStack 完成 IIS 站点自动部署流程。
+#### Docker Compose For MySQL Replication
 
-### Code
+> 项目地址：https://github.com/TomCzHen/mysql-replication-sample
 
-熟悉 Python 与 Lua （OpenResty），有使用过 flask、Django 框架，了解前端工程化（webpack）相关知识。
-熟悉 Shell 脚本编写与 Docker 编排。
-
-#### 相关项目
-
-* [jenkins-android-sample](https://github.com/TomCzHen/jenkins-android-sample)
-
-    项目使用了 Jenkins 声明式 Pipeline 完成 Android 项目构建，并使用了 Credentials Plugin 来保障构建中敏感信息安全。
-
-* [jenkins-flask-sample](https://github.com/TomCzHen/jenkins-flask-sample)
-
-    项目使用了 Jenkins 声明式 Pipeline 完成 Docker 镜像构建，用于部署 flask 项目。
-
-* [simple-api-gateway](https://github.com/TomCzHen/simple-api-gateway)
-
-    项目使用了 OpenResty 作为后端，Vue 作为前端。通过 OpenResty 记录请求内容并转发到对应 URL，最终通过 Vue 展示记录的请求信息。
-
-* [Hass.io 插件 - 花生壳内网版](https://github.com/TomCzHen/hassio-addons)
-
-    为开源智能家居项目编写的插件，编写插件运行脚本，构建过程中使用了 strace 对二进制程序进行调试，解决依赖缺失问题。
-
-* [Docker Compose 部署 MySql 主从复制实例](https://github.com/TomCzHen/mysql-replication-sample)
-
-    使用 Docker Compose 单机部署 MySQL 主从复制实例。
-
-
+使用 Docker Compose 本地部署 MySQL 主从复制集群。
