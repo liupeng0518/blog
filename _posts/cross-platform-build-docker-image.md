@@ -19,9 +19,9 @@ toc: true
 
 ## Run
 
-Docker Hub 上可以找到各位非 x86_64 平台的镜像，比如 [arm32v7/python](https://hub.docker.com/r/arm32v7/python/)。
+Docker Hub 上可以找到各种非 x86_64 平台的镜像，比如 [arm32v7/python](https://hub.docker.com/r/arm32v7/python/)。
 
-如果手上有一块树莓派并且安装好 Docker 的话，可以简单运行起来：
+有树莓派并且安装好 Docker 的话，可以简单运行起来：
 
 ```
 $ uname -a
@@ -30,7 +30,7 @@ $ docker run --rm arm32v7/python:3.6.5-slim-stretch python -V
 Python 3.6.5
 ```
 
-如果在 x86_64 的 Linux 环境下则会得到一段错误信息：
+而在 x86_64 的 Linux 环境下则会得到一段错误信息：
 
 ```
 $ uname -a
@@ -49,12 +49,12 @@ standard_init_linux.go:185: exec user process caused "exec format error"
 >
 > [QEMU](https://en.wikipedia.org/wiki/QEMU)
 
-虽然 Python 是脚本语言可以跨平台运行，不过 Python 解释器是一个 ELF File，可以在 `Raspbian` 中使用 `file` 和 `ldd` 命令查看 `arm32v7/python:3.6.5` 中 Python 解释器的文件信息：
+虽然 Python 是脚本语言可以跨平台运行，不过 Python 解释器是一个 ELF File，可以在 `Raspbian` 中使用 `file` 和 `ldd` 命令查看 `arm32v7/python:3.6.5-slim-stretch` 中 Python 解释器的文件信息：
 
 ```
-$ docker run --rm -ti arm32v7/python:3.6.5 file /usr/local/bin/python3.6
+$ docker run --rm -ti arm32v7/python:3.6.5-slim-stretch file /usr/local/bin/python3.6
 /usr/local/bin/python3.6: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-armhf.so.3, for GNU/Linux 2.6.32, BuildID[sha1]=0799c4578961617b6303499314f02158220dfdad, not stripped
-$ docker run --rm -ti arm32v7/python:3.6.5 ldd /usr/local/bin/python3.6
+$ docker run --rm -ti arm32v7/python:3.6.5-slim-stretch ldd /usr/local/bin/python3.6
         linux-vdso.so.1 (0x7efe9000)
         libpython3.6m.so.1.0 => /usr/local/lib/libpython3.6m.so.1.0 (0x76ce0000)
         libpthread.so.0 => /lib/arm-linux-gnueabihf/libpthread.so.0 (0x76cbd000)
@@ -232,7 +232,7 @@ CMD ["zerotier-one","-U","-p9993"]
   * [hassioaddons/base-aarch64](https://hub.docker.com/r/hassioaddons/base-aarch64/)
   * [hassioaddons/base-amd64](https://hub.docker.com/r/hassioaddons/base-amd64/)
 
-无论采取那种方式区别，用户在获取镜像时都需要根据运行平台获取指定的镜像，这样非常不优雅。其实 Docker 已经支持使用 manifest 来为终端用户提供透明化的服务，自动匹配对应的镜像。
+无论采取那种方式区别，用户在获取镜像时都需要根据运行平台获取指定的镜像，其实 Docker 已经支持使用 `manifest` 来为用户提供透明化的服务，自动匹配对应的镜像。
 
 在 x86_64 Linux 上尝试获取 `arm32v7/python:3.6.5` 镜像时会有如下提示：
 
@@ -242,7 +242,7 @@ $ docker pull arm32v7/python:3.6.5
 no matching manifest for linux/amd64 in the manifest list entries
 ```
 
-注：截至本文写作时，需要手动修改 `～/.docker/config.json` 文件，添加 `{"experimental":"enabled"}`开启 `docker manifest` 功能。
+注：截至本文写作时，需要手动修改 `～/.docker/config.json` 文件，添加 `{"experimental":"enabled"}`为 docker-cli 开启 `docker manifest` 命令功能。
 
 ```
 $ docker manifest inspect python:3.6.5
