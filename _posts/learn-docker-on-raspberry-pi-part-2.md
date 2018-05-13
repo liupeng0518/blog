@@ -28,7 +28,7 @@ Docker 的特点或者说使用方法就全部包含在官网的首页中了—�
 
 另外需要注意的是，Docker Store 上的镜像分为官方（Official）和社区（Community）两种，官方镜像更有安全保障，但是社区镜像更加丰富。
 
-打开 Docker Store 的[页面](https://store.docker.com/community/images/armhf/hello-world)查看镜像 `armhf/hello-world` 的信息 。
+打开 [Docker Store](https://store.docker.com/community/images/armhf/hello-world)查看镜像 `armhf/hello-world` 的信息 。
 
 可以看到 `armhf/hello-world` 镜像已经是废弃状态，并推荐了更加准确的镜像新地址：
 
@@ -120,15 +120,15 @@ armhf/hello-world   latest              d40384c3f861        11 months ago       
 
 ## Run
 
-在上一节末尾使用`docker run --rm armhf/hello-world` 时，可以看终端中有如下输出：
+在上一节末尾使用`docker run --rm hello-world` 时，可以看终端中有如下输出：
 
 ```
 ...
-Unable to find image 'armhf/hello-world:latest' locally
-latest: Pulling from armhf/hello-world
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from hello-world
 a0691bf12e4e: Pull complete
-Digest: sha256:9701edc932223a66e49dd6c894a11db8c2cf4eccd1414f1ec105a623bf16b426
-Status: Downloaded newer image for armhf/hello-world:latest
+Digest: sha256:f5233545e43561214ca4891fd1157e1c3c563316ed8e237750d59bde73361e77
+Status: Downloaded newer image for hello-world:latest
 ...
 ```
 
@@ -325,6 +325,7 @@ $ docker exec -ti arm32v6-redis sh
 ```
 $ docker restart arm32v6-redis
 ```
+
 再进入容器终端查看 `test` 文件还是存在的。
 
 然后，停止并删除容器 `arm32v6-redis`，重新创建一个同名容器，再进入容器查看，发现 `test` 文件不存在了。

@@ -38,7 +38,8 @@ $ docker exec -ti nginx bash
 ```
 $ echo "hello world" > /usr/share/nginx/html/index.html
 ```
-显然，如果运行的容器销毁后，重新从 `arm32v7/nginx` 镜像运行的话，默认页面又会还原。
+
+如果运行的容器销毁后，重新从 `arm32v7/nginx` 镜像运行的话，默认页面又会还原。
 
 退出容器，然后使用 Docker Commit 可以将修改后的容器标记为一个新的镜像：
 
@@ -56,9 +57,9 @@ $ docker run --rm --name mynginx -p 80:80 -d mynginx
 
 ## Dockerfile
 
-知道 Git 的话对 Commit、Pull 应该会觉得眼熟，大体积二进制文件在 Git 中并不能很好的管理，显然 Docker Commit 虽然能满足自定义镜像的需求，但是对于工程而言这种方式过于原始。
+有使用 Git 的话会觉得 Commit、Pull 应该很眼熟，Docker Commit 虽然能满足自定义镜像的需求，但是对于工程而言这种方式过于原始。
 
-可以使用 Dockerfile 来“描述”镜像如何构建，只需要一个 Dockerfile 文本就能定义镜像。首先创建一个文件夹 `mynginx`，在该文件夹中创建一个内容如下的 `Dockerfile` 文件
+使用 Dockerfile 来“描述”镜像如何构建，只需要一个 Dockerfile 文本就能定义镜像。首先创建一个文件夹 `mynginx`，在该文件夹中创建一个内容如下的 `Dockerfile` 文件
 
 ```
 FROM arm32v7/nginx
@@ -187,7 +188,7 @@ Successfully tagged mynginx:dev
 > [docker login](https://docs.docker.com/engine/reference/commandline/login/)
 > [docker push](https://docs.docker.com/engine/reference/commandline/push/)
 
-对于 Docker 官方 Registry —— [Docker Hub](https://hub.docker.com/)，之需要注册好帐号，然后使用 `docker login` 命令登录。
+Docker 官方 Registry —— [Docker Hub](https://hub.docker.com/)，需要注册好帐号，然后使用 `docker login` 命令登录。
 
 以前面构建好的镜像为例，使用 `docker push` 将镜像 Push 到 Docker Hub，需要修改 `mynginx` 镜像的 tag，然后 push 即可：
 
@@ -198,4 +199,4 @@ $ docker push username/mynginx:dev
 
 如果使用的第三方 Docker Registry，请查看相关使用文档。
 
-注意：对于公开镜像，不要保存任何敏感信息。
+注意：不要在公开镜像中保存任何敏感信息。
