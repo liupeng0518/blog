@@ -12,9 +12,7 @@ toc: true
 <!--more-->
 
 > 参考资料：
->
 > [Setup a simple CI pipeline to build Docker images for ARM](https://blog.hypriot.com/post/setup-simple-ci-pipeline-for-arm-images/)
->
 > [Create and use multi-architecture docker images](https://developer.ibm.com/linuxonpower/2017/07/27/create-multi-architecture-docker-image/)
 
 ## Run
@@ -42,11 +40,8 @@ standard_init_linux.go:185: exec user process caused "exec format error"
 ### Executable and Linkable Format
 
 > 参考资料:
->
 > [Executable and Linkable Format](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format)
->
 > [Static build](https://en.wikipedia.org/wiki/Static_build)
->
 > [QEMU](https://en.wikipedia.org/wiki/QEMU)
 
 虽然 Python 是脚本语言可以跨平台运行，不过 Python 解释器是一个 ELF File，可以在 `Raspbian` 中使用 `file` 和 `ldd` 命令查看 `arm32v7/python:3.6.5-slim-stretch` 中 Python 解释器的文件信息：
@@ -210,9 +205,7 @@ CMD ["zerotier-one","-U","-p9993"]
 ## Ship
 
 > 参考资料：
->
 > [From Arm to Z: Building, Shipping, and Running a Multi-platform Docker Swarm](https://www.youtube.com/watch?v=nrBYUw1Pz5I)
->
 > [docker manifest](https://docs.docker.com/edge/engine/reference/commandline/manifest/)
 
 目前在 Docker Hub 上对于多平台的镜像的处理方式有下面几种：
