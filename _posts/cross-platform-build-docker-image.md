@@ -5,7 +5,6 @@ categories:
 tags:
   - Docker
 toc: true
-
 ---
 
 随着 IoT 的发展 ARM 平台变得越来越重要，[HypriotOS](https://blog.hypriot.com/) 和 [resinOS](https://resin.io/) 可以轻松的在各种 ARM 设备上运行 Docker，部署各种好玩的应用，而不用在意各种系统的差异，在未来容器技术会从服务器中飞到用户身旁。
