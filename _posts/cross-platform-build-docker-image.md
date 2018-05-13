@@ -7,7 +7,7 @@ tags:
 toc: true
 ---
 
-随着 IoT 的发展 ARM 平台变得越来越重要，[HypriotOS](https://blog.hypriot.com/) 和 [resinOS](https://resin.io/) 可以轻松的在各种 ARM 设备上运行 Docker，部署各种好玩的应用，而不用在意各种系统的差异，在未来容器技术会从服务器中飞到用户身旁。
+随着 IoT 的发展 ARM 平台变得越来越重要，[HypriotOS](https://blog.hypriot.com/) 和 [resinOS](https://resin.io/) 可以轻松的在 ARM 设备上运行 Docker，部署各种好玩的应用，而不用在意各种系统的差异，在未来，容器技术将从服务器走近用户。
 
 <!--more-->
 
@@ -220,7 +220,7 @@ CMD ["zerotier-one","-U","-p9993"]
 * Docker Hub 社区
   * [arm32v7/python](https://hub.docker.com/r/arm32v7/python/)
   * [arm64v8/python](https://hub.docker.com/r/arm64v8/python/)
-  * [amd64/python/](https://hub.docker.com/r/amd64/python/)
+  * [amd64/python](https://hub.docker.com/r/amd64/python/)
 
 * 基于 tag 区分
   * [portainer/portainer:linux-arm-1.17.0](https://hub.docker.com/r/portainer/portainer/)
