@@ -139,7 +139,7 @@ PHP FastCGI 错误日志默认路径在 `C:\WINDOWS\Temp` 目录下，生产环�
 
 ### 安全配置
 
-微软为 PHP On IIS 提供了详细的安全实践 [Plan PHP Application Security](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh994605(v=ws.11))
+微软为 PHP On IIS 提供了详细的安全实践 [Plan PHP Application Security | Microsoft Docs](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh994605%28v=ws.11%29)
 
 * 移除 Web Server 版本信息
 
@@ -163,6 +163,6 @@ PHP FastCGI 错误日志默认路径在 `C:\WINDOWS\Temp` 目录下，生产环�
 
 ## 其他
 
-如果需要同时运行不同版本的站点，或者每个站点拥有单独的 `php.ini` 配置文件，可以参考微软文档 [Configure PHP Application Security](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh994613(v=ws.11)) 操作。
+如果需要同时运行不同版本的站点，或者每个站点拥有单独的 `php.ini` 配置文件，可以参考微软文档 [Configure PHP Application Security | Microsoft Docs](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh994613%28v=ws.11%29) 操作。
 
 再次提醒，本文中关于目录权限的做法并不是最安全的实践，为了便利而有所妥协。

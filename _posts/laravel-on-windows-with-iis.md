@@ -14,7 +14,7 @@ Laravel 框架中需要部署 PHP Web、队列、任务调度三部分功能，�
 
 ## PHP Web
 
-参考 [在 Windows 上使用 IIS 部署 PHP 项目](./php-on-windows-with-iis.md) 完成运行环境配置。
+参考 [在 Windows 上使用 IIS 部署 PHP 项目](2019/01/10/php-on-windows-with-iis/) 完成运行环境配置。
 
 在 Laravel 项目 `public` 目录下已经存在一个用于 IIS 部署的 `web.config` 文件，内容是 Url Rewrite 规则：
 
@@ -48,7 +48,7 @@ Laravel 框架中需要部署 PHP Web、队列、任务调度三部分功能，�
 
 ### 跨域控制
 
-关于 Web 跨域可以阅读 MDN 的文档进一步了解,[HTTP访问控制（CORS）
+关于 Web 跨域可以阅读 MDN 的文档进一步了解——[HTTP访问控制（CORS）
 ](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)。简单来说，需要添加特定的响应头来控制 Web 浏览器的跨域限制，IIS 可以通过 `HTTP 响应标头` 来设置相应的响应头。
 
 `HTTP 响应标头` 可以在 IIS 管理器中作为全局设置，也可以针对站点设置。如果针对站点配置，那么会修改站点物理路径下的 `web.config` 文件。
@@ -79,7 +79,7 @@ Laravel 框架中需要部署 PHP Web、队列、任务调度三部分功能，�
 </location>
 ```
 
-如果需要更详细的 CORS 控制需要安装 [IIS CORS Module](https://www.iis.net/downloads/microsoft/iis-cors-module)，参考 [IIS CORS module Configuration Reference](https://docs.microsoft.com/en-us/iis/extensions/cors-module/cors-module-configuration-reference) 进行配置。
+如果需要更详细的 CORS 控制需要安装 [IIS CORS Module | Microsoft Docs](https://www.iis.net/downloads/microsoft/iis-cors-module)，参考 [IIS CORS module Configuration Reference | Microsoft Docs](https://docs.microsoft.com/en-us/iis/extensions/cors-module/cors-module-configuration-reference) 进行配置。
 
 当然，在 PHP 代码中控制会更加灵活。
 
@@ -124,7 +124,7 @@ Content-Length: 112411
 </location>
 ```
 
-更多关于 `<staticContent>` 参数可以查看官方文档 [Client Cache <clientCache>](https://docs.microsoft.com/en-us/iis/configuration/system.webserver/staticcontent/clientcache)。
+更多关于 `<staticContent>` 参数可以查看官方文档 [Client Cache <clientCache> | Microsoft Docs](https://docs.microsoft.com/en-us/iis/configuration/system.webserver/staticcontent/clientcache)。
 
 ### SQL Server
 
@@ -135,7 +135,7 @@ PHP 访问 SQL Server 数据库需要安装两个数据库驱动程序：
 * Microsoft Drivers for PHP for SQL Server
 * Microsoft ODBC Driver for SQL Server
 
-影响因素包括以上两个驱动的版本、SQL Server 版本、PHP 版本以及 Windows 版本。详细的对应关系可以通过官方文档 [Microsoft Drivers for PHP for SQL Server 系统要求](https://docs.microsoft.com/zh-cn/sql/connect/php/system-requirements-for-the-php-sql-driver?view=sql-server-2017) 查看。
+影响因素包括以上两个驱动的版本、SQL Server 版本、PHP 版本以及 Windows 版本。详细的对应关系可以通过官方文档 [System Requirements for the Microsoft Drivers for PHP for SQL Server - SQL Server | Microsoft Docs](https://docs.microsoft.com/en/sql/connect/php/system-requirements-for-the-php-sql-driver?view=sql-server-2017) 查看。
 
 以 Laravel 5.7 版本的需求 `PHP >= 7.1.3` 为例：
 
