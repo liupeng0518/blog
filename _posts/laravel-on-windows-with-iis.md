@@ -10,6 +10,8 @@ toc: true
 
 Laravel 框架中需要部署 PHP Web、队列、任务调度三部分功能，官方文档中只有 Linux 下的部署说明。虽然 Linux 纯 CLI 看起来更高大上，不过 Windows 也是一种解决方案。 
 
+<!-- more -->
+
 ## PHP Web
 
 参考 [在 Windows 上使用 IIS 部署 PHP 项目](./php-on-windows-with-iis.md) 完成运行环境配置。

@@ -10,6 +10,8 @@ toc: true
 
 作为最好的编程语言，PHP 当然是支持跨平台的，不管如何看待 Linux 与 Windows，总会有需要在 Windows Server 上部署 PHP 项目的时候。
 
+<!-- more -->
+
 ## 前言
 
 如何选择运行平台需要从多方面考量，不想参与任何关于 Linux 与 Windows 的争论，只是希望能更理性的看待问题，而不是毫无缘由的就否定一方。已经 9102 年了，不要把认知停留在 10 多年前的 Windows Server 2003 + IIS 6 时代，无论出于何种考量否定 Windows Server + IIS ，性能真的不能作为理由。
