@@ -49,7 +49,7 @@ Laravel 框架中需要部署 PHP Web、队列、任务调度三部分功能，�
 ### 跨域控制
 
 关于 Web 跨域可以阅读 MDN 的文档进一步了解——[HTTP访问控制（CORS）
-](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)。简单来说，需要添加特定的响应头来控制 Web 浏览器的跨域限制，IIS 可以通过 `HTTP 响应标头` 来设置相应的响应头。
+](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)。t通过添加特定的响应头来控制 Web 浏览器的跨域限制，IIS 可以在 `HTTP 响应标头` 来设置相应的响应头。
 
 `HTTP 响应标头` 可以在 IIS 管理器中作为全局设置，也可以针对站点设置。如果针对站点配置，那么会修改站点物理路径下的 `web.config` 文件。
 
@@ -79,7 +79,7 @@ Laravel 框架中需要部署 PHP Web、队列、任务调度三部分功能，�
 </location>
 ```
 
-如果需要更详细的 CORS 控制需要安装 [IIS CORS Module | Microsoft Docs](https://www.iis.net/downloads/microsoft/iis-cors-module)，参考 [IIS CORS module Configuration Reference | Microsoft Docs](https://docs.microsoft.com/en-us/iis/extensions/cors-module/cors-module-configuration-reference) 进行配置。
+如果需要更详细的 CORS 控制需要安装 [IIS CORS Module](https://www.iis.net/downloads/microsoft/iis-cors-module)，参考 [IIS CORS module Configuration Reference | Microsoft Docs](https://docs.microsoft.com/en-us/iis/extensions/cors-module/cors-module-configuration-reference) 进行配置。
 
 当然，在 PHP 代码中控制会更加灵活。
 
@@ -144,7 +144,7 @@ PHP 访问 SQL Server 数据库需要安装两个数据库驱动程序：
 * SQL Server 2008 R2 ~ SQL Server 2017
 * Windows 10 、Windows Server 2012 ~ Windows Server 2016
 
-简单来说，开发环境只能选择 Windows 10，生产环境最低要选择 Window Server 2012。
+总结：开发环境只能选择 Windows 10，生产环境最低要选择 Window Server 2012。
 
 安装 Microsoft Drivers for PHP for SQL Server 5.3 与 Microsoft ODBC Driver for SQL Server 17+，配置好 PHP 的扩展之后，可以访问 SQL Server 2008 R2 ~ SQL Server 2017 版本的数据库。
 
