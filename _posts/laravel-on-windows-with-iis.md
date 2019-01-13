@@ -14,7 +14,7 @@ Laravel 框架中需要部署 PHP Web、队列、任务调度三部分功能，�
 
 ## PHP Web
 
-参考 [在 Windows 上使用 IIS 部署 PHP 项目](2019/01/10/php-on-windows-with-iis/) 完成运行环境配置。
+参考 [在 Windows 上使用 IIS 部署 PHP 项目](/2019/01/10/php-on-windows-with-iis/) 完成运行环境配置。
 
 在 Laravel 项目 `public` 目录下已经存在一个用于 IIS 部署的 `web.config` 文件，内容是 Url Rewrite 规则：
 
