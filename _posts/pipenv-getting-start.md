@@ -44,12 +44,14 @@ $ pipenv --python /path/to/python`
 $ pipenv install requests --python 3.6`
 ```
 
+注意：如果没有使用 `--python` 参数指定 Python 版本则会使用默认的 Python 版本创建，如果想指定默认 Python 版本可以通过环境变量 `PIPENV_DEFAULT_PYTHON_VERSION` 配置，可以设置为 Python 版本号：`3.6.8` 或 Python 解释器程序路径。
+
 如果需要虚拟运行环境目录指定在项目目录下创建，有两种方式可以实现：
 
 * 执行 `pipenv` 前先创建 `.venv` 目录
 
 ```bash
-$ mkdir .venv && pipenv install requests --python 3
+$ mkdir .venv && pipenv install requests --python 3.6
 ```
 
 * 配置 `PIPENV_VENV_IN_PROJECT` 环境变量
@@ -66,7 +68,7 @@ $ export PIPENV_VENV_IN_PROJECT=1
 
 * 没有使用 `pipenv`
 
-使用 `pipenv install -r path/to/requirements.txt --python 3` 来安装依赖。
+使用 `pipenv install -r path/to/requirements.txt --python 3.6` 来安装依赖。
 
 * 有使用意向，但需要兼容旧方式
 
@@ -74,19 +76,19 @@ $ export PIPENV_VENV_IN_PROJECT=1
 
 * 已经在使用
 
-在项目目录下执行 `pipenv sync`，会根据 `Pipfile` 中指定的 Python 版本与 PyPi 源，安装 `Pipfile.lock` 中指定的依赖包。 
+根据需要可以使用  `pipenv install` 或 `pipenv sync`。两者都会根据 `Pipfile` 中的 Python 版本创建虚拟环境，使用指定的 PyPI 源，区别是 `pipenv install` 会根据 `Pipfile` 中的版本信息安装依赖包，并重新生成 `Pipfile.lock`；而 `pipenv sync` 会根据 `Pipfile.lock` 中的版本信息安装依赖包。
 
-在项目目录下执行 `pipenv install` 会根据 `Pipfile` 中指定的 Python 版本、 PyPi 源以及依赖包版本信息安装依赖包，并重新生成 `Pipfile.lock`。
-
-`pipenv install` 时安装的依赖包版本取决与添加依赖包时如何指定版本，在后续依赖管理中会进一步说明。
+也就是 `pipenv install` 安装的依赖包版本可能被更新，具体的机制在依赖包管理中进一步说明。
 
 ### 激活虚拟环境
 
-可以通过下面两种方式在虚拟环境下运行 Python 代码：
+可以先激活虚拟环境，再来运行 Python :
 
 ```bash
 $ pipenv shell
 ```
+
+或者直接运行：
 
 ```bash
 $ pipenv run python main.py
@@ -96,29 +98,36 @@ $ pipenv run python main.py
 
 ### 依赖包管理
 
-直接在项目目录下执行 `pipenv` 相关包管理命令都会安装到虚拟环境目录下，没有虚拟环境则会创建后安装。
-
-注意：如果没有使用 `--python` 参数指定 Python 版本则会使用默认的 Python 版本创建，如果想指定默认 Python 版本可以通过环境变量 `PIPENV_DEFAULT_PYTHON_VERSION` 配置，可以设置为 Python 版本号：`3.6.8` 或 Python 解释器程序路径。
+`pipenv`安装包的使用方式与 `pip` 基本一致，直接在项目目录下执行 `pipenv install request` 会安装到虚拟环境目录下，没有虚拟环境则会创建后安装。
 
 #### 安装包
+
+没有指定版本信息时，`Pipfile` 中不会注明版本，如果在新目录中使用 `pipenv install` 直接安装依赖包的最新版本。
 
 ```shell
 $ pipenv install requests
 ```
 
-没有指定任何版本信息，`Pipfile` 中不会注明版本，如果在新目录中使用 `pipenv install` 直接安装所有依赖包的最新版本。
+以下方式会指定为 `1.2` 或以上版本，但不会大于等于 `2.0`，使用 `pipenv install` 安装依赖时，如果新版本在 `1.2` 到 `2.0` 之间（不包含 `2.0` 版本）就会更新
 
 ```shell
 $ pipenv install “requests~=1.2”
 ```
 
-指定为 `1.2` 或以上版本，但不会大于等于 `2.0`，使用`pipenv install` 安装依赖时，如果新版本在 `1.2` 到 `2.0` 之间（不包含 `2.0` 版本）就会更新。
+更多的版本指定方式如下：
 
 ```
 $ pipenv install "requests>=1.4"   # 版本号大于或等于 1.4.0
 $ pipenv install "requests<=2.13"  # 版本号小于或等于 2.13.0
 $ pipenv install "requests>2.19"   # 版本号大于 2.19.0
 ```
+
+如果仅仅在开发 环境下使用这个包，可以添加 `--dev` 参数安装：
+
+```
+$ pipenv install ipython --dev
+```
+
 #### 更新包
 
 * 查看有更新的包
@@ -139,7 +148,7 @@ $ pipenv update
 $ pipenv update request
 ```
 
-注意：包升级的版本受到 `Pipfile` 中版本设置限制。
+注意：升级依赖包的版本时受到 `Pipfile` 中版本信息限制，如果想安装超出限制的版本，则需要执行 `pipenv install <pkg>` 安装。
 
 #### 卸载包
 
@@ -155,9 +164,9 @@ $ pipenv graph
 
 安装或卸载依赖包之后，`pipenv` 都会更新 `pipfile` 与 `pipfile.lock`
 
-### 配置 PyPi 镜像源
+### 配置 PyPI 镜像源
 
-通常会使用 `pip.conf` 或者 `--index-url` 参数来配置 PyPi 镜像源，`pipenv` 中有多种配置方式：
+通常会使用 `pip.conf` 或者 `--index-url` 参数来配置 PyPI 镜像源，`pipenv` 中有多种配置方式：
 
 * 使用环境变量 `PIPENV_PYPI_MIRROR` 配置。
 
@@ -179,13 +188,13 @@ verify_ssl = true
 
 ### 配合 `pyenv` 使用
 
-> [Simple Python Version Management: pyenv - Installation](https://github.com/pyenv/pyenv#installation)
-
 Linux 和 macOS 下可以安装 `pyenv` 配合使用，在使用 `pipenv` 时如果指定的 Python 版本没有安装，就会调用 `pyenv` 进行编译安装。
 
 首先请参考 [pyenv: Common build problems - Prerequisites](https://github.com/pyenv/pyenv/wiki/Common-build-problems#prerequisites) 安装好编译依赖。
 
-注意：Windows 用户请手动下载 Python 安装包安装，然后通过 `pipenv --python X:\Python\...\python.exe` 指定 Python 运行版本，~~如果想编译安装请自行解决~~。
+然后根据 [Simple Python Version Management: pyenv - Installation](https://github.com/pyenv/pyenv#installation) 安装好 `pyenv`。
+
+注意：Windows 用户请手动下载 Python 安装包安装，通过 `pipenv --python X:\Python\...\python.exe` 指定 Python 版本，~~如果想编译安装请自行解决~~。
 
 #### 配置 `pyenv`
 
@@ -295,6 +304,6 @@ CMD python3 main.py
 
 严格来说这并不算是 `pipenv` 的问题。
 
-部分包在跨平台时的依赖不同，比如 [PyInstaller](https://pypi.org/project/PyInstaller/) 可以在多个平台使用，但仅在 Windows 上才会安装 pywin32 包，由于 `pipfile.lock` 是根据安装的包生成的，所以会造成跨平台时安装依赖失败。
+部分包在跨平台时的依赖不同，比如 [PyInstaller](https://pypi.org/project/PyInstaller/) 可以在多个平台使用，但仅在 Windows 上才依赖 pywin32 包，由于 `Pipfile.lock` 是根据安装的包生成的，所以会造成跨平台时安装依赖失败。
 
 根据 [Problem with Pipfile and system specific packages · Issue #1575 · pypa/pipenv](https://github.com/pypa/pipenv/issues/1575) 中的讨论看，即便 pywin32 修复了问题也只能在新版本中解决，因此短期内如果有跨平台需求还需要先确定是否正常。
