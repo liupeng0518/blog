@@ -304,6 +304,6 @@ CMD python3 main.py
 
 严格来说这并不算是 `pipenv` 的问题。
 
-部分包在跨平台时的依赖不同，比如 [PyInstaller](https://pypi.org/project/PyInstaller/) 可以在多个平台使用，但仅在 Windows 上才依赖 pywin32 包，由于 `Pipfile.lock` 是根据安装的包生成的，所以会造成跨平台时安装依赖失败。
+部分包在跨平台时的依赖不同，比如 [PyInstaller](https://pypi.org/project/PyInstaller/) 可以在多个平台使用，但仅在 Windows 上才依赖 pywin32 包，由于 `Pipfile.lock` 是根据安装的包生成的，在之前的 `pipenv` 版本中会造成跨平台时安装依赖失败（当前新版本中没有问题）。
 
-根据 [Problem with Pipfile and system specific packages · Issue #1575 · pypa/pipenv](https://github.com/pypa/pipenv/issues/1575) 中的讨论看，即便 pywin32 修复了问题也只能在新版本中解决，因此短期内如果有跨平台需求还需要先确定是否正常。
+根据 [Problem with Pipfile and system specific packages · Issue #1575 · pypa/pipenv](https://github.com/pypa/pipenv/issues/1575) 中的讨论看，即便 pywin32 修复了问题也只能在新版本中解决，因此如果有跨平台需求还需要先确定是否正常。
