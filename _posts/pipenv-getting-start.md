@@ -256,7 +256,7 @@ RUN set -ex && pipenv install --deploy --system
 
 COPY . /app
 EXPOSE 8888
-CMD python3 main.py
+CMD ["python3", "main.py"]
 ```
 
 也可以先构建一个 Base Image ，然后在构建应用镜像时使用，假设构建的 Base Image tag 为 `tomczhen/python-pipenv-base:3.6.8`。
@@ -283,7 +283,7 @@ FROM tomczhen/python-pipenv-base:3.6.8
 
 COPY . /app
 EXPOSE 8888
-CMD python3 main.py
+CMD ["python3", "main.py"]
 ```
 
 ## `pipenv` 的缺点
