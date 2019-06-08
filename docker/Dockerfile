@@ -1,6 +1,6 @@
 FROM alpine:latest as builder
 ARG hugo_version="0.55.6"
-ARG plugins="http.cache,http.cors,http.expires,http.realip,http.git,http.minify"
+ARG plugins="http.cache,http.cors,http.expires,http.realip,http.git"
 
 RUN apk add --no-cache curl bash gnupg
 

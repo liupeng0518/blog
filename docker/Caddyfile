@@ -2,7 +2,6 @@
     log {$CADDY_LOG_ROOT}/{$CADDY_DOMAIN}/access.log
     root {$CADDY_WWW_ROOT}/{$CADDY_DOMAIN}
     gzip
-    minify
     tls {$CADDY_TLS_EMAIL}
     git {
         repo {$CADDY_GIT_REPO}
