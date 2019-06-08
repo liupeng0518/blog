@@ -1,0 +1,47 @@
+baseURL = "https://tomczhen.com/"
+languageCode = "zh-cn"
+DefaultContentLanguage = "zh-cn"
+title = "Tom CzHen's Blog"
+theme = "beautifulhugo"
+enableEmoji = true
+disqusShortname = "tomczhen"
+googleAnalytics = "UA-42719299-2"
+
+[Params]
+    logo = "images/avatar.webp"
+    # subtitle = "Build a beautiful and simple website in minutes"
+    since = 2014
+    useHLJS = true
+    delayDisqus = true
+    comments = true
+    showRelatedPosts = true
+    selfHosted = true
+    dateFormat = "2006-01-02"
+    beian = "鄂ICP备15001586号"
+
+[Author]
+    name = "Tom CzHen"
+    github = "TomCzHen"
+    telegram ="tomczhen"
+    
+[[menu.main]]
+    name = "Blog"
+    url = ""
+    weight = 1
+
+[[menu.main]]
+    name = "About"
+    url = "page/about/"
+    weight = 3
+
+[[menu.main]]
+    name = "Tags"
+    url = "tags"
+    weight = 3
+
+[permalinks]
+    post = "/:year/:month/:day/:filename/"
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"

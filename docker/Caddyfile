@@ -1,0 +1,17 @@
+{$CADDY_DOMAIN} {
+    log {$CADDY_LOG_ROOT}/{$CADDY_DOMAIN}/access.log
+    root {$CADDY_WWW_ROOT}/{$CADDY_DOMAIN}
+    gzip
+    minify
+    tls {$CADDY_TLS_EMAIL}
+    git {
+        repo {$CADDY_GIT_REPO}
+        branch {$CADDY_GIT_BRANCH}
+        path /root/caddy/repo/{$CADDY_DOMAIN}
+        clone_args --depth=1
+        hook {$CADDY_GIT_HOOK} {CADDY_GIT_HOOK_SECRET}
+        then hugo --destination={$CADDY_WWW_ROOT}/{$CADDY_DOMAIN}
+    }
+}
+
+import /root/caddy/etc/*.Caddyfile
