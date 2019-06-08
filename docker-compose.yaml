@@ -4,6 +4,7 @@ services:
     build:
       context: docker
     restart: unless-stopped
+    env_file: .env
     volumes:
       - type: bind
         source: ${CADDY_ROOT}
