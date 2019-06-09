@@ -10,7 +10,7 @@ services:
         source: ${CADDY_ROOT}
         target: /root/caddy
     networks: 
-      - caddy-blog-network
+      - caddy-network
     ports:
       - target: 80
         published: 80
@@ -22,4 +22,4 @@ services:
         mode: host
 
 networks: 
-  caddy-blog-network:
+  caddy-network:
