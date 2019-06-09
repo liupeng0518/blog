@@ -6,7 +6,7 @@
     git {
         repo {$CADDY_GIT_REPO}
         branch {$CADDY_GIT_BRANCH}
-        path ${CADDY_REPO_ROOT}/{$CADDY_DOMAIN}
+        path {$CADDY_REPO_ROOT}/{$CADDY_DOMAIN}
         clone_args --depth=1
         hook {$CADDY_GIT_HOOK} {$CADDY_GIT_HOOK_SECRET}
         hook_type {$CADDY_GIT_HOOK_TYPE}
