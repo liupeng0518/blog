@@ -149,7 +149,7 @@ Caddy 的配置文件支持变量，所以通过环境变量来配置主要的 C
     git {
         repo {$CADDY_GIT_REPO}
         branch {$CADDY_GIT_BRANCH}
-        path /root/caddy/repo/{$CADDY_DOMAIN}
+        path {$CADDY_REPO_ROOT}/{$CADDY_DOMAIN}
         clone_args --depth=1
         hook {$CADDY_GIT_HOOK} {$CADDY_GIT_HOOK_SECRET}
         hook_type {$CADDY_GIT_HOOK_TYPE}
@@ -198,6 +198,8 @@ services:
       - type: bind
         source: ${CADDY_ROOT}
         target: /root/caddy
+    networks:
+      - caddy-blog-network
     ports:
       - target: 80
         published: 80

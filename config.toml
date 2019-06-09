@@ -10,6 +10,7 @@ googleAnalytics = "UA-42719299-2"
 [Params]
     logo = "images/avatar.webp"
     # subtitle = "Build a beautiful and simple website in minutes"
+    favicon = "images/avatar.webp"
     since = 2014
     useHLJS = true
     delayDisqus = true

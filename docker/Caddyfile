@@ -16,4 +16,4 @@
     }
 }
 
-import /root/caddy/etc/*.Caddyfile
+import {$CADDY_ETC_ROOT}/*.Caddyfile
