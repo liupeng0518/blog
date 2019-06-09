@@ -159,7 +159,7 @@ Caddy 的配置文件支持变量，所以通过环境变量来配置主要的 C
     }
 }
 
-import /root/caddy/etc/*.Caddyfile
+import {$CADDY_ETC_ROOT}/*.Caddyfile
 ```
 
 * docker-entrypoint.sh
@@ -174,7 +174,8 @@ export CADDY_ROOT=/root/caddy
 export CADDYPATH=${CADDY_ROOT}/assets
 export CADDY_WWW_ROOT=${CADDY_ROOT}/www
 export CADDY_LOG_ROOT=${CADDY_ROOT}/logs
-
+export CADDY_REPO_ROOT=${CADDY_ROOT}/repo
+export CADDY_ETC_ROOT=${CADDY_ROOT}/etc
 mkdir -p ${CADDY_WWW_ROOT}/${CADDY_DOMAIN} ${CADDY_LOG_ROOT}/${CADDY_DOMAIN}
 
 exec "$@"
