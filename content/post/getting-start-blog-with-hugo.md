@@ -258,13 +258,18 @@ services:
 version: "3.7"
 services:
  py4s:
-  image: tomczhen/py4s
+  image: gitea/gitea:latest
   container_name: gitea
   restart: unless-stopped
   expose:
     - "3000"
+  ports:
+    - target: 22
+      published: 10022
+      protocol: tcp
+      mode: host
   volumes:
-    - ./config:/app/config
+    - ./gitea/data:/data
   networks:
     - caddy-network
 
@@ -273,12 +278,12 @@ networks:
     external: true
 ```
 
-* py4s.Caddyfile
+* gitea.Caddyfile
 
-在本地 CADDY_ROOT 中添加 `etc/py4s.Caddyfile`。
+在本地 CADDY_ROOT 中添加 `etc/gitea.Caddyfile`。
 
 ```
 py4s.example.com {
-  proxy / py4s
+  proxy / gitea:3000
 }
 ```
