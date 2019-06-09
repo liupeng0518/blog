@@ -19,6 +19,7 @@ ENV CADDY_DOMAIN="localhost" \
     CADDY_GIT_REPO="https://github.com/example" \
     CADDY_GIT_BRANCH="master" \
     CADDY_GIT_HOOK="/webhook" \
+    CADDY_GIT_HOOK_TYPE="github" \
     CADDY_GIT_HOOK_SECRET="secret"
 
 WORKDIR /root
