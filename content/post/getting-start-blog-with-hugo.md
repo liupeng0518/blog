@@ -250,7 +250,7 @@ services:
 
 ### External Network
 
-如果除了博客之外还有其他服务也需要通过 Caddy 来代理，可以在编排文件中使用 External Network 的方式。
+如果除了博客之外还有其他服务也需要通过 Caddy 来代理，可以在其他编排文件中使用 External Network 的方式。
 
 * docker-compose.yaml
 
@@ -283,7 +283,7 @@ networks:
 在本地 CADDY_ROOT 中添加 `etc/gitea.Caddyfile`。
 
 ```
-py4s.example.com {
+gitea.example.com {
   proxy / gitea:3000
 }
 ```
