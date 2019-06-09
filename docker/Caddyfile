@@ -9,6 +9,7 @@
         path /root/caddy/repo/{$CADDY_DOMAIN}
         clone_args --depth=1
         hook {$CADDY_GIT_HOOK} {CADDY_GIT_HOOK_SECRET}
+        hook_type ${CADDY_GIT_HOOK_TYPE}
         then git submodule init
         then git submodule update
         then hugo --destination={$CADDY_WWW_ROOT}/{$CADDY_DOMAIN}

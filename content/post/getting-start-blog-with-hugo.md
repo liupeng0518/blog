@@ -25,7 +25,7 @@ Github 开启了免费私有仓库之后，自建 Git 仓库的需求消失了�
 
 ## Hugo
 
-Hexo 和 Hugo 都是通过 Markdown 来生成静态文件，博客数据这块迁移没有什么难点，考虑到博客篇数很少，手动修改格式来适配 Hugo 即可，顺便检查一下文章，做一些修改，删掉一些不太重要的文章。
+Hexo 和 Hugo 都是通过 Markdown 来生成静态文件，博客数据这块迁移没有什么难点，考虑到博客篇数很少，手动修改格式来适配 Hugo 即可，顺便检查一下文章，做一些修改，删掉一些~~年轻时的黑历史~~不太重要的文章。
 
 我选择使用 [Beautiful Hugo - A port of Beautiful Jekyll Theme](https://github.com/halogenica/beautifulhugo)，根据 Hugo 官网的 Quick Start 走遇到第一个坑。
 

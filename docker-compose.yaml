@@ -18,3 +18,7 @@ services:
         published: 443
         protocol: tcp
         mode: host
+
+networks: 
+  caddy-blog-network:
+    attachable: true
