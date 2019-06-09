@@ -25,7 +25,7 @@ Github 开启了免费私有仓库之后，自建 Git 仓库的需求消失了�
 
 ## Hugo
 
-Hexo 和 Hugo 都是通过 Markdown 来生成静态文件，博客数据这块迁移没有什么难点，考虑到博客篇数很少，手动修改格式来适配 Hugo 即可，顺便检查一下文章，做一些修改，删掉一些~~年轻时的黑历史~~不太重要的文章。
+Hexo 和 Hugo 都是通过 Markdown 来生成静态文件，博客数据这块迁移没有什么难点，考虑到博客篇数很少，手动修改格式来适配 Hugo 即可，顺便检查一下文章，删掉一些~~年轻时的黑历史~~不太重要的文章。
 
 我选择使用 [Beautiful Hugo - A port of Beautiful Jekyll Theme](https://github.com/halogenica/beautifulhugo)，根据 Hugo 官网的 Quick Start 走遇到第一个坑。
 
@@ -106,11 +106,12 @@ RUN apk add --no-cache openssh-client ca-certificates git
 
 COPY --from=builder ["/usr/local/bin/caddy","/usr/local/bin/hugo","/usr/local/bin/"]
 
-ENV CADDY_DOMAIN="blog.example.com" \
+ENV CADDY_DOMAIN="localhost" \
     CADDY_TLS_EMAIL="root@example.com" \
-    CADDY_GIT_REPO="https://github.com/example/blog" \
+    CADDY_GIT_REPO="https://github.com/example" \
     CADDY_GIT_BRANCH="master" \
     CADDY_GIT_HOOK="/webhook" \
+    CADDY_GIT_HOOK_TYPE="github" \
     CADDY_GIT_HOOK_SECRET="secret"
 
 WORKDIR /root
@@ -137,6 +138,8 @@ CMD ["caddy","-agree","-conf","/etc/caddy/Caddyfile"]
 
 Caddy 的配置文件支持变量，所以通过环境变量来配置主要的 Caddyfile，然后使用 import 的方式导入其他配置。
 
+注意：Caddyfile 中变量语法为 `{$ENV_VAR}`。
+
 ```Caddyfile
 {$CADDY_DOMAIN} {
     log {$CADDY_LOG_ROOT}/{$CADDY_DOMAIN}/access.log
@@ -148,7 +151,8 @@ Caddy 的配置文件支持变量，所以通过环境变量来配置主要的 C
         branch {$CADDY_GIT_BRANCH}
         path /root/caddy/repo/{$CADDY_DOMAIN}
         clone_args --depth=1
-        hook {$CADDY_GIT_HOOK} {CADDY_GIT_HOOK_SECRET}
+        hook {$CADDY_GIT_HOOK} {$CADDY_GIT_HOOK_SECRET}
+        hook_type {$CADDY_GIT_HOOK_TYPE}
         then git submodule init
         then git submodule update
         then hugo --destination={$CADDY_WWW_ROOT}/{$CADDY_DOMAIN}
@@ -203,6 +207,10 @@ services:
         published: 443
         protocol: tcp
         mode: host
+
+networks: 
+  caddy-blog-network:
+    attachable: true
 ```
 
 * .env
@@ -221,8 +229,21 @@ HUGO_TITLE=Your Hugo Title
 HUGO_BASEURL=https://blog.example.com
 ```
 
-## 收工
+## 其他
 
-在 Github 上添加好 WebHook 之后就就完工了。
+在 Github 上添加好 WebHook 之后就完成所有内容了，每当 Push 后都会自动更新博客。
 
 根据需要可以调整 Caddyfile 的配置，如果还要安装其他 Caddy Plugin 可以在 docker-compose.yaml 中添加 build args 的方式定义 plugin，重新构建镜像。
+
+```yaml
+version: "3.7"
+services:
+  caddy:
+    build:
+      context: docker
+      args:
+        plugins: "http.cache,http.cors,http.expires,http.realip,http.git"
+        hugo_version: "0.55.6"
+```
+
+### Extent Network
