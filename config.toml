@@ -1,4 +1,4 @@
-baseURL = "https://tomczhen.com/"
+# baseURL = "https://tomczhen.com/"
 languageCode = "zh-cn"
 DefaultContentLanguage = "zh-cn"
 title = "Tom CzHen's Blog"

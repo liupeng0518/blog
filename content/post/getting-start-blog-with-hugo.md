@@ -20,7 +20,7 @@ Github 开启了免费私有仓库之后，自建 Git 仓库的需求消失了�
 
 * 使用 Hugo 替换 Hexo 
 * 使用 Caddy 替换 Nginx
-* 通过 Caddy Git 插件完成自动更新 pipline
+* 通过 Caddy Git 插件自动更新
 * 使用 Docker 编排部署
 
 ## Hugo
@@ -42,7 +42,9 @@ Hexo 和 Hugo 都是通过 Markdown 来生成静态文件，博客数据这块�
 
 ### 放置备案号
 
-国内要求将备案号放在页面中，虽然 Beautiful Hugo 支持国际化多语言，但是这个中国本地化特色需求没有支持。修改 `themes/beautifulhugo/layouts/partials/foot.html` 可以解决问题，不过这种侵入式的修改不太优雅。注：可以复制 `themes/beautifulhugo/layouts/partials/foot.html` 到根目录 `layouts/partials/foot.html`，再进行修改。 
+国内要求将备案号放在页面中，虽然 Beautiful Hugo 支持国际化多语言，但是这个中国本地化特色需求没有支持。修改 `themes/beautifulhugo/layouts/partials/foot.html` 可以解决问题，不过这种侵入式的修改不太优雅。
+
+注：可以复制 `themes/beautifulhugo/layouts/partials/foot.html` 到根目录 `layouts/partials/foot.html`，再进行修改。 
 
 打开 `themes/beautifulhugo/laouts/partials/footer.html` 可以看到，Beautiful Hugo 在生成 poweredBy 内容时使用了 i18n 的方式。
 
@@ -79,9 +81,9 @@ DefaultContentLanguage = "zh-cn"
 
 ## Caddy
 
-Caddy 和 Hugo 一样都是 golang 开发的，从个人角度看，最大的优势是单个二进制文件部署，自动完成 HTTPS、HTTP/2 配置，简单好用说的就是它了。考虑到需要使用 Caddy Git 插件，并且最终要使用 Docker 编排来完成部署，而 Caddy Hugo 插件已经没有了，所以只能根据需求构建镜像。
+Caddy 和 Hugo 一样都是 golang 开发的，从个人角度看，最大的优势是单个二进制文件部署，自动完成 HTTPS、HTTP/2 配置，简单好用说的就是它了。Caddy 并没有提供官方的 Docker 镜像，而且由于 Caddy Plugin 存在，必须自定义构建 Docker 镜像，同时还需要在镜像中加入 Hugo 运行环境。
 
-### 构建镜像
+### 构建 Caddy 镜像
 
 在项目根目录下创建 docker 文件夹，然后创建构建镜像需要的 `Dockerfile` `Caddyfile` `docker-entrypoint.sh` 文件。
 
@@ -89,22 +91,24 @@ Caddy 和 Hugo 一样都是 golang 开发的，从个人角度看，最大的优
 
 ```Dockerfile
 FROM alpine:latest as builder
-
-ARG plugins="http.cache,http.cors,http.expires,http.realip,http.git,http.minify"
+ARG hugo_version="0.55.6"
+ARG plugins="http.cache,http.cors,http.expires,http.realip,http.git"
 
 RUN apk add --no-cache curl bash gnupg
 
 RUN curl https://getcaddy.com | bash -s personal ${plugins}
 
+RUN curl -L https://github.com/gohugoio/hugo/releases/download/v${hugo_version}/hugo_${hugo_version}_Linux-64bit.tar.gz | tar xz -C /usr/local/bin/
+
 FROM alpine:latest
 
-RUN apk add --no-cache openssh-client ca-certificates git hugo
+RUN apk add --no-cache openssh-client ca-certificates git
 
-COPY --from=builder /usr/local/bin/caddy /usr/local/bin/
+COPY --from=builder ["/usr/local/bin/caddy","/usr/local/bin/hugo","/usr/local/bin/"]
 
-ENV CADDY_DOMAIN="localhost" \
+ENV CADDY_DOMAIN="blog.example.com" \
     CADDY_TLS_EMAIL="root@example.com" \
-    CADDY_GIT_REPO="https://github.com/example" \
+    CADDY_GIT_REPO="https://github.com/example/blog" \
     CADDY_GIT_BRANCH="master" \
     CADDY_GIT_HOOK="/webhook" \
     CADDY_GIT_HOOK_SECRET="secret"
@@ -138,7 +142,6 @@ Caddy 的配置文件支持变量，所以通过环境变量来配置主要的 C
     log {$CADDY_LOG_ROOT}/{$CADDY_DOMAIN}/access.log
     root {$CADDY_WWW_ROOT}/{$CADDY_DOMAIN}
     gzip
-    minify
     tls {$CADDY_TLS_EMAIL}
     git {
         repo {$CADDY_GIT_REPO}
@@ -146,6 +149,8 @@ Caddy 的配置文件支持变量，所以通过环境变量来配置主要的 C
         path /root/caddy/repo/{$CADDY_DOMAIN}
         clone_args --depth=1
         hook {$CADDY_GIT_HOOK} {CADDY_GIT_HOOK_SECRET}
+        then git submodule init
+        then git submodule update
         then hugo --destination={$CADDY_WWW_ROOT}/{$CADDY_DOMAIN}
     }
 }
@@ -161,14 +166,63 @@ CADDYPATH 默认 `${HOME}/.caddy` 路径，用于保存生成的证书资源文�
 #!/usr/bin/env sh
 set -e
 
-export CADDY_ROOT="/root/caddy"
-export CADDYPATH="${CADDY_ROOT}/assets"
-export CADDY_WWW_ROOT="${CADDY_ROOT}/www"
-export CADDY_LOG_ROOT="${CADDY_ROOT}/logs"
+export CADDY_ROOT=/root/caddy
+export CADDYPATH=${CADDY_ROOT}/assets
+export CADDY_WWW_ROOT=${CADDY_ROOT}/www
+export CADDY_LOG_ROOT=${CADDY_ROOT}/logs
 
-mkdir -p "${CADDY_WWW_ROOT}/${CADDY_DOMAIN}" "${CADDY_LOG_ROOT}/${CADDY_DOMAIN}"
+mkdir -p ${CADDY_WWW_ROOT}/${CADDY_DOMAIN} ${CADDY_LOG_ROOT}/${CADDY_DOMAIN}
 
 exec "$@"
 ```
 
+### 编写编排文件
+
+在项目根目录下创建 `docker-compose.yaml` 与 `.env` 文件，如果路径不同，编排文件中相关项目也需要变化。
+
 * docker-compose.yaml
+
+```yaml
+version: "3.7"
+services:
+  caddy:
+    build:
+      context: docker
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - type: bind
+        source: ${CADDY_ROOT}
+        target: /root/caddy
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+        mode: host
+      - target: 443
+        published: 443
+        protocol: tcp
+        mode: host
+```
+
+* .env
+
+在 .env 中还可以使用 `HUGO_TITLE` `HUGO_BASEURL` 变量对 Hugo 进行配置。
+
+```shell
+CADDY_ROOT=/local_caddy_root_path
+CADDY_DOMAIN=blog.example.com
+CADDY_TLS_EMAIL=admin@exmaple.com
+CADDY_GIT_REPO=https://github.com/example/blog.git
+CADDY_GIT_BRANCH=master
+CADDY_GIT_HOOK=/webhook
+CADDY_GIT_HOOK_SECRET=your_hook_secret
+HUGO_TITLE=Your Hugo Title
+HUGO_BASEURL=https://blog.example.com
+```
+
+## 收工
+
+在 Github 上添加好 WebHook 之后就就完工了。
+
+根据需要可以调整 Caddyfile 的配置，如果还要安装其他 Caddy Plugin 可以在 docker-compose.yaml 中添加 build args 的方式定义 plugin，重新构建镜像。
