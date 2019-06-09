@@ -9,9 +9,9 @@ toc: true
 
 ## 问题
 
-Android Studio 与早期 Eclipse 所使用的构建脚本语言不同，Eclipse 是 ANT，Android Studio 则使用 Gradle，两者均是通过调用 Android SDK 进行编译构建。
+Android Studio 与早期 Eclipse 所使用的构建脚本语言不同，Eclipse 是 Ant，Android Studio 则使用 Gradle，两者均是通过调用 Android SDK 进行编译构建。
 
-但是很多时候 Eclipse 开发的 Android 项目代码在仅有 Android 编译环境中，通过 CLI 命令调用 ANT 脚本构建时却无法编译成功。
+但是很多时候 Eclipse 开发的 Android 项目代码在仅有 Android 编译环境中，通过 CLI 命令调用 Ant 脚本构建时却无法编译成功。
 
 原因是 Eclipse 中默认使用 Java 编译器并非 Oracle JDK/OpenJDK 而是 Eclipse 的 [Eclipse Java development tools (JDT)](https://www.eclipse.org/jdt/) 中的 Eclipse Compiler for Java (ECJ)，正是编译器的差异造成了这些问题。
 
@@ -56,7 +56,7 @@ javac HelloWorld.java
 
 但是很多时候开发人员会用“在我机器上没问题”这种理由来~~甩锅~~规避这些额外工作，因此只能在 Jenkins 上构建时指定 ECJ 进行编译。
 
-在 ANT 脚本中可以通过添加下面属性的方式指定编译器，需要将项目使用的 `org.eclipse.jdt.core_xxxxx.jar` 从 Eclipse plugins 目录中复制到 ANT_HOME 的 lib 目录下。
+在 Ant 脚本中可以通过添加下面属性的方式指定编译器，需要将项目使用的 `org.eclipse.jdt.core_xxxxx.jar` 从 Eclipse plugins 目录中复制到 ANT_HOME 的 lib 目录下。
 
 ```xml
 <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
