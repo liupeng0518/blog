@@ -198,8 +198,8 @@ services:
       - type: bind
         source: ${CADDY_ROOT}
         target: /root/caddy
-    networks:
-      - caddy-blog-network
+    networks: 
+      - caddy-network
     ports:
       - target: 80
         published: 80
@@ -211,8 +211,8 @@ services:
         mode: host
 
 networks: 
-  caddy-blog-network:
-    attachable: true
+  caddy-network:
+    name: caddy-network
 ```
 
 * .env
@@ -248,4 +248,37 @@ services:
         hugo_version: "0.55.6"
 ```
 
-### Extent Network
+### External Network
+
+如果除了博客之外还有其他服务也需要通过 Caddy 来代理，可以在编排文件中使用 External Network 的方式。
+
+* docker-compose.yaml
+
+```yaml
+version: "3.7"
+services:
+ py4s:
+  image: tomczhen/py4s
+  container_name: gitea
+  restart: unless-stopped
+  expose:
+    - "3000"
+  volumes:
+    - ./config:/app/config
+  networks:
+    - caddy-network
+
+networks:
+  caddy-network:
+    external: true
+```
+
+* py4s.Caddyfile
+
+在本地 CADDY_ROOT 中添加 `etc/py4s.Caddyfile`。
+
+```
+py4s.example.com {
+  proxy / py4s
+}
+```
