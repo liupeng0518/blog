@@ -7,16 +7,16 @@
 **期望职位:** 运维工程师/DevOps工程师
 
 
-熟练掌握 Kubernetes 和 OpenStack 等技术栈，具备 10 年以上 DevOps 工作经验，
-拥有 10 年以上 DevOps 及运维工程经验，熟练掌握 Kubernetes、OpenStack、Docker、Jenkins、Ansible 等主流技术栈。擅长云原生架构设计、集群部署调优及自动化运维，曾主导多个大规模平台的规划、交付与优化，具备扎实的技术功底和丰富的项目实践经验。
+
+拥有 10 年以上 DevOps 及运维工程经验，熟练掌握 Kubernetes、OpenStack、Docker、Jenkins、Ansible 等主流技术栈。擅长云原生架构设计、集群部署调优及自动化运维，曾主导多个大规模平台的规划、交付与优化，具备扎实的技术功底和丰富的团队管理经验。
 
 
 
 ## 技能
 
-- **云原生:** Docker, Kubernetes, OpenShift
+- **云原生/云计算:** Docker, Kubernetes, OpenStack, OpenShift, Helm
 - **CI/CD 工具:** Jenkins, Travis CI, ArgoCD, SonarQube
-- **配置管理:** Ansible
+- **自动化管理:** Ansible
 - **脚本语言:** Bash, Python, Go
 - **操作系统:** Linux
 
