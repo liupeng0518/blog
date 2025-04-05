@@ -1,41 +1,65 @@
-## 个人信息
+# 刘鹏
 
-基本信息：刘鹏/男/1989.05
-
+**出生年月:** 1989.05
 **毕业学校:** 本科/齐鲁工业大学 电子信息科学与技术 
-
 **联系方式:** 电话：13210500953，邮箱：liupeng0518@yeah.net
-
 **GitHub:** [github.com/liupeng0518](https://github.com/liupeng0518)
-
 **期望职位:** 运维工程师/DevOps工程师
 
 
 熟练掌握 Kubernetes 和 OpenStack 等技术栈，具备 10 年以上 DevOps 工作经验，
+拥有 10 年以上 DevOps 及运维工程经验，熟练掌握 Kubernetes、OpenStack、Docker、Jenkins、Ansible 等主流技术栈。擅长云原生架构设计、集群部署调优及自动化运维，曾主导多个大规模平台的规划、交付与优化，具备扎实的技术功底和丰富的项目实践经验。
 
-## Skills
 
-- **Containerization:** Docker, Kubernetes, OpenShift
-- **CI/CD Tools:** Jenkins, GitLab CI, CircleCI, Travis CI
-- **Configuration Management:** Ansible, Chef, Puppet, Terraform
-- **Monitoring & Logging:** Prometheus, Grafana, ELK Stack, Splunk
-- **Scripting Languages:** Bash, Python, Ruby, Go
-- **Version Control:** Git, SVN
-- **Networking:** TCP/IP, DNS, VPN, Load Balancing
-- **Operating Systems:** Linux, Windows
+
+## 技能
+
+- **云原生:** Docker, Kubernetes, OpenShift
+- **CI/CD 工具:** Jenkins, Travis CI, ArgoCD, SonarQube
+- **配置管理:** Ansible
+- **脚本语言:** Bash, Python, Go
+- **操作系统:** Linux
 
 ## 工作经历
 
 ### 浪潮数据（2018年6月~至今）DevOps工程师
 
+
+
+云原生 DevOps 平台设计与优化
+
+主导基于 Kubernetes、Jenkins 与 ArgoCD 的平台架构设计，实现产品云原生数字化转型；
+
+引入 GitOps 流程，提高研发效能，缩短产品上线周期，并有效补全不可变基础设施的关键环节；
+
+开发并维护基于 Helm/Helmfile 的 OpenStack 部署工具，实现统一编排。
+
+Kubernetes 集群运维与高可用方案
+
+设计并实施大规模 Kubernetes 集群上线、维护及调优方案，保障集群稳定性与高可用性；
+
+负责国产架构（MIPS/LoongArch）适配与迁移工作，实现产品的“一云多芯”能力。
+
+OpenStack 运维与平台优化
+
+架构设计 OpenStack on Kubernetes 平台，开发部署工具并优化高可用方案；
+
+优化部署流程，提升用户部署体验，并成功交付多个大规模项目；
+
+维护 OpenStack 平台及关键中间件（如消息队列），确保系统稳定运行。
+
+云原生 PaaS 开发
+推动云原生 PAAS 服务建设，选型并维护 MySQL、Redis、RabbitMQ 等 Operator，提升平台服务水平；
+
+
+
 **1. DevOps平台运维开发：**
 
-工作期间主要负责云原生DevOps平台整体的架构设计（Jenkins、ArgoCD、Kubernetes等），借助 kubernetes完成产品云原生数字化转型及一云多芯适配；
+主导基于 Kubernetes、Jenkins 与 ArgoCD 的平台架构设计，实现产品云原生数字化转型；
 
-引入ArgoCD等GitOps工具，增强研发团队研发效能、提升产品质量，补全不可变基础设施关键环节；
+引入 GitOps 流程，提高研发效能，缩短产品上线周期，并有效补全不可变基础设施的关键环节；
 
-负责产品部署工具的维护与开发，完成openstack等组件基于helm和helmfile的统一编排；
-
+开发并维护基于 Helm/Helmfile 的 OpenStack 部署工具，实现统一编排。
 
 **2. Kubernetes运维开发：**
 
@@ -93,21 +117,4 @@
 
 负责公司内部网络设备及机房运维，参与并审核软件架构设计、安全规范设计等的合理性和可运维性，负责保障产品或服务7×24小时稳定运行；
 
-
-
-## Projects
-
-### Multi-Cloud Deployment Platform
-1. Designed and implemented a multi-cloud deployment platform using Terraform and Ansible, enabling seamless provisioning across AWS, Azure, and GCP.
-
-### CI/CD Pipeline Optimization
-1. Led a project to optimize CI/CD pipelines using Jenkins and Docker, reducing build and deployment times by 60%.
-
-### Monitoring and Alerting System
-1. Developed a comprehensive monitoring and alerting system using Prometheus, Grafana, and ELK Stack, enhancing visibility into system performance and reliability.
-
-## Open Source Contributions
-
-1. Contributed to the Kubernetes project by submitting patches and improving documentation.
-1. Maintained an open-source Terraform module for AWS infrastructure, used by numerous organizations globally.
 
