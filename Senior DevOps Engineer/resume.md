@@ -19,8 +19,8 @@
 ## 技能
 
 - **云原生/云计算:** Docker, Kubernetes, OpenStack, OpenShift, Helm
-- **CI/CD 工具:** Jenkins, Travis CI, ArgoCD, SonarQube
-- **自动化管理:** Ansible
+- **CI/CD 工具:** Jenkins, Travis CI, ArgoCD, SonarQube, GitLab, Gerrit
+- **自动化管理:** Ansible, Puppet
 - **脚本语言:** Bash, Python, Go
 - **操作系统:** Linux
 
@@ -32,6 +32,9 @@
  **1. 云原生 PaaS 开发**
 
 推动云原生 PAAS 服务建设，选型并维护 MySQL、Redis、RabbitMQ 等 Kubernetes Operator，提升云平台组件的平台稳定性及产品竞争力；
+
+完成多个中间件的高可用架构设计及开发工作，并负责故障定位、性能优化、高可用增强等工作；
+
 
 
  **2. 云原生 DevOps**
