@@ -1,16 +1,19 @@
-# 刘鹏
 
-**出生年月:** 1989.05
+## 基本信息
 
-**联系方式:** 电话：13210500953，邮箱：liupeng0518@yeah.net
+刘鹏/男/1989.05
+
+**电话:** 13210500953
+
+**邮箱:** liupeng0518@yeah.net
 
 **GitHub:** [github.com/liupeng0518](https://github.com/liupeng0518)
 
 **期望职位:** 运维工程师/DevOps工程师
 
 
-## 介绍
-拥有 10 年以上 DevOps 及运维工程经验，熟练掌握 Kubernetes、OpenStack、Docker、Jenkins、Ansible 等主流技术栈。擅长云原生架构设计、集群部署调优及自动化运维，曾主导多个大规模平台的规划、交付与优化，具备扎实的技术功底和丰富的团队管理经验。
+## 个人介绍
+拥有 10 年以上 DevOps 经验，5 年+卓越的团队管理经验，熟练掌握 Kubernetes、OpenStack、Docker、Jenkins、Ansible 等主流技术栈。擅长云原生架构设计、集群部署调优及自动化运维，曾主导多个大规模平台的规划、交付与优化，具备扎实的技术功底和运维架构能力。
 
 
 
@@ -27,38 +30,39 @@
 ### 浪潮数据（2018年6月~至今）DevOps工程师
 
 
-**1. 云原生 PaaS 开发**
+ **1. 云原生 PaaS 开发**
 
 推动云原生 PAAS 服务建设，选型并维护 MySQL、Redis、RabbitMQ 等 Kubernetes Operator，提升云平台组件的平台稳定性及产品竞争力；
 
 
-**2. 云原生 DevOps**
+ **2. 云原生 DevOps**
 
-主导基于 Kubernetes、Jenkins 与 ArgoCD 的DevOps平台架构设计，实现产品云原生数字化转型；
+主导基于 Kubernetes、Jenkins 与 ArgoCD 的DevOps/GitOps平台架构设计，实现产品云原生数字化转型；
 
-引入 GitOps 流程，提高研发效能，缩短产品上线周期，并有效补全不可变基础设施的关键环节；
-
-开发并维护基于 Helm/Helmfile 的 OpenStack 部署工具，实现统一编排。
 
 **3. Kubernetes 运维开发**
 
-设计并实施大规模 Kubernetes 集群上线、维护及调优方案，保障集群稳定性与高可用性；
+带领团队完成国产架构（MIPS/LoongArch等）“一云多芯” 适配与迁移工作；
 
-负责国产架构（MIPS/LoongArch等）适配与迁移工作，实现产品的“一云多芯”能力。
+负责kubernetes产品高可用交付方案及集群稳定性设计，并主导完成大规模集群上线、维护及调优；
+
+负责基于不可变基础设施的云原生应用的交付研究；
 
 **4. OpenStack 运维开发**
 
-架构设计 OpenStack on Kubernetes 平台，开发部署工具并优化高可用方案；
+完成Openstack On Kubernetes架构设计，部署工具开发及高可用方案优化；
+ 
+负责Openstack On Kubernetes部署效率优化和提升，提升用户部署体验，完成多个大规模项目的规划和交付；
 
-优化部署流程，提升用户部署体验，并成功交付多个大规模项目；
+负责OpenStack的维护工作，确保平台的稳定可靠，包括优化平台所用到的消息队列等中间件；
 
-维护 OpenStack 平台及关键中间件（如消息队列），确保系统稳定运行。
 
 ### 北京环亚时代（2016年5月~2018年5月）任职：OpenStack运维工程师
 
 **1. OpenStack平台运维**
 
 负责OpenStack/Ceph平台部署、容量预测、故障处理等运维工作，保证金融云云平台的稳定可靠运行；任职期间处理多起云平台故障；
+
 负责对该日志平台维护及性能调优工作，完成两地三中心的分布式平台日志收集系统的评估、设计和部署工作。
 
 **2. Linux系统平台运维**
